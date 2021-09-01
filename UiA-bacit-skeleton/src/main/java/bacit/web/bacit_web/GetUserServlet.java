@@ -23,7 +23,7 @@ public class GetUserServlet extends HttpServlet {
         try {
             UserModel model = getUser(uname, out);
 
-            out.println(model.getFirstName() + "" + model.getLastName());
+            out.println("The User You are looking for is"  + " " + " " + model.getFirstName() + " " + model.getLastName()) ;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
