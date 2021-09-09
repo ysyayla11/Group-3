@@ -23,7 +23,7 @@ public class GetUserServlet extends HttpServlet {
         try {
             UserModel model = getUser(uname, out);
 
-            out.println("Testing branching"  + " " + " " + model.getFirstName() + " " + model.getLastName()) ;
+            out.println("Testing branching"  + " " + " " + model.getFirstName() + " " + model.getLastName() + " " + model.getPassword()) ;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
