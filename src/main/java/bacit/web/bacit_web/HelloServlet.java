@@ -10,14 +10,16 @@ public class HelloServlet extends HttpServlet {
     private String message;
 
     public void init() {
-        message = "Hello World!";
+        message = "Hello World!!!!";
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
 
         // Hello
+
         PrintWriter out = response.getWriter();
+
         out.println("<html><body>");
         out.println("<h1>" + message + "</h1>");
         out.println("<h1>Get someone from the database :-)</h1>");
@@ -26,6 +28,7 @@ public class HelloServlet extends HttpServlet {
         out.println("  <input type='text' name='uname'/>");
         out.println("  <input type='submit' />");
         out.println("</form>");
+        out.println("<p>test</p>");
         out.println("</body></html>");
     }
 
