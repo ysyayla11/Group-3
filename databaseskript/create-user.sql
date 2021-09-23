@@ -3,19 +3,17 @@ use MytestDB;
 create table if not EXISTS user
 (
     User_id                     int UNIQUE auto_increment,
-    User_firstName              VARCHAR(255),
-    User_lastName               VARCHAR(255),
+    User_fullName               VARCHAR(255),
     User_email                  VARCHAR(255),
     User_phoneNumber            int,
     User_password               VARCHAR(255),
     User_dob                    VARCHAR(255),
     User_address                VARCHAR(255),
     User_access                 VARCHAR(255),
-    User_qualification          boolean,
     User_union                  boolean,
     User_debt                   int,
     CONSTRAINT U_User_ID_PK PRIMARY KEY (User_id)
-);
+    );
 
 CREATE TABLE IF NOT EXISTS tools
 (
@@ -34,26 +32,43 @@ CREATE TABLE IF NOT EXISTS tools
 CREATE TABLE IF NOT EXISTS booking
 (
     Booking_id                      int NOT NULL PRIMARY KEY auto_increment,
-    Booking_Tools                   int,
-    Booking_User                    int,
-    FOREIGN KEY (Booking_Tools)     REFERENCES tools(Tool_id),
-    FOREIGN KEY (Booking_User)      REFERENCES user(User_id),
-    Booking_Payment_method          VARCHAR(255),
+    Tool_id                         int,
+    User_id                         int,
+    FOREIGN KEY (Tool_id)           REFERENCES tools(Tool_id),
+    FOREIGN KEY (User_id)           REFERENCES user(User_id),
     Booking_dateStart               Datetime NOT NULL,
-    Booking_dateEnd                 Datetime NOT NULL
+    Booking_dateEnd                 Datetime NOT NULL,
+    Booking_paid                    boolean
 );
 
-CREATE TABLE IF NOT EXISTS BookingLog
+CREATE TABLE IF NOT EXISTS paymentMethod
 (
-    BookingLog_id                      int NOT NULL PRIMARY KEY auto_increment,
-    BookingLog_Tools                   int,
-    BookingLog_User                    int,
-    FOREIGN KEY (BookingLog_Tools)     REFERENCES tools(Tool_id),
-    FOREIGN KEY (BookingLog_User)      REFERENCES user(User_id),
-    BookingLog_Payment_method          VARCHAR(255),
-    BookingLog_dateStart               Datetime NOT NULL,
-    BookingLog_dateEnd                 Datetime NOT NULL,
-    BookingLog_paid                    boolean
+    Payment_id                      int NOT NULL PRIMARY KEY auto_increment,
+    Payment_name                    VARCHAR(255)
 );
 
+CREATE TABLE IF NOT EXISTS qualification
+(
+    Qualification_id                int NOT NULL PRIMARY KEY auto_increment,
+    Tool_id                         int,
+    User_id                         int,
+    FOREIGN KEY (Tool_id)           REFERENCES tools(Tool_id),
+    FOREIGN KEY (User_id)           REFERENCES user(User_id)
+);
+
+insert into paymentMethod (Payment_id, Payment_name)
+values
+(
+ Payment_id,
+ 'Cash'
+
+);
+
+insert into paymentMethod (Payment_id, Payment_name)
+values
+(
+ Payment_id,
+ 'Vipps'
+
+);
 
