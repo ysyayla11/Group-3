@@ -11,6 +11,15 @@
     <title>Log inn</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+<style>
+    body {
+        font-family: "Lato", Calibri, Arial, sans-serif;
+        background-color: #04AA6D;
+        font-size: 16px;
+        color: #333;
+        text-align: center;
+    }
+</style>
 <body>
 <br>
 <%-- Menu Bar --%>
