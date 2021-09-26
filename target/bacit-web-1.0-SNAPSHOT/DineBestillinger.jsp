@@ -6,24 +6,37 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Bestillinger</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
 
+<html>
+
+<head>
+    <title>JSP</title>
+    <link href="styles.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
 <br>
-<%-- Menu Bar --%>
+
+
 <div class="topnav">
-    <ul>
-        <li><a class="active" href="index.jsp">Hjemme</a></li>
-        <li> <a href="Logg%20inn.jsp">Log inn</a></li>
-        <li> <a href="DinProfil.jsp">Din Profil</a></li>
-        <li><a href="DineBestillinger.jsp">Dine Bestillinger</a></li>
-    </ul>
+    <a id="hjemme" href="index.jsp">Hjemme</a>
+    <a id="Log" href="Logg inn.jsp">Log inn</a>
+    <a id="Profil" href="DinProfil.jsp">Din Profil</a>
+    <a id="Bestilling" href="DineBestillinger.jsp">Dine Bestillinger</a>
 </div>
-<br/>
+
+<ul>
+    <li>
+        <img src="Images/img_2.png" alt="icon"  >
+        <h3> Verktøy Sett </h3>
+        <p>Leiedato: 22.09.2021</p>
+        <p>Leveringsdato: 25.09.2021</p>
+        <p> Kostnad: 40 kr</p>
+        <button type ="button" class="availability"> Lever Varen</button>
+    </li>
+</ul>
 
 </body>
+
 </html>
+

@@ -10,7 +10,6 @@
 <br>
 
 
-
 <div class="topnav">
     <a id="hjemme" href="index.jsp">Hjemme</a>
     <a id="Log" href="Logg inn.jsp">Log inn</a>
@@ -48,6 +47,10 @@
     </li>
 
 </ul>
+
+
+
+<a href="Admin_dashboard.jsp">Admin</a>
 
 </body>
 </html>

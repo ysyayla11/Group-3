@@ -6,24 +6,41 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
 
+<html>
+
+<head>
+    <title>JSP</title>
+    <link href="styles.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
 <br>
-<%-- Menu Bar --%>
+
+
+
 <div class="topnav">
-    <ul>
-        <li><a class="active" href="index.jsp">Hjemme</a></li>
-        <li> <a href="Logg%20inn.jsp">Log inn</a></li>
-        <li> <a href="DinProfil.jsp">Din Profil</a></li>
-        <li><a href="DineBestillinger.jsp">Dine Bestillinger</a></li>
-    </ul>
+    <a id="hjemme" href="index.jsp">Hjemme</a>
+    <a id="Log" href="Logg inn.jsp">Log inn</a>
+    <a id="Profil" href="DinProfil.jsp">Din Profil</a>
+    <a id="Bestilling" href="DineBestillinger.jsp">Dine Bestillinger</a>
 </div>
-<br/>
+
+<img src="Images/img_5.png" alt="icon">
+
+<ul class="ProfilID">
+    <li> Navn: Anna Olsen  </li>
+    <li> Rolle: Ansatt</li>
+    <li> Mobilnummer: 96754322</li>
+    <li> Address: Vestrestrandgate 42, 4612 Kristiansanf</li>
+    <li> Mail: anne@mail.no</li>
+
+</ul>
+
+<button class="ProfilID"> Redifer Profil </button>
+
 
 </body>
+
 </html>
+

@@ -1,35 +1,38 @@
 
 html {
     font-size: 100%;
-    text-align-all: center;
+
 }
 
 body {
     font-family: "Lato", Calibri, Arial, sans-serif;
-    background-color: #f10e0e;
+    background-color: #f0f0f0;
     font-size: 2rem;
+    text-align: center;
+
 }
 
 /* Style the links inside the navigation bar */
- button  {
+button  {
     color: #f2f2f2;
     background-color: cornflowerblue;
-    padding: 1.6Rem 3.5Rem;
+    padding: 1Rem 3.5Rem;
     text-decoration: none;
+    font-size: 2Rem;
+    margin: 3Rem;
 }
 
 .topnav a{
     color: #f2f2f2;
-    background-color: forestgreen ;
-    width: 100%;
-    text-decoration: none;
-    padding-top: 1Rem;
-    padding-bottom: 1Rem;
-
+    background-color: cornflowerblue ;
+    font-size: 3Rem;
+    padding: 2Rem 1Rem;
+    margin-top: 1Rem;
 }
 
+
 /* Change the color of links on hover */
-.topnav a:hover, .topnav a.active:hover, button:hover, .cancelbtn {
+.topnav a:hover, .topnav a.active:hover, button:hover {
     background-color: #F0D0C9;
     color: black;
 }
@@ -40,36 +43,36 @@ form {
 }
 /* Full-width inputs */
 input[type=text], input[type=password] {
-    width: 3Rem;
-    padding: 1Rem 2Rem;
-    margin: 0.8rem 0;
+    padding: 2Rem 5Rem;
+    margin: 3rem 0;
     border: 0.1Rem solid #ccc;
+    display: inline-block;
+    font-size: 2Rem;
 
 }
-ul, li {
+
+
+li {
     list-style-type: none;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-bottom: 1.5rem;
+
 
 }
+
 
 img {
-    border-radius: 50%;}
+    border-radius: 50%;
+    margin-top: 8rem;
+    margin-bottom: 2rem;
+    width: 25Rem;
+    height: 25Rem;
 
-
-
-/* Avatar image */
-
-/* Add padding to containers */
-.container {
-    padding: 1.6rem;
 }
 
-/* The "Forgot password" text */
-span.psw {
-    float: bottom;
-    padding-top: 1.6Rem;
-}
+
+
+
+
 
 
 

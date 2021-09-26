@@ -8,39 +8,26 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Log inn</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>JSP</title>
+    <link href="styles.css" rel="stylesheet" type="text/css">
 </head>
-<style>
-    body {
-        font-family: "Lato", Calibri, Arial, sans-serif;
-        background-color: #04AA6D;
-        font-size: 16px;
-        color: #333;
-        text-align: center;
-    }
-</style>
+
 <body>
-
 <br>
-<%-- Menu Bar --%>
+
 <div class="topnav">
-    <ul>
-        <li><a class="active" href="index.jsp">Hjemme</a></li>
-        <li> <a href="Logg%20inn.jsp">Log inn</a></li>
-        <li> <a href="DinProfil.jsp">Din Profil</a></li>
-        <li><a href="DineBestillinger.jsp">Dine Bestillinger</a></li>
-    </ul>
+    <a id="hjemme" href="index.jsp">Hjemme</a>
+    <a id="Log" href="Logg inn.jsp">Log inn</a>
+    <a id="Profil" href="DinProfil.jsp">Din Profil</a>
+    <a id="Bestilling" href="DineBestillinger.jsp">Dine Bestillinger</a>
 </div>
-<br/>
 
 
-
-    <img src="Images/img.png" alt="Avatar" class="avatar" width="200" height="200">
+<img src="Images/img.png" alt="Avatar" class="avatar">
 
 
 <form class="post">
-    <%-- Login --%>
+
     <div class="container">
         <label><b>Username</b></label> <br>
         <input type="text" placeholder="Enter Username" name="uname" required> <br>
@@ -55,12 +42,13 @@
         </label> <br>
     </div>
 
-    <%-- Forget password --%>
+
     <div class="container" style="background-color:#f1f1f1">
-        <button type="button" class="cancelbtn">Cancel</button> <br>
-        <span class="psw">Forgot <a href="#">password?</a></span> <br>
+
+        <span  class="psw"> Forgot <a href="#">password?</a></span> <br>
     </div>
 </form>
 
 </body>
 </html>
+
