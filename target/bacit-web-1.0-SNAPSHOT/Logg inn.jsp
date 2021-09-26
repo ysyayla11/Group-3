@@ -12,22 +12,23 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
 <br>
 <%-- Menu Bar --%>
 <div class="topnav">
-    <a class="active" href="index.jsp">Hjemme</a>
-    <a href="Logg%20inn.jsp">Log inn</a>
-    <a href="DinProfil.jsp">Din Profil</a>
-    <a href="DineBestillinger.jsp">Dine Bestillinger</a>
-    <a href="https://www.amv-as.no/">Kontakt</a>
-
+    <ul>
+        <li><a class="active" href="index.jsp">Hjemme</a></li>
+        <li> <a href="Logg%20inn.jsp">Log inn</a></li>
+        <li> <a href="DinProfil.jsp">Din Profil</a></li>
+        <li><a href="DineBestillinger.jsp">Dine Bestillinger</a></li>
+    </ul>
 </div>
 <br/>
 
-<%-- Amv Picture --%>
-<div class="imgcontainer">
-    <img src="img.png" alt="Avatar" class="avatar" width="350" height="350">
-</div>
+
+
+    <img src="Images/img.png" alt="Avatar" class="avatar" width="200" height="200">
+
 
 <form class="post">
     <%-- Login --%>
