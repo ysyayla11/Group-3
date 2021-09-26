@@ -3,17 +3,17 @@ use MytestDB;
 create table if not EXISTS user
 (
     User_id                     int UNIQUE auto_increment,
-    User_firstName              VARCHAR(255),
-    User_lastName               VARCHAR(255),
+    User_fullName               VARCHAR(255),
     User_email                  VARCHAR(255),
-    User_phonenumber            int,
+    User_phoneNumber            int,
     User_password               VARCHAR(255),
     User_dob                    VARCHAR(255),
     User_address                VARCHAR(255),
     User_access                 VARCHAR(255),
-    User_qualification          VARCHAR(255),
+    User_union                  boolean,
+    User_debt                   int,
     CONSTRAINT U_User_ID_PK PRIMARY KEY (User_id)
-);
+    );
 
 CREATE TABLE IF NOT EXISTS tools
 (
@@ -21,104 +21,54 @@ CREATE TABLE IF NOT EXISTS tools
     Tool_name                   VARCHAR(255),
     Tool_type                   VARCHAR(255),
     Tool_condition              VARCHAR(255),
-    Tool_price                  VARCHAR(255),
-    Tool_qualification          int
+    Tool_price                  int,
+    Tool_qualification          boolean,
+    Tool_freeFirstDay           boolean,
+    Tool_importantInformation   varchar(255),
+    Tool_image                  varchar(255)
 
 );
 
-CREATE TABLE IF NOT EXISTS shopping_cart
+CREATE TABLE IF NOT EXISTS booking
 (
-    Order_id                    int NOT NULL PRIMARY KEY auto_increment,
-    Tools                       int,
-    User                        int,
-    FOREIGN KEY (Tools)         REFERENCES tools(Tool_id),
-    FOREIGN KEY (User)          REFERENCES user(User_id),
-    Payment_method              VARCHAR(255),
-    Rent_date                   DATE NOT NULL
+    Booking_id                      int NOT NULL PRIMARY KEY auto_increment,
+    Tool_id                         int,
+    User_id                         int,
+    FOREIGN KEY (Tool_id)           REFERENCES tools(Tool_id),
+    FOREIGN KEY (User_id)           REFERENCES user(User_id),
+    Booking_dateStart               Datetime NOT NULL,
+    Booking_dateEnd                 Datetime NOT NULL,
+    Booking_paid                    boolean
 );
 
-CREATE TABLE IF NOT EXISTS rent_log
+CREATE TABLE IF NOT EXISTS paymentMethod
 (
-    Rent_id                   int NOT NULL PRIMARY KEY auto_increment,
-    Order_type                int,
-    FOREIGN KEY (Order_type)  REFERENCES shopping_cart(Order_id)
+    Payment_id                      int NOT NULL PRIMARY KEY auto_increment,
+    Payment_name                    VARCHAR(255)
 );
 
-#inserter en record av en bruker inn i databasen otra.
-INSERT INTO user (User_id,
-                  User_firstName,
-                  User_lastName,
-                  User_email,
-                  User_phonenumber,
-                  User_password,
-                  User_dob,
-                  User_address,
-                  User_access,
-                  User_qualification
-)
+CREATE TABLE IF NOT EXISTS qualification
+(
+    Qualification_id                int NOT NULL PRIMARY KEY auto_increment,
+    Tool_id                         int,
+    User_id                         int,
+    FOREIGN KEY (Tool_id)           REFERENCES tools(Tool_id),
+    FOREIGN KEY (User_id)           REFERENCES user(User_id)
+);
 
+insert into paymentMethod (Payment_id, Payment_name)
+values
+(
+ Payment_id,
+ 'Cash'
 
+);
 
-VALUES (User_id,
-            'Root',
-            'Root',
-            'root@example.com',
-            '12345678',
-            'Password123',
-            '1990-01-01',
-            'Henrik Wergelandsgate 01',
-            'admin',
-            'tillatelse'
-       );
+insert into paymentMethod (Payment_id, Payment_name)
+values
+(
+ Payment_id,
+ 'Vipps'
 
-#inserter en record av et tool inn i databasen otra.
-INSERT INTO tools ( Tool_id,
-                    Tool_name,
-                    Tool_type,
-                    Tool_condition,
-                    Tool_price,
-                    Tool_qualification
-)
+);
 
-
-
-VALUES (    Tool_id,
-            'Eksentersliper 230VAC',
-            'Småutstyr',
-            'I stand',
-            '20*',
-            '0'
-       );
-
-#inserter en record av en shopping_cart inn i databasen otra.
-INSERT INTO shopping_cart ( Order_id,
-                            Tools,
-    /*Price,*/
-                            User,
-                            Payment_method,
-                            Rent_date
-)
-
-
-
-VALUES (    Order_id,
-            Tools,
-            User,
-            '',
-            Rent_date
-       );
-
-#inserter en record av en rent_log inn i databasen otra.
-INSERT INTO rent_log (  Rent_id,
-                        Order_type
-    /*User,
-    Tools
-    Price,
-    ent_date*/
-)
-
-
-
-VALUES (    Rent_id,
-            Order_type
-       );
