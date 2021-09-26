@@ -1,17 +1,17 @@
 create database if not exists MytestDB;
 use MytestDB;
-create table if not EXISTS user
+create table if not EXISTS users
 (
     User_id                     int UNIQUE auto_increment,
     User_fullName               VARCHAR(255),
     User_email                  VARCHAR(255),
     User_phoneNumber            int,
-    User_password               VARCHAR(255),
     User_dob                    VARCHAR(255),
     User_address                VARCHAR(255),
     User_access                 VARCHAR(255),
     User_union                  boolean,
     User_debt                   int,
+    User_password               VARCHAR(255),
     CONSTRAINT U_User_ID_PK PRIMARY KEY (User_id)
     );
 
@@ -22,10 +22,10 @@ CREATE TABLE IF NOT EXISTS tools
     Tool_type                   VARCHAR(255),
     Tool_condition              VARCHAR(255),
     Tool_price                  int,
-    Tool_qualification          boolean,
+    Tool_maxDays               VARCHAR(255),
     Tool_freeFirstDay           boolean,
     Tool_importantInformation   varchar(255),
-    Tool_image                  varchar(255)
+    Tool_image                  longblob
 
 );
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS booking
     Tool_id                         int,
     User_id                         int,
     FOREIGN KEY (Tool_id)           REFERENCES tools(Tool_id),
-    FOREIGN KEY (User_id)           REFERENCES user(User_id),
+    FOREIGN KEY (User_id)           REFERENCES users(User_id),
     Booking_dateStart               Datetime NOT NULL,
     Booking_dateEnd                 Datetime NOT NULL,
     Booking_paid                    boolean
@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS qualification
     Tool_id                         int,
     User_id                         int,
     FOREIGN KEY (Tool_id)           REFERENCES tools(Tool_id),
-    FOREIGN KEY (User_id)           REFERENCES user(User_id)
+    FOREIGN KEY (User_id)           REFERENCES users(User_id)
 );
 
 insert into paymentMethod (Payment_id, Payment_name)

@@ -20,6 +20,7 @@
     <a id="Log" href="Logg inn.jsp">Log inn</a>
     <a id="Profil" href="DinProfil.jsp">Din Profil</a>
     <a id="Bestilling" href="DineBestillinger.jsp">Dine Bestillinger</a>
+    <a id="admin" href="Admin_dashboard.jsp">Admin</a>
 </div>
 
 

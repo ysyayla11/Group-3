@@ -5,89 +5,58 @@
   Time: 00:27
   To change this template use File | Settings | File Templates.
 --%>
-
-<%@ page contentType="text/html; charset=UTF-8" language="java" pageEncoding="ISO-8859-1" %>
-<%@page import="java.sql.*, java.util.*"%>
-<%@ page import="static jdk.vm.ci.hotspot.HotSpotCallingConventionType.VALUES" %>
-
-<%
-    String User_firstName=request.getParameter("User_firstName");
-    String User_lastName=request.getParameter("User_lastName");
-    String User_email=request.getParameter("User_email");
-    String User_phoneNumber=request.getParameter("User_phoneNumber");
-    String User_address=request.getParameter("User_address");
-    String User_access=request.getParameter("User_access");
-    String User_qualification=request.getParameter("User_qualification");
-    String User_union=request.getParameter("User_union");
-    String User_password=request.getParameter("User_password");
-
-    String connectionURL = "jdbc:mariadb://localhost:3308";
-    Connection conn = null;
-    PreparedStatement preparedStatement = null;
-
-
-
-
-
-%>
-
-
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" %>
 <html>
 <head>
-    <title>Admin</title>
+    <title>ToolEntry</title>
     <link rel="stylesheet" href="styles.css">
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
 </head>
 <body>
 <br>
 <%-- Menu Bar --%>
 <div class="topnav">
-    <a class="active" href="index.jsp">Hjemme</a>
-    <a href="Logg%20inn.jsp">Log inn</a>
-    <a href="DinProfil.jsp">Din Profil</a>
-    <a href="DineBestillinger.jsp">Dine Bestillinger</a>
-    <a href="https://www.amv-as.no/">Kontakt</a>
-    <a href="Admin_userEntry.jsp">Admin</a>
-
+    <a href="Admin_dashboard.jsp">Admin</a>
 </div>
 <br/>
 
-<form class="post">
+<form method="post" action="uploadServlet" enctype="multipart/form-data">
     <%-- Enter user --%>
     <div class="container">
-        <label><b>First name</b></label> <br>
-        <input type="text" placeholder="Enter First name" name="User_firstName" required> <br>
+        <label><b>Tool name</b></label> <br>
+        <input type="text" placeholder="Enter Tool Name" name="Tool_name" required> <br>
 
-        <label><b>Last name</b></label> <br>
-        <input type="text" placeholder="Enter Last name" name="User_lastName" required> <br>
+        <label><b>Tool type</b></label> <br>
+        <input type="text" placeholder="Enter Tool Type" name="Tool_type" required> <br>
 
-        <label><b>Email</b></label> <br>
-        <input type="text" placeholder="Enter Email" name="User_email" required> <br>
+        <label><b>Tool condition</b></label> <br>
+        <input type="text" placeholder="Enter tool condition" name="Tool_condition" required> <br>
 
-        <label><b>Phone Number</b></label> <br>
-        <input type="text" placeholder="Enter phone number" name="User_phoneNumber" required> <br>
+        <label><b>Price</b></label> <br>
+        <input type="text" placeholder="Enter rental price" name="Tool_price" required> <br>
 
-        <label><b>Date of Birth</b></label> <br>
-        <input type="text" placeholder="Enter Date of Birth" name="User_dob" required> <br>
+        <label><b>Is the tool free the first day?</b></label><input type="checkbox" name="Tool_freeFirstDay" >
+        <br>
+        <br>
+        <label><b>Important information about the tool</b></label> <br>
+        <input type="text" placeholder="Enter Important Information" name="Tool_importantInformation" required> <br>
 
-        <label><b>Address</b></label> <br>
-        <input type="text" placeholder="Enter Address" name="User_address" required> <br>
+        <label><b>Picture of the tool (JPG/PNG only)</b></label> <br>
+        <input type="file" name="Tool_image" required> <br>
 
-        <label><b>Is the user an admin?</b></label> <br>
-        <input type="checkbox" name="User_access" required> <br>
+        <label><b>What is the maximum amount of days this tool can be rented?</b></label> <br>
+        <input type="text" placeholder="Enter maximum rental days" name="Tool_maxDays" > <br>
 
-        <label><b>Is the user qualified to operate all tools?</b></label> <br>
-        <input type="checkbox" name="User_qualification" required> <br>
-
-        <label><b>Are the user an unionworker?</b></label> <br>
-        <input type="checkbox" name="User_union" required> <br>
-
-        <label><b>Password</b></label> <br>
-        <input type="password" placeholder="Enter Password" name="User_password" required> <br>
-
-        <button type="submit">Login</button> <br>
+        <button type="submit">Lagre verktøy</button> <br>
 
     </div>
 </form>
 
 </body>
 </html>
+
+<web-app>
+    <context-param>
+
+    </context-param>
+</web-app>
