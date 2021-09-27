@@ -5,6 +5,7 @@
   Time: 00:27
   To change this template use File | Settings | File Templates.
 --%>
+<%--
 <%@ page contentType="text/html; charset=UTF-8" language="java" pageEncoding="ISO-8859-1" %>
 <%@page import="java.sql.*, java.util.*"%>
 <%@ page import="static jdk.vm.ci.hotspot.HotSpotCallingConventionType.VALUES" %>
@@ -25,8 +26,7 @@
     PreparedStatement preparedStatement = null;
 
 
-
-
+--%>
 
 %>
 
@@ -44,9 +44,12 @@
     <a href="Logg%20inn.jsp">Log inn</a>
     <a href="DinProfil.jsp">Din Profil</a>
     <a href="DineBestillinger.jsp">Dine Bestillinger</a>
-    <a href="https://www.amv-as.no/">Kontakt</a>
+    <br>
+    <br>
+    <br>
     <a href="Admin_userEntry.jsp">Admin</a>
-
+    <a href="Admin_toolEntry.jsp">Verktøy</a>
+    <a href="Admin_userEntry.jsp">Brukere</a>
 </div>
 <br/>
 
