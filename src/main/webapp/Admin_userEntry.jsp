@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>UserEntry</title>
-    <link rel="stylesheet" href="styles.css">'
+    <link rel="stylesheet" href="styles.css">
     <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
 </head>
 <body>
@@ -20,7 +20,7 @@
 </div>
 <br/>
 
-<form method="post" action="uploadServlet" enctype="multipart/form-data">
+<form method="post" action="uploadServletUser" enctype="multipart/form-data">
     <%-- Enter user --%>
     <div class="container">
         <label><b>Full name</b></label> <br>
@@ -36,16 +36,19 @@
         <input type="text" placeholder="Enter Address" name="User_address" required> <br>
 
         <label><b>Is the user an admin?</b></label> <br>
-        <input type="checkbox" name="User_access" required> <br>
+        <input type="checkbox" name="User_access" > <br>
 
         <label><b>Is the user qualified to operate all tools?</b></label> <br>
-        <input type="checkbox" name="User_qualification" required> <br>
+        <input type="checkbox" name="User_qualification" > <br>
 
         <label><b>Are the user an unionworker?</b></label> <br>
-        <input type="checkbox" name="User_union" required> <br>
+        <input type="checkbox" name="User_union" > <br>
+
+        <label><b>Do the user have any outstanding/old debt?</b></label> <br>
+        <input type="text" placeholder="Enter Debt" name="User_debt" > <br>
 
         <label><b>Password</b></label> <br>
-        <input type="password" placeholder="Enter Password" name="User_password" required> <br>
+        <input type="text" placeholder="Enter Password" name="User_password" required> <br>
 
         <button type="submit">Lagre bruker</button> <br>
 

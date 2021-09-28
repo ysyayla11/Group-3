@@ -3,3 +3,4 @@
 /usr/src/mymaven/src/main/java/bacit/web/bacit_web/GetUserServlet.java
 /usr/src/mymaven/src/main/java/bacit/web/bacit_web/FileUploadDBServlet.java
 /usr/src/mymaven/src/main/java/bacit/web/bacit_web/DBUtils.java
+/usr/src/mymaven/src/main/java/bacit/web/bacit_web/UserUploadDBServlet.java

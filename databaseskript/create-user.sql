@@ -6,7 +6,6 @@ create table if not EXISTS users
     User_fullName               VARCHAR(255),
     User_email                  VARCHAR(255),
     User_phoneNumber            int,
-    User_dob                    VARCHAR(255),
     User_address                VARCHAR(255),
     User_access                 VARCHAR(255),
     User_union                  boolean,
@@ -22,7 +21,7 @@ CREATE TABLE IF NOT EXISTS tools
     Tool_type                   VARCHAR(255),
     Tool_condition              VARCHAR(255),
     Tool_price                  int,
-    Tool_maxDays               VARCHAR(255),
+    Tool_maxDays                VARCHAR(255),
     Tool_freeFirstDay           boolean,
     Tool_importantInformation   varchar(255),
     Tool_image                  longblob
@@ -71,4 +70,5 @@ values
  'Vipps'
 
 );
+
 
