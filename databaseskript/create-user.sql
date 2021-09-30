@@ -1,5 +1,5 @@
-create database if not exists MytestDB;
-use MytestDB;
+create database if not exists MytestDBGroup3;
+use MytestDBGroup3;
 create table if not EXISTS user
 (
     User_id                     int UNIQUE auto_increment,
@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS qualification
     FOREIGN KEY (Tool_id)           REFERENCES tools(Tool_id),
     FOREIGN KEY (User_id)           REFERENCES user(User_id)
 );
-
+/*
 insert into paymentMethod (Payment_id, Payment_name)
 values
 (
@@ -71,4 +71,17 @@ values
  'Vipps'
 
 );
+*/
+insert into tools(Tool_id,
+    Tool_name,
+Tool_type,
+Tool_condition,
+Tool_price,
+Tool_freeFirstDay,
+Tool_importantInformation,
+Tool_image               )
 
+values (Tool_id, 'Makita drill', 'drill', 'God stand', '20', true, 'må leveres til samme sted som hentet', ' ');
+
+Update tools
+    set Tool_name = 'Bosch drill' where Tool_id = 1;
