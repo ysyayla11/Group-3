@@ -70,5 +70,22 @@ values
  Payment_id,
  'Vipps'
 
+
 );
 
+insert into user (User_fullName, User_email, User_phoneNumber, User_password, user_dob, User_address, User_access, User_union, User_debt)
+values
+(
+ 'Ronny Johansen',
+ 'Ronny56@gmail.com',
+  98979691,
+ 'Passord123',
+  NULL,
+ 'Gate 23',
+ 'Nei',
+  true,
+  500
+);
+update user
+set User_fullName = 'Jacob Olsen'
+where User_id = 1;
