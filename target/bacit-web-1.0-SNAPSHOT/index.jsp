@@ -28,6 +28,7 @@
         <button type ="button" class="availability"> Sjekk ledige tider </button>
     </li>
 
+    <a href="hello-servlet" >Hei</a>
 
     <li> <img src="Images/img_3.png" alt="icon" >
         <h3> Skrujern </h3>
