@@ -90,7 +90,6 @@
         <button type ="button" class="availability"> Sjekk ledige tider </button>
     </li>
 
-    <a href="hello-servlet" >Hei</a>
 
     <li> <img src="Images/img_3.png" alt="icon" >
         <h3> Skrujern </h3>
@@ -111,7 +110,7 @@
 
 </ul>
 
-
+<form action="/GetToolServlet" method="get">Get Tools</form>
 
 <a href="Admin_dashboard.jsp">Admin</a>
 

@@ -1,5 +1,7 @@
+bacit/web/bacit_web/GetToolServlet.class
 bacit/web/bacit_web/GetUserServlet.class
+bacit/web/bacit_web/ToolModel.class
 bacit/web/bacit_web/AdministerToolServlet.class
+bacit/web/bacit_web/DBUtils.class
 bacit/web/bacit_web/UserModel.class
 bacit/web/bacit_web/HelloServlet.class
-bacit/web/bacit_web/DBUtils.class

@@ -1,5 +1,7 @@
 /usr/src/mymaven/src/main/java/bacit/web/bacit_web/HelloServlet.java
 /usr/src/mymaven/src/main/java/bacit/web/bacit_web/UserModel.java
 /usr/src/mymaven/src/main/java/bacit/web/bacit_web/GetUserServlet.java
+/usr/src/mymaven/src/main/java/bacit/web/bacit_web/ToolModel.java
 /usr/src/mymaven/src/main/java/bacit/web/bacit_web/AdministerToolServlet.java
 /usr/src/mymaven/src/main/java/bacit/web/bacit_web/DBUtils.java
+/usr/src/mymaven/src/main/java/bacit/web/bacit_web/GetToolServlet.java

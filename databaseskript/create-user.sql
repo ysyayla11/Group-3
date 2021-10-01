@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS tools
     Tool_qualification          boolean,
     Tool_freeFirstDay           boolean,
     Tool_importantInformation   varchar(255),
-    Tool_image                  varchar(255)
+    Tool_image                  longblob
 
 );
 
@@ -81,7 +81,7 @@ Tool_freeFirstDay,
 Tool_importantInformation,
 Tool_image               )
 
-values (Tool_id, 'Makita drill', 'drill', 'God stand', '20', true, 'må leveres til samme sted som hentet', ' ');
+values (Tool_id, 'Makita drill', 'drill', 'God stand', '20', true, 'må leveres til samme sted som hentet', 'Group-3\src\main\webapp\Images\img.png');
 
 Update tools
     set Tool_name = 'Bosch drill' where Tool_id = 1;
