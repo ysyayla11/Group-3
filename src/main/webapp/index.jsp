@@ -110,7 +110,7 @@
 
 </ul>
 
-
+<form action="/GetToolServlet" method="get">Get Tools</form>
 
 <a href="Admin_dashboard.jsp">Admin</a>
 
