@@ -1,4 +1,4 @@
-create database if not exists MytestDB;
+create database if not exists MyTestDB;
 use MytestDB;
 create table if not EXISTS user
 (
@@ -22,10 +22,9 @@ CREATE TABLE IF NOT EXISTS tools
     Tool_type                   VARCHAR(255),
     Tool_condition              VARCHAR(255),
     Tool_price                  int,
-    Tool_qualification          boolean,
     Tool_freeFirstDay           boolean,
     Tool_importantInformation   varchar(255),
-    Tool_image                  varchar(255)
+    Tool_image                  longblob
 
 );
 
@@ -72,3 +71,5 @@ values
 
 );
 
+insert into tools (Tool_id, Tool_name, Tool_type, Tool_condition, Tool_price, Tool_freeFirstDay, Tool_importantInformation, Tool_image)
+values (Tool_id, 'Makita drill', 'småutstyr', 'God Stand', 20, true, 'Returner til samme plass som hentet', 'webapp/Images/img_3.png');
