@@ -1,5 +1,5 @@
-create database if not exists MytestDBGroup3;
-use MytestDBGroup3;
+create database if not exists MytestDB;
+use MytestDB;
 create table if not EXISTS user
 (
     User_id                     int UNIQUE auto_increment,

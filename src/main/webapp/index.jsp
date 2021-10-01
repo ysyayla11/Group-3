@@ -24,7 +24,7 @@
     <a id="Bestilling" href="DineBestillinger.jsp">Dine Bestillinger</a>
 </div>
 
-<form method="get" action="AdministerToolServlet" enctype="multipart/form-data">
+
     <!--<table border="2">
         <tr>
             <td>Name</td>

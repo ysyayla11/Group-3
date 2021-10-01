@@ -19,12 +19,12 @@ public class GetToolServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String uname = request.getParameter("uname");
+        String Tool_Name = request.getParameter("Tool_Name");
         PrintWriter out = response.getWriter();
         try {
-            UserModel model = getUser(uname, out);
+            ToolModel model = getTool(Tool_Name, out);
 
-            out.println(model.getFirstName());
+            out.println(model.getName());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -36,7 +36,7 @@ public class GetToolServlet extends HttpServlet {
 
     }
 
-    private UserModel getUser(String uname, PrintWriter out) throws SQLException {
+    private ToolModel getTool(String Tool_name, PrintWriter out) throws SQLException {
         Connection db = null;
         try {
             db = DBUtils.getINSTANCE().getConnection(out);
@@ -44,16 +44,20 @@ public class GetToolServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        String query3 = "select * from user where User_firstName = ?";
+        String query3 = "select * from tools where Tool_id = ?";
+
         PreparedStatement statement = db.prepareStatement(query3);
-        statement.setString(1, uname);
+        statement.setString(1, Tool_name);
         ResultSet rs = statement.executeQuery();
-        UserModel model = null;
+        ToolModel model = null;
         while (rs.next()) {
             model =
-                    new UserModel(rs.getString("User_firstName"), rs.getString("User_lastName"), rs.getString("User_Email"),
-                            rs.getString("User_password"), rs.getString("User_dob"));
+                    new ToolModel(rs.getString("Tool_id"), rs.getString("Tool_name"), rs.getString("Tool_type"), rs.getString("Tool_condition"),
+                            rs.getInt("Tool_price"), rs.getInt("Tool_freeFirstDay"),
+                            rs.getString("Tool_importantInformation"), rs.getString("Tool_image"));
         }
+
         return model;
     }
+
 }

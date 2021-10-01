@@ -2,7 +2,7 @@ package bacit.web.bacit_web;
 
 public class ToolModel {
     private String Tool_id;
-    private String Tool_name;
+    private String Tool_Name;
     private String Tool_type;
     private String Tool_condition;
     private int Tool_price;
@@ -10,8 +10,8 @@ public class ToolModel {
     private String Tool_importantInformation;
     private String Tool_image;
 
-    public ToolModel(String Tool_id, String Tool_name, String Tool_type, String Tool_condition, int Tool_price, int Tool_freeFirstDay, String Tool_importantInformation, String Tool_image) {
-        this.Tool_name = Tool_name;
+    public ToolModel(String Tool_id, String Tool_Name, String Tool_type, String Tool_condition, int Tool_price, int Tool_freeFirstDay, String Tool_importantInformation, String Tool_image) {
+        this.Tool_Name = Tool_Name;
         this.Tool_type = Tool_type;
         this.Tool_condition = Tool_condition;
         this.Tool_price = Tool_price;
@@ -30,11 +30,11 @@ public class ToolModel {
     }
 
     public String getName() {
-        return Tool_name;
+        return Tool_Name;
     }
 
     public void setName(String name) {
-        this.Tool_name = name;
+        this.Tool_Name = name;
     }
 
 
