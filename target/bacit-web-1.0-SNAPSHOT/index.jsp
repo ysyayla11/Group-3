@@ -52,5 +52,7 @@
 <a href="EditUserSite.jsp">Rediger brukerinformasjon</a>
 <a href="Admin_dashboard.jsp">Admin</a>
 
+
+
 </body>
 </html>

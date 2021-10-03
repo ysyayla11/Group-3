@@ -86,6 +86,57 @@ values
   true,
   500
 );
+
+insert into user (User_fullName, User_email, User_phoneNumber, User_password, user_dob, User_address, User_access, User_union, User_debt)
+values
+(
+ 'leif erikson',
+ 'leifebass@gmail.com',
+  12345678,
+ 'P23eee2',
+  NULL,
+ 'bringebærstien 23',
+ 'Nei',
+  true,
+  0
+);
+
+insert into user (User_fullName, User_email, User_phoneNumber, User_password, user_dob, User_address, User_access, User_union, User_debt)
+values
+(
+ 'Ronny Johansen',
+ 'Ronny56@gmail.com',
+  87654321,
+ 'Passord123',
+  NULL,
+ 'vekekjoppgata 90',
+ 'Nei',
+  true,
+  5000
+);
+
+insert into user (User_fullName, User_email, User_phoneNumber, User_password, user_dob, User_address, User_access, User_union, User_debt)
+values
+    (
+        'Emil emilson',
+        'emils@gmail.com',
+        87654321,
+        'Passord123',
+        NULL,
+        'slottsveien 90',
+        'Nei',
+        true,
+        5000
+    );
+
+
+
+
 update user
 set User_fullName = 'Jacob Olsen'
 where User_id = 1;
+
+delete from user where User_id = 3;
+
+
+

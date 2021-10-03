@@ -1,36 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Aleksander Wilberg
-  Date: 21-Sep-21
-  Time: 00:27
-  To change this template use File | Settings | File Templates.
---%>
-<%--
-<%@ page contentType="text/html; charset=UTF-8" language="java" pageEncoding="ISO-8859-1" %>
-<%@page import="java.sql.*, java.util.*"%>
-<%@ page import="static jdk.vm.ci.hotspot.HotSpotCallingConventionType.VALUES" %>
-
-<%
-    String User_firstName=request.getParameter("User_firstName");
-    String User_lastName=request.getParameter("User_lastName");
-    String User_email=request.getParameter("User_email");
-    String User_phoneNumber=request.getParameter("User_phoneNumber");
-    String User_address=request.getParameter("User_address");
-    String User_access=request.getParameter("User_access");
-    String User_qualification=request.getParameter("User_qualification");
-    String User_union=request.getParameter("User_union");
-    String User_password=request.getParameter("User_password");
-
-    String connectionURL = "jdbc:mariadb://localhost:3308";
-    Connection conn = null;
-    PreparedStatement preparedStatement = null;
-
-
---%>
-
-%>
-
-
 <html>
 <head>
     <title>Admin</title>
