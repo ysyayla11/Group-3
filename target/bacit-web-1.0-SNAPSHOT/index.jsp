@@ -86,7 +86,7 @@
         <p> Pris første dag: Gratis</p>
         <p>Dagspris p&aring;f&oslash;lgende dag(er): 20kr</p>
         <p> Status: Ledig</p>
-        <button type ="button" class="availability"> Sjekk ledige tider </button>
+       <a href="Booking.jsp"> <button type ="button" class="availability"> Sjekk ledige tider </button></a>
     </li>
 
 
@@ -95,7 +95,7 @@
         <p> Pris første dag: Gratis</p>
         <p>Dagspris p&aring;f&oslash;lgende dag(er): 20 kr</p>
         <p> Status: Opptatt, Første ledig fra: 28.09.2021</p>
-        <button type ="button" class="availability"> Sjekk ledige tider </button>
+        <a href="Booking.jsp"> <button type ="button" class="availability"> Sjekk ledige tider </button></a>
     </li>
 
 
@@ -104,7 +104,7 @@
         <p> Pris første dag: Gratis</p>
         <p>Dagspris p&aring;f&oslash;lgende dag(er): 20kr</p>
         <p> Status: Ledig</p>
-        <button type ="button" class="availability"> Sjekk ledige tider </button>
+        <a href="Booking.jsp"> <button type ="button" class="availability"> Sjekk ledige tider </button> </a>
     </li>
 
 </ul>
