@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS tools
     Tool_price                  int,
     Tool_qualification          boolean,
     Tool_freeFirstDay           boolean,
-    Tool_importantInformation   varchar(255),
+    Tool_importantInformation   varchar(2000),
     Tool_maxDays                int,
     Tool_delivered              boolean,
     Tool_image                  longblob
