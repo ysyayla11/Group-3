@@ -35,7 +35,11 @@
     <a href="Admin_userEntry.jsp">Admin</a>
     <a href="Admin_toolEntry.jsp">Verktøy</a>
     <a href="GetAllUserServlet" methods="get">Brukere</a>
-
+    <br>
+    <br>
+    <br>
+    <a href="Admin_toolUpdate.jsp">Oppdater Verktøy</a>
+  
 </div>
 <br/>
 
