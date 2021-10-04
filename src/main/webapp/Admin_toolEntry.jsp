@@ -5,6 +5,8 @@
   Time: 00:27
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <html>
 <head>
     <title>tool entry</title>
@@ -52,9 +54,6 @@
 
         <label><b>Picture of the tool (JPG/PNG only)</b></label> <br>
         <input type="file" name="Tool_image" required> <br>
-
-        <label><b>What is the maximum amount of days this tool can be rented?</b></label> <br>
-        <input type="text" placeholder="Enter maximum rental days" name="Tool_maxDays" > <br>
 
         <button type="submit">Lagre verktøy</button> <br>
 
