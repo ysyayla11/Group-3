@@ -1,4 +1,7 @@
-bacit/web/bacit_web/GetUserServlet.class
+bacit/web/bacit_web/GetUserInfoServlet.class
+bacit/web/bacit_web/HtmlModel.class
+bacit/web/bacit_web/DBUtils.class
+bacit/web/bacit_web/EditUserInfoServlet.class
 bacit/web/bacit_web/UserModel.class
 bacit/web/bacit_web/HelloServlet.class
-bacit/web/bacit_web/DBUtils.class
+bacit/web/bacit_web/GetAllUsersServlet.class

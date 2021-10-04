@@ -1,4 +1,4 @@
-package bacit.web.bacit_web;
+/*package bacit.web.bacit_web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -55,4 +55,4 @@ public class GetUserServlet extends HttpServlet {
         }
         return model;
     }
-}
+}*/

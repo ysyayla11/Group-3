@@ -34,7 +34,7 @@
     <br>
     <a href="Admin_userEntry.jsp">Admin</a>
     <a href="Admin_toolEntry.jsp">Verktøy</a>
-    <a href="Admin_userEntry.jsp">Brukere</a>
+    <a href="GetAllUserServlet" methods="get">Brukere</a>
 
 </div>
 <br/>
