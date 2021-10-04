@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS tools
     Tool_qualification          boolean,
     Tool_freeFirstDay           boolean,
     Tool_importantInformation   varchar(255),
-    Tool_image                  varchar(255)
+    Tool_image                  longblob
 
 );
 
@@ -72,6 +72,21 @@ values
 
 
 );
+
+insert into tools(Tool_id,
+                  Tool_name,
+                  Tool_type,
+                  Tool_condition,
+                  Tool_price,
+                  Tool_freeFirstDay,
+                  Tool_importantInformation,
+                  Tool_image               )
+
+values (Tool_id, 'Makita drill', 'drill', 'God stand', '20', true, 'må leveres til samme sted som hentet', 'Group-3\src\main\webapp\Images\img.png');
+
+Update tools
+set Tool_name = 'Bosch drill' where Tool_id = 1;
+
 
 insert into user (User_fullName, User_email, User_phoneNumber, User_password, user_dob, User_address, User_access, User_union, User_debt)
 values
