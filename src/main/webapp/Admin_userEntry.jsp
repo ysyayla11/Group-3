@@ -22,6 +22,7 @@
 
 <form method="post" action="uploadServletUser" enctype="multipart/form-data">
     <%-- Enter user --%>
+    <%-- Endring --%>
     <div class="container">
         <label><b>Full name</b></label> <br>
         <input type="text" placeholder="Enter Full Name" name="User_fullName" required> <br>

@@ -24,7 +24,7 @@ public class UserUploadDBServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException{}
-
+    //endring
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //get values of text fields
@@ -36,6 +36,7 @@ public class UserUploadDBServlet extends HttpServlet {
         String union = request.getParameter("User_union");
         String debt = request.getParameter("User_debt");
         String password = request.getParameter("User_password");
+
 
 
         Connection connection = null;

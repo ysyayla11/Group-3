@@ -22,6 +22,7 @@
 
 <form method="post" action="uploadServlet" enctype="multipart/form-data">
     <%-- Enter user --%>
+    <%-- Endring --%>
     <div class="container">
         <label><b>Tool name</b></label> <br>
         <input type="text" placeholder="Enter Tool Name" name="Tool_name" required> <br>

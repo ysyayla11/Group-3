@@ -23,6 +23,7 @@ public class FileUploadDBServlet extends HttpServlet {
     private String dbUsername="root";
     private String dbPassword="12345";
 
+    //endring
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException{}
 
