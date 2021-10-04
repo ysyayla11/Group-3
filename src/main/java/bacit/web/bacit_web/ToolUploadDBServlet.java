@@ -33,10 +33,9 @@ public class ToolUploadDBServlet extends HttpServlet {
         String name = request.getParameter("Tool_name");
         String type = request.getParameter("Tool_type");
         String condition = request.getParameter("Tool_condition");
-        String freeFirstDay = request.getParameter("User_access");
+        String freeFirstDay = request.getParameter("Tool_freeFirstDay");
         String price = request.getParameter("Tool_price");
         String importantInfo = request.getParameter("Tool_importantInformation");
-        String maxDays = request.getParameter("Tool_maxDays");
 
         //input stream is the upload file
         InputStream inputStream = null;
@@ -63,19 +62,18 @@ public class ToolUploadDBServlet extends HttpServlet {
 
             //constructs SQL statement
             String sql = "INSERT INTO tools (Tool_name, Tool_type, Tool_condition, Tool_price, " +
-                    "Tool_importantInformation, Tool_maxDays, Tool_image, Tool_freeFirstDay) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                    "Tool_importantInformation, Tool_image, Tool_freeFirstDay) VALUES (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, name);
             statement.setString(2, type);
             statement.setString(3, condition);
             statement.setString(4, price);
             statement.setString(5, importantInfo);
-            statement.setString(6, maxDays);
-            statement.setString(8, freeFirstDay);
+            statement.setBoolean(7, Boolean.parseBoolean(freeFirstDay));
 
             if (inputStream != null){
                 //fetches input stream of the upload file for the picture
-                statement.setBlob(7, inputStream);
+                statement.setBlob(6, inputStream);
             }
 
             //sends the statement to the database server
@@ -99,10 +97,10 @@ public class ToolUploadDBServlet extends HttpServlet {
                 }
             }
             //sets the message in request scope
-            request.setAttribute("Message", message);
+            request.setAttribute("MessageTool", message);
 
             //forwards to the message page
-            request.getServletContext().getRequestDispatcher("/Message.jsp").forward(request, response);
+            request.getServletContext().getRequestDispatcher("/MessageTool.jsp").forward(request, response);
         }
     }
 }

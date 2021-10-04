@@ -48,7 +48,7 @@ public class UserUploadDBServlet extends HttpServlet {
             connection = DriverManager.getConnection(dbURL, dbUsername, dbPassword);
 
             //constructs SQL statement
-            String sql = "INSERT INTO users (User_fullName, User_email, User_phoneNumber, User_address, " +
+            String sql = "INSERT INTO user (User_fullName, User_email, User_phoneNumber, User_address, " +
                     "User_access, User_union, User_debt, User_password) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, fullName);
