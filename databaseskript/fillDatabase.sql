@@ -31,7 +31,6 @@ values
         'Ronny56@gmail.com',
         98979691,
         'Passord123',
-        NULL,
         'Gate 23',
         'Nei',
         true,
