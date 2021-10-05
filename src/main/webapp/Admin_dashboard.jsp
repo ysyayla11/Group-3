@@ -32,14 +32,15 @@
     <br>
     <br>
     <br>
-    <a href="Admin_userEntry.jsp">Admin</a>
-    <a href="Admin_toolEntry.jsp">Verktøy</a>
-    <a href="GetAllUserServlet" methods="get">Brukere</a>
-    <br>
-    <br>
-    <br>
-    <a href="Admin_toolUpdate.jsp">Oppdater Verktøy</a>
-  
+    <div class="adminButtons">
+        <a href="Admin_userEntry.jsp"><img alt="addUser" src="Images/add%20user.png" />Legg til nye brukere</a>
+        <a href="Admin_toolEntry.jsp"><img alt="addTool" src="Images/add%20tool.png" >Legg til nye verktøy</a>
+        <br>
+        <br>
+        <br>
+        <a href="GetAllUserServlet" methods="get"><img alt="editUser" src="Images/edit%20user.png"/>Oppdater brukere</a>
+        <a href="Admin_toolUpdate.jsp"><img alt="editTool" src="Images/edit%20tool.png"/>Oppdater Verktøy</a>
+    </div>
 </div>
 <br/>
 
