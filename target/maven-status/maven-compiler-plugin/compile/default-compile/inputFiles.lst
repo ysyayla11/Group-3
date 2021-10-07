@@ -11,3 +11,4 @@
 /usr/src/mymaven/src/main/java/bacit/web/bacit_web/HtmlModel.java
 /usr/src/mymaven/src/main/java/bacit/web/bacit_web/GetAllUsersServlet.java
 /usr/src/mymaven/src/main/java/bacit/web/bacit_web/GetToolServlet.java
+/usr/src/mymaven/src/main/java/bacit/web/bacit_web/BookingServlet.java
