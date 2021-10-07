@@ -113,5 +113,11 @@
 
 <a href="Admin_dashboard.jsp">Admin</a>
 
+<form action="eksempelServlet" method="get">
+
+    <button type="submit">Gå til eksempelServlet</button>
+
+</form>
+
 </body>
 </html>
