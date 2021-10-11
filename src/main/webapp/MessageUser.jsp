@@ -26,7 +26,7 @@
 <center>
   <div class="topnav">
     <a href="index.jsp">Hjem</a>
-    <a href="Admin_userEntry.jsp">Legg til ny bruker</a>
+    <a href="Admin_userEntry.jsp">Legg til en ny bruker</a>
   </div>
 </center>
 </body>
