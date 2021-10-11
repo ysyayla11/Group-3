@@ -26,7 +26,7 @@
 <center>
     <div class="topnav">
         <a href="index.jsp">Hjem</a>
-        <a href="Admin_toolEntry.jsp">Legg til nytt verktøy</a>
+        <a href="Admin_toolEntry.jsp">Legg til et nytt verktøy</a>
     </div>
 </center>
 </body>
