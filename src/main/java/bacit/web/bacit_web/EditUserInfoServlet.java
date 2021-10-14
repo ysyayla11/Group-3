@@ -15,8 +15,9 @@ import java.sql.SQLException;
 @WebServlet(name = "EditUserInfoServlet", value = "/EditUserInfoServlet")
 public class EditUserInfoServlet extends HttpServlet {
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
+        request.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
         String fullName = request.getParameter("fullName");
         String email = request.getParameter("email");

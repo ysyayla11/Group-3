@@ -5,6 +5,7 @@ public class HtmlModel {
 
     private static String getHeaderPart2 = "</title>\n" +
             "    <link href=\"styles.css\" rel=\"stylesheet\" type=\"text/css\">\n" +
+            "    <meta charset=\"UTF-8\">" +
             "</head>\n" +
             "\n" +
             "<body>\n" +
