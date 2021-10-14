@@ -8,7 +8,7 @@
 <head>
     <title>JSP</title>
     <link href="styles.css" rel="stylesheet" type="text/css">
-
+    <meta charset="UTF-8">
 </head>
 
 <body>

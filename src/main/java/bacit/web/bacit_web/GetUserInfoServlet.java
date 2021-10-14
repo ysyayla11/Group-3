@@ -16,12 +16,15 @@ import java.sql.SQLException;
 public class GetUserInfoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html");
+        response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
+        response.setCharacterEncoding("UTF-8");
 
         String userID = request.getParameter("userID");
         try {
+            out.println(HtmlModel.getHeader("user info"));
             printForm(out, getUserInfo(out, userID));
+            out.println(HtmlModel.getFooter());
         }
         catch (SQLException e){
             out.println(e);
@@ -66,29 +69,17 @@ public class GetUserInfoServlet extends HttpServlet {
             fullName = results.getString(2);
             email = results.getString(3);
             phoneNumber = results.getString(4);
-            address = results.getString(7);
-            access = results.getString(8);
-            union = results.getBoolean(9);
-            debt = results.getString(10);
+            address = results.getString(6);
+            access = results.getString(7);
+            union = results.getBoolean(8);
+            debt = results.getString(9);
             password = results.getString(5);
             userID = results.getString(1);
 
         }
-        out.println(fullName);
-        out.println("<html>\n" +
-                "<head>\n" +
-                "    <title>Rediger brukerinformasjon</title>\n" +
-                "<link href=\"styles.css\" rel=\"stylesheet\" type=\"text/css\">\n" +
-                "\n" +
-                "</head>\n" +
-                "<body>\n" +
-                "    <div class=\"topnav\">\n" +
-                "        <a class=\"active\" href=\"index.jsp\">Hjemme</a>\n" +
-                "        <a href=\"Logg%20inn.jsp\">Log inn</a>\n" +
-                "        <a href=\"DinProfil.jsp\">Din Profil</a>\n" +
-                "        <a href=\"DineBestillinger.jsp\">Dine Bestillinger</a>\n" +
-                "    </div>\n" +
-                "    <form action=\"EditUserInfoServlet\" method=\"get\">\n" +
+
+        out.println(
+                "    <form action=\"EditUserInfoServlet\" method=\"post\">\n" +
                 "        <label> Fullt navn </label>\n" +
                 "        <input type=\"text\" name = \"fullName\" value='" + fullName + "'>\n" +
                 "        <br>\n" +
@@ -106,17 +97,18 @@ public class GetUserInfoServlet extends HttpServlet {
                 "        <br>\n" +
                 "        <label> Fagforening </label>\n");
 
-
-                out.println("        <input type=\"radio\" id=\"buttonYes\" name=\"union\" value=\"true\" checked=\"checked\">\n" +
+                if(union) {
+                    out.println("        <input type=\"radio\" id=\"buttonYes\" name=\"union\" value=\"true\" checked=\"checked\">\n" +
                             "        <label for=\"buttonYes\">Ja</label>\n" +
                             "        <input type=\"radio\" id=\"buttonNo\" name=\"union\" value=\"false\">\n" +
                             "        <label for=\"buttonNo\">Nei</label>\n");
-
-                /*out.println("        <input type=\"radio\" id=\"buttonYes\" name=\"union\" value=\"true\">\n" +
+                }
+                else {
+                    out.println("        <input type=\"radio\" id=\"buttonYes\" name=\"union\" value=\"true\">\n" +
                             "        <label for=\"buttonYes\">Ja</label>\n" +
                             "        <input type=\"radio\" id=\"buttonNo\" name=\"union\" value=\"false\" checked=\"checked\">\n" +
-                            "        <label for=\"buttonNo\">Nei</label>\n");*/
-
+                            "        <label for=\"buttonNo\">Nei</label>\n");
+                }
                 out.println("        <br>\n" +
                 "        <label> Gjeld </label>\n" +
                 "        <input type=\"text\" name = \"debt\" value = '" + debt + "'>\n" +
@@ -128,9 +120,7 @@ public class GetUserInfoServlet extends HttpServlet {
                 "    </form>\n" +
                 "    <form action=\"GetAllUserServlet\" method=\"get\">\n" +
                 "        <button type=\"submit\">get all users</button>\n" +
-                "    </form>\n" +
-                "</body>\n" +
-                "</html>");
+                "    </form>\n");
     }
 
 }

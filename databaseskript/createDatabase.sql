@@ -1,4 +1,4 @@
-create database if not exists MytestDB;
+create database if not exists MytestDB character set utf8;
 use MytestDB;
 
 create table if not EXISTS user
@@ -13,7 +13,7 @@ create table if not EXISTS user
     User_union                  boolean,
     User_debt                   int,
     CONSTRAINT U_User_ID_PK PRIMARY KEY (User_id)
-    );
+    ) character set utf8;
 
 CREATE TABLE IF NOT EXISTS tools
 (
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS tools
     Tool_delivered              boolean,
     Tool_image                  longblob
 
-);
+) character set utf8;
 
 CREATE TABLE IF NOT EXISTS booking
 (
