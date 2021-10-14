@@ -32,6 +32,7 @@
     <br>
     <br>
     <br>
+</div>
     <div class="adminButtons">
         <a href="Admin_userEntry.jsp"><img alt="addUser" src="Images/add%20user.png" />Legg til nye brukere</a>
         <a href="Admin_toolEntry.jsp"><img alt="addTool" src="Images/add%20tool.png" >Legg til nye verktøy</a>
