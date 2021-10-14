@@ -109,7 +109,12 @@
 
 </ul>
 
-<form action="/GetToolServlet" method="get">Get Tools</form>
+<form action="getAllToolServlet" method="get">Get Tools
+
+    <button type="submit"> Hent Verktøy </button>
+
+
+</form>
 
 <a href="Admin_dashboard.jsp">Admin</a>
 

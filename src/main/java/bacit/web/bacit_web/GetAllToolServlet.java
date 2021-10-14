@@ -12,19 +12,25 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@WebServlet(name = "GetToolServlet", value = "/GetToolServlet")
+@WebServlet(name = "GetToolServlet", value = "/getToolServlet")
 
-public class GetToolServlet extends HttpServlet {
+public class GetAllToolServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String Tool_Name = request.getParameter("Tool_Name");
         PrintWriter out = response.getWriter();
         try {
-            ToolModel model = getTool(Tool_Name, out);
+            ResultSet results;
 
-            out.println(model.getName());
+            results = getTool(out);
+            out.println(HtmlModel.getHeader("all tools"));
+            out.println("<br><div>");
+            printForm(results, out);
+            out.println("</div>");
+            out.println(HtmlModel.getFooter());
+
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -36,7 +42,7 @@ public class GetToolServlet extends HttpServlet {
 
     }
 
-    private ToolModel getTool(String Tool_name, PrintWriter out) throws SQLException {
+    private ResultSet getTool(PrintWriter out) throws SQLException {
         Connection db = null;
         try {
             db = DBUtils.getINSTANCE().getConnection(out);
@@ -44,20 +50,31 @@ public class GetToolServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        String query3 = "select * from tools where Tool_id = ?";
+        String query3 = "select * from tools";
 
         PreparedStatement statement = db.prepareStatement(query3);
-        statement.setString(1, Tool_name);
         ResultSet rs = statement.executeQuery();
-        ToolModel model = null;
-        while (rs.next()) {
-            model =
-                    new ToolModel(rs.getString("Tool_id"), rs.getString("Tool_name"), rs.getString("Tool_type"), rs.getString("Tool_condition"),
-                            rs.getInt("Tool_price"), rs.getInt("Tool_freeFirstDay"),
-                            rs.getString("Tool_importantInformation"), rs.getString("Tool_image"));
+        return rs;
+
+
+    }
+
+    public void printForm(ResultSet results, PrintWriter out){
+
+        try {
+            while (results.next()) {
+                out.println("<form action='GetUserInfoServlet' method='get'>\n" +
+                        "    <div>" + results.getString(2) + "</div>\n" +
+                        "    <div>type: " + results.getString(3) + "</div>\n" +
+                        "    <button type=\"submit\" name='userID' value='" + results.getString(1) + "'>Rediger bruker</button>\n" +
+                        "</form>");
+            }
+        }
+        catch (SQLException e){
+            out.println(e);
         }
 
-        return model;
+
     }
 
 }

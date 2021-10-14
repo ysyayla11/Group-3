@@ -1,9 +1,9 @@
 bacit/web/bacit_web/GetUserInfoServlet.class
-bacit/web/bacit_web/GetToolServlet.class
 bacit/web/bacit_web/AdministerToolServlet.class
 bacit/web/bacit_web/EksempelServlet.class
 bacit/web/bacit_web/HtmlModel.class
 bacit/web/bacit_web/DBUtils.class
+bacit/web/bacit_web/GetAllToolServlet.class
 bacit/web/bacit_web/BookingServlet.class
 bacit/web/bacit_web/HelloServlet.class
 bacit/web/bacit_web/ToolUploadDBServlet.class
