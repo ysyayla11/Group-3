@@ -7,6 +7,7 @@
 /usr/src/mymaven/src/main/java/bacit/web/bacit_web/DBUtils.java
 /usr/src/mymaven/src/main/java/bacit/web/bacit_web/ToolUploadDBServlet.java
 /usr/src/mymaven/src/main/java/bacit/web/bacit_web/EditUserInfoServlet.java
+/usr/src/mymaven/src/main/java/bacit/web/bacit_web/GetBookingServlet.java
 /usr/src/mymaven/src/main/java/bacit/web/bacit_web/UserUploadDBServlet.java
 /usr/src/mymaven/src/main/java/bacit/web/bacit_web/HtmlModel.java
 /usr/src/mymaven/src/main/java/bacit/web/bacit_web/GetAllToolServlet.java
