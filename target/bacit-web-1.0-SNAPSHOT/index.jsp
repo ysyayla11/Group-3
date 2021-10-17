@@ -109,7 +109,7 @@
 
 </ul>
 
-<form action="getAllToolServlet" method="get">Get Tools
+<form action="GetAllToolServlet" method="get">Get Tools
 
     <button type="submit"> Hent Verktøy </button>
 

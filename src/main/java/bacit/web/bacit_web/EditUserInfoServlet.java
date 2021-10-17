@@ -1,6 +1,5 @@
 package bacit.web.bacit_web;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -37,7 +36,6 @@ public class EditUserInfoServlet extends HttpServlet {
         catch(SQLException e){
             out.println("oops something went wrong " + e);
         }
-
     }
 
     public void editUserInfo(String fullName, String email, String phoneNumber, String address,
