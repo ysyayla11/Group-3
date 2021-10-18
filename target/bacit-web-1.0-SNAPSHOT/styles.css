@@ -73,6 +73,14 @@ li {
 
 }
 
+a {
+    color: #f2f2f2;
+    background-color: cornflowerblue ;
+    font-size: 3Rem;
+    padding: 2Rem 1Rem;
+    margin-top: 1Rem;
+}
+
 
 
 

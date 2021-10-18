@@ -3,8 +3,8 @@ use MytestDB;
 -- change user attribute
 
 update user
-set User_fullName = 'nytt'
-where User_id = 1;
+set User_Email = 'blabla@mail.no'
+where User_id = 3;
 
 -- delete user
 

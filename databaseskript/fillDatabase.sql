@@ -97,6 +97,126 @@ values
         5000
     );
 
+insert into user (User_fullName,
+                  User_email,
+                  User_phoneNumber,
+                  User_password,
+                  User_address,
+                  User_access,
+                  User_union,
+                  User_debt)
+values
+    (
+        'Jon Hansen Yayla',
+        'Jhyayla@gmail.com',
+        345655321,
+        'Passord456',
+        'Kongens gate 7',
+        'Nei',
+        true,
+        0
+    );
+
+
+insert into user (User_fullName,
+                  User_email,
+                  User_phoneNumber,
+                  User_password,
+                  User_address,
+                  User_access,
+                  User_union,
+                  User_debt)
+values
+    (
+        'Anders Jensen',
+        'Crazyjensen@gmail.com',
+        89765444,
+        'Passord965',
+        'Seasam Street 7',
+        'Nei',
+        true,
+        50
+    );
+
+insert into user (User_fullName,
+                  User_email,
+                  User_phoneNumber,
+                  User_password,
+                  User_address,
+                  User_access,
+                  User_union,
+                  User_debt)
+values
+    (
+        'Abdurrezzak Sheih',
+        'Abdurrez@gmail.com',
+        98654321,
+        'Passord896',
+        'Madridveien 35',
+        'Nei',
+        true,
+        0
+    );
+
+insert into user (User_fullName,
+                  User_email,
+                  User_phoneNumber,
+                  User_password,
+                  User_address,
+                  User_access,
+                  User_union,
+                  User_debt)
+values
+    (
+        'Luigi Ferrari',
+        'Luigimario@gmail.com',
+        57483988,
+        'Passord321',
+        'Juventus gate 43',
+        'Nei',
+        false,
+        500000000
+    );
+
+insert into user (User_fullName,
+                  User_email,
+                  User_phoneNumber,
+                  User_password,
+                  User_address,
+                  User_access,
+                  User_union,
+                  User_debt)
+values
+    (
+        'Camel Stock ',
+        'CamelRichman@gmail.com',
+        57684567,
+        'Passord897',
+        'Krakov 95',
+        'Nei',
+        false,
+        100
+    );
+
+insert into user (User_fullName,
+                  User_email,
+                  User_phoneNumber,
+                  User_password,
+                  User_address,
+                  User_access,
+                  User_union,
+                  User_debt)
+values
+    (
+        'Vladimir Trump',
+        'VladimirTrump@gmail.com',
+        87654321,
+        'Passord666',
+        'Moskov 43',
+        'Ja',
+        true,
+        5000
+    );
 -- tools
 
 insert into tools(Tool_id,
@@ -823,3 +943,36 @@ values(
        true,
        NULL
       );
+
+-- qualify some users
+
+insert into qualification(Tool_id, User_id)
+values(
+        25,
+        1
+      );
+
+insert into qualification(Tool_id, User_id)
+values(
+        25,
+        4
+      );
+
+      insert into qualification(Tool_id, User_id)
+values(
+        25,
+        6
+      );
+
+insert into qualification(Tool_id, User_id)
+values(
+        25,
+        8
+      );
+
+insert into qualification(Tool_id, User_id)
+values(
+        25,
+       3
+      );
+
