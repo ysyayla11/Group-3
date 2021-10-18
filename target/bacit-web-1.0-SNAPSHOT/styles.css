@@ -22,7 +22,7 @@ button  {
     margin: 3Rem;
 }
 
-.topnav a{
+header a{
     color: #f2f2f2;
     background-color: cornflowerblue ;
     font-size: 3Rem;
@@ -32,7 +32,7 @@ button  {
 
 
 /* Change the color of links on hover */
-.topnav a:hover, .topnav a.active:hover, button:hover {
+header a:hover, header a.active:hover, button:hover {
     background-color: #F0D0C9;
     color: black;
 }
@@ -73,13 +73,7 @@ li {
 
 }
 
-a {
-    color: #f2f2f2;
-    background-color: cornflowerblue ;
-    font-size: 3Rem;
-    padding: 2Rem 1Rem;
-    margin-top: 1Rem;
-}
+
 
 
 
