@@ -34,13 +34,17 @@
     <br>
 </div>
     <div class="adminButtons">
-        <a href="Admin_userEntry.jsp"><img alt="addUser" src="Images/add%20user.png" />Legg til nye brukere</a>
-        <a href="Admin_toolEntry.jsp"><img alt="addTool" src="Images/add%20tool.png" >Legg til nye verktøy</a>
+        <div>
+            <a href="Admin_userEntry.jsp"><img alt="addUser" src="Images/add%20user.png" />Legg til nye brukere</a>
+            <a href="Admin_toolEntry.jsp"><img alt="addTool" src="Images/add%20tool.png" >Legg til nye verktøy</a>
+        </div>
         <br>
         <br>
         <br>
-        <a href="GetAllUserServlet" methods="get"><img alt="editUser" src="Images/edit%20user.png"/>Oppdater brukere</a>
-        <a href="Admin_toolUpdate.jsp"><img alt="editTool" src="Images/edit%20tool.png"/>Oppdater Verktøy</a>
+        <div>
+            <a href="GetAllUserServlet" methods="get"><img alt="editUser" src="Images/edit%20user.png"/>Oppdater brukere</a>
+            <a href="GetAllToolServlet" methods="get"><img alt="editTool" src="Images/edit%20tool.png"/>Oppdater Verktøy</a>
+        </div>
     </div>
 </div>
 <br/>

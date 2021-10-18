@@ -12,69 +12,60 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@WebServlet(name = "GetToolServlet", value = "/getToolServlet")
-
+@WebServlet(name = "GetAllToolServlet", value = "/GetAllToolServlet")
 public class GetAllToolServlet extends HttpServlet {
-
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
+        response.setCharacterEncoding("UTF-8");
         try {
             ResultSet results;
 
-            results = getTool(out);
+            results = getAllTool(out);
             out.println(HtmlModel.getHeader("all tools"));
             out.println("<br><div>");
             printForm(results, out);
             out.println("</div>");
             out.println(HtmlModel.getFooter());
-
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        }
+        catch (SQLException e){
+            out.println(e);
         }
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    public ResultSet getAllTool(PrintWriter out)
+            throws SQLException{
 
-    }
-
-    private ResultSet getTool(PrintWriter out) throws SQLException {
         Connection db = null;
-        try {
+        try{
             db = DBUtils.getINSTANCE().getConnection(out);
-        } catch (ClassNotFoundException e) {
+        }
+        catch(ClassNotFoundException e) {
             e.printStackTrace();
+            System.out.println("Error i connection");
         }
 
-        String query3 = "select * from tools";
-
-        PreparedStatement statement = db.prepareStatement(query3);
-        ResultSet rs = statement.executeQuery();
-        return rs;
-
-
+        String query = "select * from tools";
+        PreparedStatement statement = db.prepareStatement(query);
+        ResultSet results = statement.executeQuery();
+        return results;
     }
 
     public void printForm(ResultSet results, PrintWriter out){
 
         try {
             while (results.next()) {
-                out.println("<form action='GetUserInfoServlet' method='get'>\n" +
+                out.println("<form action='GetToolInfoServlet' method='get'>\n" +
                         "    <div>" + results.getString(2) + "</div>\n" +
                         "    <div>type: " + results.getString(3) + "</div>\n" +
-                        "    <button type=\"submit\" name='userID' value='" + results.getString(1) + "'>Rediger bruker</button>\n" +
+                        "    <button type=\"submit\" name='userID' value='" + results.getString(1) + "'>Rediger verktøy</button>\n" +
                         "</form>");
             }
         }
         catch (SQLException e){
             out.println(e);
         }
-
-
     }
-
 }

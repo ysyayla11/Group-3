@@ -11,14 +11,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 @WebServlet(name = "GetAllUsersServlet", value = "/GetAllUserServlet")
 public class GetAllUsersServlet extends HttpServlet {
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
-        response.setContentType("text/html");
+        response.setCharacterEncoding("UTF-8");
         try {
             ResultSet results;
 
@@ -34,7 +35,8 @@ public class GetAllUsersServlet extends HttpServlet {
         }
     }
 
-    public ResultSet getAllUsers(PrintWriter out) throws SQLException{
+    public ResultSet getAllUsers(PrintWriter out)
+            throws SQLException{
 
         Connection db = null;
         try{
@@ -65,18 +67,5 @@ public class GetAllUsersServlet extends HttpServlet {
         catch (SQLException e){
             out.println(e);
         }
-
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
