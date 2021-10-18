@@ -1,63 +1,48 @@
-<%@ page import="java.sql.ResultSet" %>
-<%@ page import="java.sql.Statement" %>
-<%@ page import="java.sql.Connection" %>
-<%@ page import="java.sql.DriverManager" %>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="bacit.web.bacit_web.models.HtmlModel" %><%--
+  Created by IntelliJ IDEA.
+  User: ysyay
+  Date: 13.09.2021
+  Time: 18:00
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
 <head>
-    <title>JSP</title>
-    <link href="styles.css" rel="stylesheet" type="text/css">
+
+    <title>logg inn</title>
     <meta charset="UTF-8">
+
 </head>
-
 <body>
-<br>
 
-<div class="topnav">
-    <a id="hjemme" href="index.jsp">Hjemme</a>
-    <a id="Log" href="Logg inn.jsp">Log inn</a>
-    <a id="Profil" href="DinProfil.jsp">Din Profil</a>
-    <a id="Bestilling" href="DineBestillinger.jsp">Dine Bestillinger</a>
-</div>
+<img src="Images/img.png" alt="Avatar" class="avatar">
 
-<ul class="tool">
-    <li>
-        <img src="Images/img_2.png" alt="icon"  >
-        <h3> Verktøy Sett </h3>
-        <p> Pris første dag: Gratis</p>
-        <p>Dagspris p&aring;f&oslash;lgende dag(er): 20kr</p>
-        <p> Status: Ledig</p>
-       <a href="Booking.jsp"> <button type ="button" class="availability"> Sjekk ledige tider </button></a>
-    </li>
 
-    <li> <img src="Images/img_3.png" alt="icon" >
-        <h3> Skrujern </h3>
-        <p> Pris første dag: Gratis</p>
-        <p>Dagspris p&aring;f&oslash;lgende dag(er): 20 kr</p>
-        <p> Status: Opptatt, Første ledig fra: 28.09.2021</p>
-        <a href="Booking.jsp"> <button type ="button" class="availability"> Sjekk ledige tider </button></a>
-    </li>
+<form class="post">
 
-    <li> <img src="Images/img_4.png" alt="icon"  >
-        <h3> Tannbørste </h3>
-        <p> Pris første dag: Gratis</p>
-        <p>Dagspris p&aring;f&oslash;lgende dag(er): 20kr</p>
-        <p> Status: Ledig</p>
-        <a href="Booking.jsp"> <button type ="button" class="availability"> Sjekk ledige tider </button> </a>
-    </li>
+    <div class="container">
+        <label><b>Username</b></label> <br>
+        <input type="text" placeholder="Enter Username" name="uname" required> <br>
 
-</ul>
+        <label><b>Password</b></label> <br>
+        <input type="password" placeholder="Enter Password" name="psw" required> <br>
 
-<form action="GetAllToolServlet" method="get">Get Tools
-    <button type="submit"> Hent Verktøy </button>
-</form>
+        <button type="submit">Login</button> <br>
 
-<a href="Admin_dashboard.jsp">Admin</a>
+        <label>
+            <input type="checkbox" checked="checked" name="remember"> Remember me
+        </label> <br>
+    </div>
+    <a href="SiteUser/home.jsp">gå til tools</a>
 
-<form action="eksempelServlet" method="get">
-    <button type="submit">Gå til eksempelServlet</button>
+
+    <div class="container" style="background-color:#f1f1f1">
+
+        <span  class="psw"> Forgot <a href="#">password?</a></span> <br>
+    </div>
 </form>
 
 </body>
 </html>
+

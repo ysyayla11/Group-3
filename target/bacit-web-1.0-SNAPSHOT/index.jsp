@@ -1,128 +1,48 @@
-<%@ page import="java.sql.ResultSet" %>
-<%@ page import="java.sql.Statement" %>
-<%@ page import="java.sql.Connection" %>
-<%@ page import="java.sql.DriverManager" %>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="bacit.web.bacit_web.models.HtmlModel" %><%--
+  Created by IntelliJ IDEA.
+  User: ysyay
+  Date: 13.09.2021
+  Time: 18:00
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
 <head>
-    <title>JSP</title>
-    <link href="styles.css" rel="stylesheet" type="text/css">
+
+    <title>logg inn</title>
     <meta charset="UTF-8">
+
 </head>
-
 <body>
-<br>
+
+<img src="Images/img.png" alt="Avatar" class="avatar">
 
 
+<form class="post">
+
+    <div class="container">
+        <label><b>Username</b></label> <br>
+        <input type="text" placeholder="Enter Username" name="uname" required> <br>
+
+        <label><b>Password</b></label> <br>
+        <input type="password" placeholder="Enter Password" name="psw" required> <br>
+
+        <button type="submit">Login</button> <br>
+
+        <label>
+            <input type="checkbox" checked="checked" name="remember"> Remember me
+        </label> <br>
+    </div>
+    <a href="SiteUser/home.jsp">gå til tools</a>
 
 
-<div class="topnav">
-    <a id="hjemme" href="index.jsp">Hjemme</a>
-    <a id="Log" href="Logg inn.jsp">Log inn</a>
-    <a id="Profil" href="DinProfil.jsp">Din Profil</a>
-    <a id="Bestilling" href="DineBestillinger.jsp">Dine Bestillinger</a>
-</div>
+    <div class="container" style="background-color:#f1f1f1">
 
-
-    <!--<table border="2">
-        <tr>
-            <td>Name</td>
-            <td>Type</td>
-            <td>Condition</td>
-            <td>Price</td>
-            <td>Free first day</td>
-            <td>importantInformation</td>
-            <td>image</td>
-        </tr>-->
-            <%--
-    <%
-                try
-                {
-                Class.forName("com.mysql.jdbc.Driver");
-                String url="jdbc:mysql://localhost:3308/MyTestDB";
-                String username="root";
-                String password="12345";
-                String query="select * from tools";
-                Connection conn=DriverManager.getConnection(url,username,password);
-                Statement stmt=conn.createStatement();
-                ResultSet rs=stmt.executeQuery(query);
-                while(rs.next())
-                {
-            %>
-        <tr>
-            <td><%=rs.getInt("Tool_name") %></td>
-            <td><%=rs.getString("Tool_type") %></td>
-            <td><%=rs.getString("Tool_condition") %></td>
-            <td><%=rs.getString("Tool_price") %></td>
-            <td><%=rs.getString("Tool_freeFirstDay") %></td>
-            <td><%=rs.getString("Tool_importantInformation") %></td>
-            <td><%=rs.getString("Tool_image") %></td>
-        </tr>
-        <%
-        }
-                %>
-    </table>
-        <%
-            rs.close();
-            stmt.close();
-            conn.close();
-            }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-            }
-        %>
-</form>
---%>
-
-<a href="AdministerToolServlet">Verktøy</a>
-
-
-<ul class="tool">
-    <li>
-        <img src="Images/img_2.png" alt="icon"  >
-        <h3> Verktøy Sett </h3>
-        <p> Pris første dag: Gratis</p>
-        <p>Dagspris p&aring;f&oslash;lgende dag(er): 20kr</p>
-        <p> Status: Ledig</p>
-       <a href="Booking.jsp"> <button type ="button" class="availability"> Sjekk ledige tider </button></a>
-    </li>
-
-
-    <li> <img src="Images/img_3.png" alt="icon" >
-        <h3> Skrujern </h3>
-        <p> Pris første dag: Gratis</p>
-        <p>Dagspris p&aring;f&oslash;lgende dag(er): 20 kr</p>
-        <p> Status: Opptatt, Første ledig fra: 28.09.2021</p>
-        <a href="Booking.jsp"> <button type ="button" class="availability"> Sjekk ledige tider </button></a>
-    </li>
-
-
-    <li> <img src="Images/img_4.png" alt="icon"  >
-        <h3> Tannbørste </h3>
-        <p> Pris første dag: Gratis</p>
-        <p>Dagspris p&aring;f&oslash;lgende dag(er): 20kr</p>
-        <p> Status: Ledig</p>
-        <a href="Booking.jsp"> <button type ="button" class="availability"> Sjekk ledige tider </button> </a>
-    </li>
-
-</ul>
-
-<form action="GetAllToolServlet" method="get">Get Tools
-
-    <button type="submit"> Hent Verktøy </button>
-
-
-</form>
-
-<a href="Admin_dashboard.jsp">Admin</a>
-
-<form action="eksempelServlet" method="get">
-
-    <button type="submit">Gå til eksempelServlet</button>
-
+        <span  class="psw"> Forgot <a href="#">password?</a></span> <br>
+    </div>
 </form>
 
 </body>
 </html>
+
