@@ -1,5 +1,6 @@
 package bacit.web.bacit_web.servlets.booking;
 
+import bacit.web.bacit_web.servlets.SuperServlet;
 import bacit.web.bacit_web.utilities.DBUtils;
 
 import javax.servlet.ServletException;
@@ -24,7 +25,7 @@ import java.sql.SQLException;
 *
 * */
 @WebServlet(name = "BookingServlet", value ="/BookingServlet")
-public class BookingServlet extends HttpServlet {
+public class BookingServlet extends SuperServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
@@ -48,13 +49,8 @@ public class BookingServlet extends HttpServlet {
     }
 
     public void addBooking(PrintWriter out, String tool_id, String user_id, String booking_dateStart, String booking_dateEnd, Boolean booking_paid) throws SQLException {
-        Connection db = null;
+        Connection db = super.ConnectToDB(out);
 
-        try {
-            db = DBUtils.getINSTANCE().getConnection(out);
-        } catch (ClassNotFoundException e) {
-            out.println(e);
-        }
         String query = "insert into booking(Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid) VALUES(Booking_id, ?, ?, ?, ?, ?);";
         PreparedStatement statement = db.prepareStatement(query);
         statement.setString(1, tool_id);
