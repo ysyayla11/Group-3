@@ -25,7 +25,7 @@ import java.sql.SQLException;
 *
 * */
 @WebServlet(name = "BookingServlet", value ="/BookingServlet")
-public class BookingServlet extends SuperServlet {
+public class BookingServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
@@ -49,7 +49,14 @@ public class BookingServlet extends SuperServlet {
     }
 
     public void addBooking(PrintWriter out, String tool_id, String user_id, String booking_dateStart, String booking_dateEnd, Boolean booking_paid) throws SQLException {
-        Connection db = super.ConnectToDB(out);
+        Connection db = null;
+        try{
+            db = DBUtils.getINSTANCE().getConnection(out);
+        }
+        catch(ClassNotFoundException e){
+            e.printStackTrace();
+            System.out.println("Error i connection");
+        }
 
         String query = "insert into booking(Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid) VALUES(Booking_id, ?, ?, ?, ?, ?);";
         PreparedStatement statement = db.prepareStatement(query);
