@@ -35,3 +35,5 @@ truncate table tools;
 
 -- add booking
 insert into booking(Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid) VALUES(Booking_id, 1, 1, '2000/12/02', '2000/12/04', false);
+
+update tools set Tool_delivered = false where Tool_id = 1;
