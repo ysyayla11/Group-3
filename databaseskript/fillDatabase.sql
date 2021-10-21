@@ -975,4 +975,85 @@ values(
         25,
        3
       );
+-- insert bookings (portfolio 2)
+insert into booking (Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid)
+values (
+        Booking_id,
+        1,
+        7,
+        '2021-07-01',
+        '2021-07-03',
+        0
+
+       );
+insert into booking (Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid)
+values (
+           Booking_id,
+           10,
+           7,
+           '2021-07-01',
+           '2021-07-03',
+           0
+
+       );
+insert into booking (Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid)
+values (
+           Booking_id,
+           7,
+           3,
+           '2021-07-01',
+           '2021-07-03',
+           0
+
+       );
+insert into booking (Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid)
+values (
+           Booking_id,
+           2,
+           4,
+           '2021-07-01',
+           '2021-07-03',
+           0
+
+       );
+insert into booking (Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid)
+values (
+           Booking_id,
+           7,
+           3,
+           '2021-07-01',
+           '2021-07-03',
+           0
+
+       );
+insert into booking (Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid)
+values (
+           Booking_id,
+           7,
+           3,
+           '2021-07-01',
+           '2021-07-03',
+           0
+
+       );
+insert into booking (Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid)
+values (
+           Booking_id,
+           7,
+           3,
+           '2021-07-01',
+           '2021-07-03',
+           0
+
+       );
+insert into booking (Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid)
+values (
+           Booking_id,
+           7,
+           3,
+           '2021-07-01',
+           '2021-07-03',
+           0
+
+       );
 
