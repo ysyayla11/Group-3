@@ -16,18 +16,13 @@
 <body>
 <br>
 
-<%
-
-GenericPrincipal
-
-%>
 
 <script>
 
 
-    /*window.onload= function () {
+    window.onload= function () {
         window.location.replace("SiteUser/home.jsp");
-    }*/
+    }
 
 </script>
 

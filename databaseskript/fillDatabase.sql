@@ -31,7 +31,7 @@ values
         'god',
         'god@gmail.com',
         98979691,
-        'deb1536f480475f7d593219aa1afd74c',
+        '12345',
         'lommedalen',
         'Nei',
         true,
