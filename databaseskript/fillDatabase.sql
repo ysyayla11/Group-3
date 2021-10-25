@@ -17,6 +17,39 @@ values
     );
 
 -- users
+
+insert into user (User_fullName,
+                  User_email,
+                  User_phoneNumber,
+                  User_password,
+                  User_address,
+                  User_access,
+                  User_union,
+                  User_debt)
+values
+    (
+        'god',
+        'god@gmail.com',
+        98979691,
+        'deb1536f480475f7d593219aa1afd74c',
+        'lommedalen',
+        'Nei',
+        true,
+        500
+    );
+
+insert into access(User_FullName, Access_level)
+values(
+       'god',
+       'Administrator'
+      );
+
+insert into access(User_FullName, Access_level)
+values(
+          'god',
+          'user'
+      );
+
 insert into user (User_fullName,
                   User_email,
                   User_phoneNumber,
