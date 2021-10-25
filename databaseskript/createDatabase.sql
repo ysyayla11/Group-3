@@ -57,3 +57,9 @@ CREATE TABLE IF NOT EXISTS qualification
     FOREIGN KEY (Tool_id)           REFERENCES tools(Tool_id),
     FOREIGN KEY (User_id)           REFERENCES user(User_id)
 );
+
+CREATE TABLE IF NOT EXISTS access
+(
+    User_FullName                   varchar(255),
+    Access_level                    varchar(25)
+)

@@ -1,6 +1,7 @@
 package bacit.web.bacit_web.servlets.users;
 
 import bacit.web.bacit_web.models.HtmlModel;
+import bacit.web.bacit_web.servlets.SuperServlet;
 import bacit.web.bacit_web.utilities.DBUtils;
 
 import javax.servlet.ServletException;
@@ -16,7 +17,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @WebServlet(name = "GetAllUsersServlet", value = "/GetAllUserServlet")
-public class GetAllUsersServlet extends HttpServlet {
+public class GetAllUsersServlet extends SuperServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -41,14 +42,7 @@ public class GetAllUsersServlet extends HttpServlet {
     public ResultSet getAllUsers(PrintWriter out)
             throws SQLException{
 
-        Connection db = null;
-        try{
-            db = DBUtils.getINSTANCE().getConnection(out);
-        }
-        catch(ClassNotFoundException e){
-            e.printStackTrace();
-            System.out.println("Error i connection");
-        }
+        Connection db = super.connectToDB(out);
 
         String query = "select * from user";
         PreparedStatement statement = db.prepareStatement(query);

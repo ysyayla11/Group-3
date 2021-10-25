@@ -16,7 +16,7 @@
         <br>
         <br>
         <div>
-            <a href="GetAllUserServlet" methods="get"><img alt="editUser" src="../Images/edit%20user.png"/>Oppdater brukere</a>
+            <a href="../GetAllUserServlet" methods="get"><img alt="editUser" src="../Images/edit%20user.png"/>Oppdater brukere</a>
             <a href="GetAllToolServlet" methods="get"><img alt="editTool" src="../Images/edit%20tool.png"/>Oppdater Verktøy</a>
         </div>
     </div>

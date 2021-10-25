@@ -1,3 +1,4 @@
+
 <%--
   Created by IntelliJ IDEA.
   User: ysyay
@@ -15,39 +16,20 @@
 <body>
 <br>
 
-<div class="topnav">
-    <a id="hjemme" href="SiteUser/home.jsp">Hjemme</a>
-    <a id="Log" href="index.jsp">Log inn</a>
-    <a id="Profil" href="SiteUser/DinProfil.jsp">Din Profil</a>
-    <a id="Bestilling" href="SiteUser/DineBestillinger.jsp">Dine Bestillinger</a>
-</div>
+<%
+
+GenericPrincipal
+
+%>
+
+<script>
 
 
-<img src="Images/img.png" alt="Avatar" class="avatar">
+    /*window.onload= function () {
+        window.location.replace("SiteUser/home.jsp");
+    }*/
 
-
-<form class="post">
-
-    <div class="container">
-        <label><b>Username</b></label> <br>
-        <input type="text" placeholder="Enter Username" name="uname" required> <br>
-
-        <label><b>Password</b></label> <br>
-        <input type="password" placeholder="Enter Password" name="psw" required> <br>
-
-        <button type="submit">Login</button> <br>
-
-        <label>
-            <input type="checkbox" checked="checked" name="remember"> Remember me
-        </label> <br>
-    </div>
-
-
-    <div class="container" style="background-color:#f1f1f1">
-
-        <span  class="psw"> Forgot <a href="#">password?</a></span> <br>
-    </div>
-</form>
+</script>
 
 </body>
 </html>
