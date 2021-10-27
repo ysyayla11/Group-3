@@ -140,6 +140,9 @@ public class GetToolInfoServlet extends HttpServlet {
                 "        <br>\n" +
                 "        <button type=\"submit\" value='" + toolID + "' name='toolID'> Endre </button>\n" +
                 "    </form>\n" +
+                "    <form action=\"DeleteToolServlet\" method=\"get\">\n" +
+                "        <button type=\"submit\">Slett verktøy</button>\n" +
+                "    </form>\n" +
                 "    <form action=\"GetAllToolServlet\" method=\"get\">\n" +
                 "        <button type=\"submit\">get all tools</button>\n" +
                 "    </form>\n");

@@ -977,6 +977,32 @@ values(
        NULL
       );
 
+insert into tools(Tool_id,
+                  Tool_name,
+                  Tool_type,
+                  Tool_condition,
+                  Tool_price,
+                  Tool_qualification,
+                  Tool_freeFirstDay,
+                  Tool_importantInformation,
+                  Tool_maxDays,
+                  Tool_delivered,
+                  Tool_image)
+values(
+          Tool_id,
+          'Testverktøy',
+          'Diverse småutstyr',
+          'God',
+          20,
+          false,
+          true,
+          'Må erstattes om borte',
+          NULL,
+          true,
+          NULL
+      );
+
+
 -- qualify some users
 
 insert into qualification(Tool_id, User_id)
