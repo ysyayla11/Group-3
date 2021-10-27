@@ -38,7 +38,7 @@ public class GetToolInfoServlet extends HttpServlet {
     }
 
     private ResultSet getToolInfo(PrintWriter out, String toolID) throws SQLException {
-
+        //connection må endres til å bruke super
         Connection db = null;
         try{
             db = DBUtils.getINSTANCE().getConnection(out);

@@ -30,7 +30,7 @@ public class DeleteToolServlet extends HttpServlet {
             System.out.println("Error i connection");
         }
         try{
-
+            //Henter og oppdaterer fra db
             String query = "UPDATE tools SET Tool_name = 'nytt' Where Tool_id = ?";
             PreparedStatement preparedStatement = db.prepareStatement(query);
             int i = preparedStatement.executeUpdate();
