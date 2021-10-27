@@ -29,6 +29,7 @@ public class AdministerToolServlet extends HttpServlet {
 
 
             out.println("<html><body>");
+
             out.println("<p>test</p>");
             out.println("<form action='GetToolServlet' method='get' enctype='multipart/form-data'>");
             out.println("<label for='Tool_Name'>Navn på verktøy: </label>");
