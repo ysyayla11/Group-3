@@ -28,6 +28,7 @@
         <a href="../SiteUser/home.jsp">Hjem</a>
         <a href="Admin_toolEntry.jsp">Legg til et nytt verktøy</a>
     </div>
+
 </center>
 </body>
 </html>

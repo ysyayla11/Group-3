@@ -1,27 +1,31 @@
 package bacit.web.bacit_web.models;
 
+import java.awt.*;
+
 public class UserModel {
+    private int id;
     private String fullName;
     private String email;
-    private int phoneNumber;
+    private String phoneNumber;
     private String password;
     private String address;
-    private String access;
     private boolean union;
     private int debt;
 
-    public UserModel(String fullName, String email, int phoneNumber, String password, String address, String access, boolean union, int debt){
 
+    public UserModel(int id, String fullName, String email, String phoneNumber, String password, String address, boolean union, int debt){
+        this.id = id;
         this.fullName = fullName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.password = password;
         this.address = address;
-        this.access = access;
         this.union = union;
         this.debt = debt;
 
     }
+
+    public int getId(){return id;}
 
     public String getFullName(){
         return fullName;
@@ -31,7 +35,7 @@ public class UserModel {
         return email;
     }
 
-    public int getPhoneNumber(){
+    public String getPhoneNumber(){
         return phoneNumber;
     }
 
@@ -39,13 +43,7 @@ public class UserModel {
         return password;
     }
 
-    public String getAddress(){
-        return address;
-    }
-
-    public String getAccess(){
-        return access;
-    }
+    public String getAddress() { return address; }
 
     public boolean getUnion(){
         return union;

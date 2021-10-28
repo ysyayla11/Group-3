@@ -23,30 +23,28 @@ insert into user (User_fullName,
                   User_phoneNumber,
                   User_password,
                   User_address,
-                  User_access,
                   User_union,
                   User_debt)
 values
     (
         'god',
         'god@gmail.com',
-        98979691,
+        12345678,
         '12345',
         'lommedalen',
-        'Nei',
         true,
-        500
+        0
     );
 
-insert into access(User_FullName, Access_level)
+insert into access(User_phoneNumber, Access_level)
 values(
-       'god',
-       'Administrator'
+       '12345678',
+       'administrator'
       );
 
-insert into access(User_FullName, Access_level)
+insert into access(User_phoneNumber, Access_level)
 values(
-          'god',
+          '12345678',
           'user'
       );
 
@@ -55,7 +53,6 @@ insert into user (User_fullName,
                   User_phoneNumber,
                   User_password,
                   User_address,
-                  User_access,
                   User_union,
                   User_debt)
 values
@@ -65,138 +62,165 @@ values
         98979691,
         'Passord123',
         'Gate 23',
-        'Nei',
         true,
         500
     );
+
+insert into access(User_phoneNumber, Access_level)
+values(
+          '98979691',
+          'user'
+      );
 
 insert into user (User_fullName,
                   User_email,
                   User_phoneNumber,
                   User_password,
                   User_address,
-                  User_access,
                   User_union,
                   User_debt)
 values
     (
         'leif erikson',
         'leifebass@gmail.com',
-        12345678,
+        12345679,
         'P23eee2',
         'bringebærstien 23',
-        'Nei',
         true,
         0
     );
+
+insert into access(User_phoneNumber, Access_level)
+values(
+          '12345679',
+          'user'
+      );
 
 insert into user (User_fullName,
                   User_email,
                   User_phoneNumber,
                   User_password,
                   User_address,
-                  User_access,
                   User_union,
                   User_debt)
 values
     (
         'Ronny Johansen',
-        'Ronny56@gmail.com',
+        'Ronny52@gmail.com',
         87654321,
         'Passord123',
         'vekekjoppgata 90',
-        'Nei',
         true,
         5000
     );
+
+insert into access(User_phoneNumber, Access_level)
+values(
+          '87654321',
+          'user'
+      );
 
 insert into user (User_fullName,
                   User_email,
                   User_phoneNumber,
                   User_password,
                   User_address,
-                  User_access,
                   User_union,
                   User_debt)
 values
     (
         'Emil emilson',
         'emils@gmail.com',
-        87654321,
+        87654322,
         'Passord123',
         'slottsveien 90',
-        'Nei',
         true,
         5000
     );
+
+insert into access(User_phoneNumber, Access_level)
+values(
+          '87654322',
+          'user'
+      );
 
 insert into user (User_fullName,
                   User_email,
                   User_phoneNumber,
                   User_password,
                   User_address,
-                  User_access,
                   User_union,
                   User_debt)
 values
     (
         'Jon Hansen Yayla',
         'Jhyayla@gmail.com',
-        345655321,
+        345655323,
         'Passord456',
         'Kongens gate 7',
-        'Nei',
         true,
         0
     );
 
+insert into access(User_phoneNumber, Access_level)
+values(
+          '345655323',
+          'user'
+      );
 
 insert into user (User_fullName,
                   User_email,
                   User_phoneNumber,
                   User_password,
                   User_address,
-                  User_access,
                   User_union,
                   User_debt)
 values
     (
         'Anders Jensen',
         'Crazyjensen@gmail.com',
-        89765444,
+        89765445,
         'Passord965',
         'Seasam Street 7',
-        'Nei',
         true,
         50
     );
+
+insert into access(User_phoneNumber, Access_level)
+values(
+          '89765445',
+          'user'
+      );
 
 insert into user (User_fullName,
                   User_email,
                   User_phoneNumber,
                   User_password,
                   User_address,
-                  User_access,
                   User_union,
                   User_debt)
 values
     (
         'Abdurrezzak Sheih',
         'Abdurrez@gmail.com',
-        98654321,
+        98654326,
         'Passord896',
         'Madridveien 35',
-        'Nei',
         true,
         0
     );
+
+insert into access(User_phoneNumber, Access_level)
+values(
+          '98654326',
+          'user'
+      );
 
 insert into user (User_fullName,
                   User_email,
                   User_phoneNumber,
                   User_password,
                   User_address,
-                  User_access,
                   User_union,
                   User_debt)
 values
@@ -206,55 +230,106 @@ values
         57483988,
         'Passord321',
         'Juventus gate 43',
-        'Nei',
         false,
         500000000
     );
+
+insert into access(User_phoneNumber, Access_level)
+values(
+          '57483988',
+          'user'
+      );
 
 insert into user (User_fullName,
                   User_email,
                   User_phoneNumber,
                   User_password,
                   User_address,
-                  User_access,
                   User_union,
                   User_debt)
 values
     (
         'Camel Stock ',
         'CamelRichman@gmail.com',
-        57684567,
+        57684562,
         'Passord897',
         'Krakov 95',
-        'Nei',
         false,
         100
     );
+
+insert into access(User_phoneNumber, Access_level)
+values(
+          '57684562',
+          'user'
+      );
 
 insert into user (User_fullName,
                   User_email,
                   User_phoneNumber,
                   User_password,
                   User_address,
-                  User_access,
                   User_union,
                   User_debt)
 values
     (
         'Vladimir Trump',
         'VladimirTrump@gmail.com',
-        87654321,
+        82354321,
         'Passord666',
         'Moskov 43',
-        'Ja',
         true,
         5000
     );
+
+insert into access(User_phoneNumber, Access_level)
+values(
+          '82354321',
+          'user'
+      );
+
+-- tool types
+
+insert into toolTypes(ToolType_id, ToolType_name)
+values
+    (
+        1,
+        'Diverse småutstyr'
+    );
+
+insert into toolTypes(tooltype_id, tooltype_name)
+values
+    (
+        2,
+        'Spikerpistoler o.l.'
+    );
+
+insert into toolTypes(tooltype_id, tooltype_name)
+values
+    (
+        3,
+        'Utstyr for vedhogst'
+    );
+
+insert into toolTypes(tooltype_id, tooltype_name)
+values
+    (
+        4,
+        'Tilhengere'
+    );
+
+insert into toolTypes(tooltype_id, tooltype_name)
+values
+    (
+        5,
+        'Større Utstyr'
+    );
+
 -- tools
 
 insert into tools(Tool_id,
                   Tool_name,
-                  Tool_type,
+                  ToolType_id,
                   Tool_condition,
                   Tool_price,
                   Tool_qualification,
@@ -266,20 +341,20 @@ insert into tools(Tool_id,
 values(
        Tool_id,
        'Eksentersliper 230VAC',
-       'Diverse småutstyr',
+       1,
        'God',
        20,
        false,
        true,
        'Må betale papir',
        NULL,
-       true,
+       false,
        NULL
       );
 
 insert into tools(Tool_id,
                   Tool_name,
-                  Tool_type,
+                  ToolType_id,
                   Tool_condition,
                   Tool_price,
                   Tool_qualification,
@@ -291,20 +366,20 @@ insert into tools(Tool_id,
 values(
        Tool_id,
        'Båndsliper 230VAC',
-       'Diverse småutstyr',
+       1,
        'God',
        20,
        false,
        true,
        'Må betale papir',
        NULL,
-       true,
+       false,
        NULL
       );
 
 insert into tools(Tool_id,
                   Tool_name,
-                  Tool_type,
+                  ToolType_id,
                   Tool_condition,
                   Tool_price,
                   Tool_qualification,
@@ -316,20 +391,20 @@ insert into tools(Tool_id,
 values(
        Tool_id,
        'Høvel 230VAC',
-       'Diverse småutstyr',
+       1,
        'God',
        20,
        false,
        true,
        '',
        NULL,
-       true,
+       false,
        NULL
       );
 
 insert into tools(Tool_id,
                   Tool_name,
-                  Tool_type,
+                  ToolType_id,
                   Tool_condition,
                   Tool_price,
                   Tool_qualification,
@@ -341,7 +416,7 @@ insert into tools(Tool_id,
 values(
        Tool_id,
        'Gjære-/kombisag 230VAC',
-       'Diverse småutstyr',
+       1,
        'God',
        20,
        false,
@@ -354,7 +429,7 @@ values(
 
 insert into tools(Tool_id,
                   Tool_name,
-                  Tool_type,
+                  ToolType_id,
                   Tool_condition,
                   Tool_price,
                   Tool_qualification,
@@ -366,7 +441,7 @@ insert into tools(Tool_id,
 values(
        Tool_id,
        '9` vinkelsliper 230VAC',
-       'Diverse småutstyr',
+       1,
        'God',
        20,
        false,
@@ -379,7 +454,7 @@ values(
 
 insert into tools(Tool_id,
                   Tool_name,
-                  Tool_type,
+                  ToolType_id,
                   Tool_condition,
                   Tool_price,
                   Tool_qualification,
@@ -391,7 +466,7 @@ insert into tools(Tool_id,
 values(
        Tool_id,
        'Meislemaskin 230VAC',
-       'Diverse småutstyr',
+       1,
        'God',
        20,
        false,
@@ -404,7 +479,7 @@ values(
 
 insert into tools(Tool_id,
                   Tool_name,
-                  Tool_type,
+                  ToolType_id,
                   Tool_condition,
                   Tool_price,
                   Tool_qualification,
@@ -416,7 +491,7 @@ insert into tools(Tool_id,
 values(
        Tool_id,
        'Slagdrill, Batteri, Milwaukee',
-       'Diverse småutstyr',
+       1,
        'God',
        20,
        false,
@@ -429,7 +504,7 @@ values(
 
 insert into tools(Tool_id,
                   Tool_name,
-                  Tool_type,
+                  ToolType_id,
                   Tool_condition,
                   Tool_price,
                   Tool_qualification,
@@ -441,7 +516,7 @@ insert into tools(Tool_id,
 values(
        Tool_id,
        'Kantklipper -Bensin',
-       'Diverse småutstyr',
+       1,
        'God',
        20,
        false,
@@ -454,7 +529,7 @@ values(
 
 insert into tools(Tool_id,
                   Tool_name,
-                  Tool_type,
+                  ToolType_id,
                   Tool_condition,
                   Tool_price,
                   Tool_qualification,
@@ -466,7 +541,7 @@ insert into tools(Tool_id,
 values(
        Tool_id,
        'Kompressor, 230VAC',
-       'Diverse småutstyr',
+       1,
        'God',
        20,
        false,
@@ -479,7 +554,7 @@ values(
 
 insert into tools(Tool_id,
                   Tool_name,
-                  Tool_type,
+                  ToolType_id,
                   Tool_condition,
                   Tool_price,
                   Tool_qualification,
@@ -491,7 +566,7 @@ insert into tools(Tool_id,
 values(
        Tool_id,
        'Diagnoseringsverktøy, bil',
-       'Diverse småutstyr',
+       1,
        'God',
        50,
        false,
@@ -504,7 +579,7 @@ values(
 
 insert into tools(Tool_id,
                   Tool_name,
-                  Tool_type,
+                  ToolType_id,
                   Tool_condition,
                   Tool_price,
                   Tool_qualification,
@@ -516,7 +591,7 @@ insert into tools(Tool_id,
 values(
        Tool_id,
        'Vibratorplate "Hoppetusse", bensin',
-       'Diverse småutstyr',
+       1,
        'God',
        50,
        false,
@@ -529,7 +604,7 @@ values(
 
 insert into tools(Tool_id,
                   Tool_name,
-                  Tool_type,
+                  ToolType_id,
                   Tool_condition,
                   Tool_price,
                   Tool_qualification,
@@ -541,7 +616,7 @@ insert into tools(Tool_id,
 values(
        Tool_id,
        'Flisekutter for keramiske fliser',
-       'Diverse småutstyr',
+       1,
        'God',
        20,
        false,
@@ -554,7 +629,7 @@ values(
 
 insert into tools(Tool_id,
                   Tool_name,
-                  Tool_type,
+                  ToolType_id,
                   Tool_condition,
                   Tool_price,
                   Tool_qualification,
@@ -566,7 +641,7 @@ insert into tools(Tool_id,
 values(
        Tool_id,
        'Skruautomat',
-       'Diverse småutstyr',
+       1,
        'God',
        20,
        false,
@@ -579,7 +654,7 @@ values(
 
 insert into tools(Tool_id,
                   Tool_name,
-                  Tool_type,
+                  ToolType_id,
                   Tool_condition,
                   Tool_price,
                   Tool_qualification,
@@ -591,7 +666,7 @@ insert into tools(Tool_id,
 values(
        Tool_id,
        'Motorisert trillebår',
-       'Diverse småutstyr',
+       1,
        'God',
        50,
        false,
@@ -604,7 +679,7 @@ values(
 
 insert into tools(Tool_id,
                   Tool_name,
-                  Tool_type,
+                  ToolType_id,
                   Tool_condition,
                   Tool_price,
                   Tool_qualification,
@@ -616,7 +691,7 @@ insert into tools(Tool_id,
 values(
        Tool_id,
        'Spikerpistol, stor (trykkluft)',
-       'Spikerpistoler o.l.',
+       2,
        'God',
        20,
        false,
@@ -629,7 +704,7 @@ values(
 
 insert into tools(Tool_id,
                   Tool_name,
-                  Tool_type,
+                  ToolType_id,
                   Tool_condition,
                   Tool_price,
                   Tool_qualification,
@@ -641,7 +716,7 @@ insert into tools(Tool_id,
 values(
        Tool_id,
        'Spikerpistol, liten (trykkluft)',
-       'Spikerpistoler o.l.',
+       2,
        'God',
        20,
        false,
@@ -654,7 +729,7 @@ values(
 
 insert into tools(Tool_id,
                   Tool_name,
-                  Tool_type,
+                  ToolType_id,
                   Tool_condition,
                   Tool_price,
                   Tool_qualification,
@@ -666,7 +741,7 @@ insert into tools(Tool_id,
 values(
           Tool_id,
           'Spikerpistol, stor (Milwaukee)',
-          'Spikerpistoler o.l.',
+          2,
           'God',
           20,
           false,
@@ -679,7 +754,7 @@ values(
 
 insert into tools(Tool_id,
                   Tool_name,
-                  Tool_type,
+                  ToolType_id,
                   Tool_condition,
                   Tool_price,
                   Tool_qualification,
@@ -691,7 +766,7 @@ insert into tools(Tool_id,
 values(
           Tool_id,
           'Spikerpistol, mellom (Milwaukee)',
-          'Spikerpistoler o.l.',
+          2,
           'God',
           20,
           false,
@@ -704,7 +779,7 @@ values(
 
 insert into tools(Tool_id,
                   Tool_name,
-                  Tool_type,
+                  ToolType_id,
                   Tool_condition,
                   Tool_price,
                   Tool_qualification,
@@ -716,7 +791,7 @@ insert into tools(Tool_id,
 values(
           Tool_id,
           'Spikerpistol, liten (Milwaukee)',
-          'Spikerpistoler o.l.',
+          2,
           'God',
           20,
           false,
@@ -729,7 +804,7 @@ values(
 
 insert into tools(Tool_id,
                   Tool_name,
-                  Tool_type,
+                  ToolType_id,
                   Tool_condition,
                   Tool_price,
                   Tool_qualification,
@@ -741,7 +816,7 @@ insert into tools(Tool_id,
 values(
        Tool_id,
        'Vedkløyver bensindrevet',
-       'Utstyr for VedHogst',
+       3,
        'God',
        50,
        false,
@@ -754,7 +829,7 @@ values(
 
 insert into tools(Tool_id,
                   Tool_name,
-                  Tool_type,
+                  ToolType_id,
                   Tool_condition,
                   Tool_price,
                   Tool_qualification,
@@ -766,7 +841,7 @@ insert into tools(Tool_id,
 values(
        Tool_id,
        'Fliskutter for trevirke',
-       'Utstyr for vedhogst',
+       3,
        'God',
        50,
        false,
@@ -779,7 +854,7 @@ values(
 
 insert into tools(Tool_id,
                   Tool_name,
-                  Tool_type,
+                  ToolType_id,
                   Tool_condition,
                   Tool_price,
                   Tool_qualification,
@@ -791,7 +866,7 @@ insert into tools(Tool_id,
 values(
        Tool_id,
        'Tilhenger, boggi; RD 5702 \nKassemål LxBxH: 297x153x29cm\nNyttelast max. 1150kg',
-       'Tilhengere',
+       4,
        'God',
        50,
        false,
@@ -804,7 +879,7 @@ values(
 
 insert into tools(Tool_id,
                   Tool_name,
-                  Tool_type,
+                  ToolType_id,
                   Tool_condition,
                   Tool_price,
                   Tool_qualification,
@@ -816,7 +891,7 @@ insert into tools(Tool_id,
 values(
           Tool_id,
           'Tilhenger, liten; RC 8834 \nKassemål LxBxH: 197x153x29cm\nNyttelast max. 645kg',
-          'Tilhengere',
+          4,
           'God',
           50,
           false,
@@ -829,7 +904,7 @@ values(
 
 insert into tools(Tool_id,
                   Tool_name,
-                  Tool_type,
+                  ToolType_id,
                   Tool_condition,
                   Tool_price,
                   Tool_qualification,
@@ -841,7 +916,7 @@ insert into tools(Tool_id,
 values(
           Tool_id,
           'Tilhenger, skap; JP 2591 \nKassemål LxBxH: 292x154x194cm\nNyttelast max. 1090kg',
-          'Tilhengere',
+          4,
           'God',
           50,
           false,
@@ -854,7 +929,7 @@ values(
 
 insert into tools(Tool_id,
                   Tool_name,
-                  Tool_type,
+                  ToolType_id,
                   Tool_condition,
                   Tool_price,
                   Tool_qualification,
@@ -866,7 +941,7 @@ insert into tools(Tool_id,
 values(
        Tool_id,
        'Personløfter, arb.høyde 12m\nSWL 200kg, 230VAC',
-       'Større utstyr',
+       5,
        'God',
        100,
        true,
@@ -879,7 +954,7 @@ values(
 
 insert into tools(Tool_id,
                   Tool_name,
-                  Tool_type,
+                  ToolType_id,
                   Tool_condition,
                   Tool_price,
                   Tool_qualification,
@@ -891,7 +966,7 @@ insert into tools(Tool_id,
 values(
        Tool_id,
        'Strømaggregat, 3.7 kW (Diesel)',
-       'Større utstyr',
+       5,
        'God',
        50,
        false,
@@ -904,7 +979,7 @@ values(
 
 insert into tools(Tool_id,
                   Tool_name,
-                  Tool_type,
+                  ToolType_id,
                   Tool_condition,
                   Tool_price,
                   Tool_qualification,
@@ -916,7 +991,7 @@ insert into tools(Tool_id,
 values(
        Tool_id,
        'Dekkomleggingsmaskin',
-       'Større utstyr',
+       5,
        'God',
        NULL,
        false,
@@ -929,7 +1004,7 @@ values(
 
 insert into tools(Tool_id,
                   Tool_name,
-                  Tool_type,
+                  ToolType_id,
                   Tool_condition,
                   Tool_price,
                   Tool_qualification,
@@ -941,12 +1016,37 @@ insert into tools(Tool_id,
 values(
        Tool_id,
        'Avbalanseringsmaskin',
-       'Større Utstyr',
+       5,
        'God',
        NULL,
        false,
        false,
        '1.Den som ønsker å legge om dekk må skrive seg på liste som er hengt opp på oppslagstavle i verkstedet ved lagerluke. Omlegging av dekk foregårkunetter avtale med Kenneth Glendrange. Hanhar hovedansvar for dette utstyretogkan kontaktes på mob. 97 15 19 97. Alt. kan Ingvar Pedersen kontaktes på mob. 48 99 58 85.\n2.Dekkomlegging skjer i den rekkefølge som en har skrevet seg på listen og foregår innerst i hall ved lakkeringsboks. Jekk og nødvendig verktøy samt trykkluft er tilgjengelig.\n3.Det er den enkeltes ansvar å skru av hjul å gjøre disse klare for omlegging til rett tid (det er selvfølgelig lov å spørre om hjelp (-: ), ellers hopper en til nestemann på listen.\n4.Etter omlegging/balansering er det den enkeltes ansvar å montere hjul igjen.\nRetur av gamle dekk er den enkeltes ansvar. Forhandlere har plikt til å ta kasserte dekk vederlagsfritt i retur. \nPris for omlegging av dekk inkl. avbalansering: 50,-/stk\nLapping av punktert dekk: 100,-/stk\nNB! AMV eller person som er ansvarlig for omlegging er ikke erstatningsansvarlig ved eventuell skade på dekk, felg eller kjøretøy.',
+       NULL,
+       true,
+       NULL
+      );
+
+insert into tools(Tool_id,
+                  Tool_name,
+                  ToolType_id,
+                  Tool_condition,
+                  Tool_price,
+                  Tool_qualification,
+                  Tool_freeFirstDay,
+                  Tool_importantInformation,
+                  Tool_maxDays,
+                  Tool_delivered,
+                  Tool_image)
+values(
+       Tool_id,
+       'Leilighet på Hovden',
+       5,
+       'God',
+       NULL,
+       false,
+       false,
+       'Kontakt resepsjonen hos AMV',
        NULL,
        true,
        NULL
@@ -964,18 +1064,19 @@ insert into tools(Tool_id,
                   Tool_delivered,
                   Tool_image)
 values(
-       Tool_id,
-       'Leilighet på Hovden',
-       'Større utstyr',
-       'God',
-       NULL,
-       false,
-       false,
-       'Kontakt resepsjonen hos AMV',
-       NULL,
-       true,
-       NULL
+          Tool_id,
+          'Testverktøy',
+          'Diverse småutstyr',
+          'God',
+          20,
+          false,
+          true,
+          'Må erstattes om borte',
+          NULL,
+          true,
+          NULL
       );
+
 
 -- qualify some users
 
@@ -1009,84 +1110,98 @@ values(
        3
       );
 -- insert bookings (portfolio 2)
-insert into booking (Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid)
+insert into booking (Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid, Booking_dateDelivered)
 values (
         Booking_id,
         1,
         7,
-        '2021-07-01',
-        '2021-07-03',
-        0
+        '2021-10-20',
+        '2021-10-24',
+        0,
+        '2021-10-24'
 
        );
-insert into booking (Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid)
+insert into booking (Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid, Booking_dateDelivered)
 values (
            Booking_id,
            10,
            7,
-           '2021-07-01',
-           '2021-07-03',
-           0
+           '2021-10-13',
+           '2021-10-14',
+           0,
+            '2021-10-14'
 
        );
-insert into booking (Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid)
+insert into booking (Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid, Booking_dateDelivered)
 values (
            Booking_id,
-           7,
+           5,
            3,
-           '2021-07-01',
-           '2021-07-03',
-           0
-
+           '2021-10-23',
+           '2021-10-26',
+           0,
+            null
        );
-insert into booking (Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid)
+insert into booking (Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid, Booking_dateDelivered)
 values (
            Booking_id,
-           2,
+           8,
            4,
-           '2021-07-01',
-           '2021-07-03',
-           0
-
+           '2021-10-22',
+           '2021-10-23',
+           0,
+            null
        );
-insert into booking (Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid)
+insert into booking (Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid, Booking_dateDelivered)
 values (
            Booking_id,
-           7,
+           20,
            3,
-           '2021-07-01',
-           '2021-07-03',
-           0
-
+           '2021-10-23',
+           '2021-10-27',
+           0,
+            null
        );
-insert into booking (Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid)
+insert into booking (Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid, Booking_dateDelivered)
 values (
            Booking_id,
-           7,
+           13,
            3,
-           '2021-07-01',
-           '2021-07-03',
-           0
-
+           '2021-10-21',
+           '2021-10-22',
+           0,
+            null
        );
-insert into booking (Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid)
+insert into booking (Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid, Booking_dateDelivered)
 values (
            Booking_id,
-           7,
+           9,
            3,
-           '2021-07-01',
-           '2021-07-03',
-           0
-
+           '2021-10-01',
+           '2021-10-10',
+           0,
+            '2021-10-11'
        );
-insert into booking (Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid)
+insert into booking (Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid, Booking_dateDelivered)
 values (
            Booking_id,
-           7,
+           5,
            3,
-           '2021-07-01',
-           '2021-07-03',
-           0
-
+           '2021-10-26',
+           '2021-10-27',
+           0,
+            NULL
        );
+insert into booking (Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid, Booking_dateDelivered)
+values (
+           Booking_id,
+           10,
+           3,
+           '2021-10-23',
+           '2021-10-24',
+           0,
+            null
+       );
+
+
 

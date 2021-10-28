@@ -92,7 +92,6 @@ public class AdministerToolServlet extends HttpServlet {
         out.println("<label for='Tool_Name'>Navn på verktøy: </label>");
         out.println("</form>");
         out.println("</body></html>");
-
     }
 
 
