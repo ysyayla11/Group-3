@@ -11,7 +11,7 @@
 
     <Realm className="org.apache.catalina.realm.DataSourceRealm"
            userTable="user"
-           userNameCol="User_FullName"
+           userNameCol="User_phoneNumber"
            userCredCol="User_Password"
            userRoleTable="access"
            roleNameCol="Access_level"
