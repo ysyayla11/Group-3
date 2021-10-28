@@ -38,7 +38,7 @@ public class GetToolInfoServlet extends HttpServlet {
     }
 
     private ResultSet getToolInfo(PrintWriter out, String toolID) throws SQLException {
-
+        //connection må endres til å bruke super
         Connection db = null;
         try{
             db = DBUtils.getINSTANCE().getConnection(out);
@@ -122,6 +122,9 @@ public class GetToolInfoServlet extends HttpServlet {
                 "        <input type=\"text\" name = \"maxDays\" value = '" + maxDays + "'>\n" +
                 "        <br>\n" +
                 "        <button type=\"submit\" value='" + toolID + "' name='toolID'> Endre </button>\n" +
+                "    </form>\n" +
+                "    <form action=\"DeleteToolServlet\" method=\"get\">\n" +
+                "        <button type=\"submit\">Slett verktøy</button>\n" +
                 "    </form>\n" +
                 "    <form action=\"GetAllToolServlet\" method=\"get\">\n" +
                 "        <button type=\"submit\">get all tools</button>\n" +
