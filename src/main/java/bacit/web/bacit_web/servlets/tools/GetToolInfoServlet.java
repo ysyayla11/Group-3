@@ -100,23 +100,6 @@ public class GetToolInfoServlet extends HttpServlet {
                 "        <label> Pris </label>\n" +
                 "        <input type=\"text\" name = \"price\" value = '" + price + "'>\n" +
                 "        <br>\n" +
-
-                /*"        <label> Må man være kvalifisert for å bruke verktøy? </label>\n");
-
-                if(qualification) {
-                    out.println("        <input type=\"radio\" id=\"buttonYes\" name=\"qualification\" value=\"true\" checked=\"checked\">\n" +
-                "        <label for=\"buttonYes\">Ja</label>\n" +
-                "        <input type=\"radio\" id=\"buttonNo\" name=\"freeFirstDay\" value=\"false\">\n" +
-                "        <label for=\"buttonNo\">Nei</label>\n");
-                }
-                else {
-                    out.println("        <input type=\"radio\" id=\"buttonYes\" name=\"freeFirstDay\" value=\"true\">\n" +
-                "        <label for=\"buttonYes\">Ja</label>\n" +
-                "        <input type=\"radio\" id=\"buttonNo\" name=\"freeFirstDay\" value=\"false\" checked=\"checked\">\n" +
-                "        <label for=\"buttonNo\">Nei</label>\n");
-                }
-                out.println("        <br>\n" +*/
-
                 "        <label> Er verktøyet gratis første dagen? </label>\n");
 
                 if(freeFirstDay) {

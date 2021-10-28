@@ -29,6 +29,10 @@ insert into tools(Tool_id,
 
 drop database MytestDB;
 
+-- delete tool
+
+delete from tools where Tool_id = 1;
+
 -- delete everything from table
 
 truncate table tools;
