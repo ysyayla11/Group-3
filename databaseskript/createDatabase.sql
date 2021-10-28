@@ -61,12 +61,13 @@ CREATE TABLE IF NOT EXISTS qualification
     Qualification_id                int NOT NULL PRIMARY KEY auto_increment,
     Tool_id                         int,
     User_id                         int,
-    FOREIGN KEY (Tool_id)           REFERENCES tools(Tool_id),
-    FOREIGN KEY (User_id)           REFERENCES user(User_id)
+    FOREIGN KEY (Tool_id)           REFERENCES tools(Tool_id) on delete set null,
+    FOREIGN KEY (User_id)           REFERENCES user(User_id) on delete cascade
 );
 
 CREATE TABLE IF NOT EXISTS access
 (
-    User_phoneNumber                varchar(255),
-    Access_level                    varchar(25)
+    User_phoneNumber                int,
+    Access_level                    varchar(25),
+    FOREIGN KEY (User_phoneNumber)  REFERENCES user(User_phoneNumber) on delete cascade
 )

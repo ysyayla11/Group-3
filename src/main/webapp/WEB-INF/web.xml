@@ -6,7 +6,7 @@
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Administration</web-resource-name>
-            <url-pattern>/admin/*</url-pattern>
+            <url-pattern>/SiteAdmin/*</url-pattern>
             <http-method>GET</http-method>
             <http-method>POST</http-method>
         </web-resource-collection>

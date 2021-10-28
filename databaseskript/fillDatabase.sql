@@ -39,7 +39,7 @@ values
 insert into access(User_phoneNumber, Access_level)
 values(
        '12345678',
-       'Administrator'
+       'administrator'
       );
 
 insert into access(User_phoneNumber, Access_level)
