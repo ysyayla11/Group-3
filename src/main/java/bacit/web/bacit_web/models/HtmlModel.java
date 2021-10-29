@@ -13,10 +13,9 @@ public class HtmlModel {
             "\n" +
             "\n" +
             "<nav>\n" +
-            "    <a class=\"active\" href=\"../SiteUser/home.jsp\">Hjemme</a>\n" +
-            "    <a href=\"../index.jsp\">Log inn</a>\n" +
-            "    <a href=\"../SiteUser/DinProfil.jsp\">Din Profil</a>\n" +
-            "    <a href=\"../SiteUser/DineBestillinger.jsp\">Dine Bestillinger</a>\n" +
+            "    <a class=\"active\" href=\"../SiteUser/home.jsp\"><button type =\"button\" class=\"nav-button\">Hjem</button></a>\n" +
+            "    <a href=\"../SiteUser/DinProfil.jsp\"><button type =\"button\" class=\"nav-button\">Din Profil</button></a>\n" +
+            "    <a href=\"../SiteUser/DineBestillinger.jsp\"><button type =\"button\" class=\"nav-button\">Dine Bestillinger</button></a>\n" +
             "</nav>";
 
     private static String footer = "</body>\n" +

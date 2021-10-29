@@ -1054,7 +1054,7 @@ values(
 
 insert into tools(Tool_id,
                   Tool_name,
-                  Tool_type,
+                  ToolType_id,
                   Tool_condition,
                   Tool_price,
                   Tool_qualification,
@@ -1066,7 +1066,7 @@ insert into tools(Tool_id,
 values(
           Tool_id,
           'Testverktøy',
-          'Diverse småutstyr',
+          1,
           'God',
           20,
           false,
