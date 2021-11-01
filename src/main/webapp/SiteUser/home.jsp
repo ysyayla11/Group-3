@@ -14,7 +14,6 @@
 <a href="../SiteAdmin/Admin_dashboard.jsp">Admin</a>
 <a href="../getAllToolServlet">get all tools</a>
 
-<h2>My Phonebook</h2>
 
 
 
