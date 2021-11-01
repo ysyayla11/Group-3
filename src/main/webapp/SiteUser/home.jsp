@@ -8,12 +8,15 @@
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
 
-<%= HtmlModel.getHeader("hjemside")%>
+<%= HtmlModel.getHeader("Hjemmeside")%>
+
+
 
         <form action="GetAllToolServlet" method="get" enctype="multipart/form-data">Get Tools</form>
             <div class="container" id="verktøy_hjem"></div>
 
             <a href="../SiteAdmin/Admin_dashboard.jsp">Admin</a>
+
 
 <form><%=request.getAttribute("ToolsHome")%></form>
 
