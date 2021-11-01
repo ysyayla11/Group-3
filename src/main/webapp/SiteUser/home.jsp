@@ -10,6 +10,9 @@
 
 <%= HtmlModel.getHeader("Hjemmeside")%>
 
+<form method="get" action="DisplayToolsServlet">
+    <button type="submit">Check all tools</button>
+</form>
 
 
         <form action="GetAllToolServlet" method="get" enctype="multipart/form-data">Get Tools</form>
