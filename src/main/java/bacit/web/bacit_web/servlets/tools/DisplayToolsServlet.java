@@ -26,7 +26,7 @@ public class DisplayToolsServlet extends HttpServlet {
         try {
             ResultSet results;
             results = getTools(out);
-            out.println(HtmlModel.getHeader("THis is the tools in the system"));
+            out.println(HtmlModel.getHeader("This is the tools in the system"));
             out.println("<br><div>");
             printForm(results, out);
             out.println("</div>");
@@ -65,7 +65,8 @@ public class DisplayToolsServlet extends HttpServlet {
                         "    <div>Gratis første dag: " + results.getString(7) + "</div>\n" +
                         "    <div>Viktig informasjon: " + results.getString(8) + "</div>\n" +
                         "    <div>Tool picture: " + results.getString(11) + "</div>\n" +
-                        "</form>");
+                        "    <a href=\"Booking.jsp\"><button type=\"button\">Reserver dette verktøyet</button></a>\n" +
+                        "    </form>" + "");
             }
         }
         catch (SQLException e) {
