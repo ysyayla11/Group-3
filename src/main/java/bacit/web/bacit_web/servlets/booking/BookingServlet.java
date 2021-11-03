@@ -23,7 +23,7 @@ import java.sql.SQLException;
  - check qualification
 *
 * */
-@WebServlet(name = "BookingServlet", value ="/BookingServlet")
+@WebServlet(name = "BookingServlet", value ="/SiteUser/BookingServlet")
 public class BookingServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html");
@@ -44,7 +44,9 @@ public class BookingServlet extends HttpServlet {
             out.println(e);
         }
 
-        out.println("Hello");
+        out.println("Din bestilling var vellykket!" +
+                "<a href=\"home.jsp\"><button type=\"button\">Gå tilbake til hjem</button></a> " +
+                "");
     }
 
     public void addBooking(PrintWriter out, String tool_id, String user_id, String booking_dateStart, String booking_dateEnd, Boolean booking_paid) throws SQLException {
