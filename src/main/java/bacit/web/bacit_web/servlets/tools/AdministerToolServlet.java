@@ -1,4 +1,4 @@
-package bacit.web.bacit_web.servlets.tools;
+/*package bacit.web.bacit_web.servlets.tools;
 import bacit.web.bacit_web.utilities.DBUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -94,8 +94,7 @@ public class AdministerToolServlet extends HttpServlet {
         out.println("</body></html>");
     }
 
-
-
     public void destroy(){}
 
 }
+*/

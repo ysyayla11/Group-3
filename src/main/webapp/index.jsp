@@ -19,7 +19,6 @@
 
 <script>
 
-
     window.onload= function () {
         window.location.replace("SiteUser/home.jsp");
     }

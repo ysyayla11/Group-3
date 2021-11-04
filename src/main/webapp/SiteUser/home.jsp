@@ -1,3 +1,4 @@
+<% %>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.sql.Statement" %>
 <%@ page import="java.sql.Connection" %>
@@ -14,16 +15,11 @@
 <a href="../SiteAdmin/Admin_dashboard.jsp">Admin</a>
 <a href="../getAllToolServlet">get all tools</a>
 
-
-
-
-
-
-
-
 </script>
 
 
 
 </body>
 </html>
+
+<% destroy();%>

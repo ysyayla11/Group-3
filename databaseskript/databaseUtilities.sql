@@ -47,3 +47,9 @@ update tools set Tool_delivered = false where Tool_id = 1;
 -- se hvor mange tools som er i databasen
 
 select count(Tool_id) from tools;
+
+-- see all unpaid bookings
+
+select * from booking
+    inner join user u on booking.User_id = u.User_id
+where u.User_phoneNumber = 12345679 and Booking_paid is false;

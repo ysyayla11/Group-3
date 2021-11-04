@@ -4,24 +4,38 @@
     <meta charset="UTF-8">
     <title>Login</title>
 </head>
+<style>
+    input{
+        padding: 2Rem 5Rem;
+        border: 0.1Rem solid #ccc;
+        display: inline-block;
+        font-size: 2Rem;
+
+    }
+    body{
+        background-color: #f0b324;
+        display: grid;
+        margin-right: 50%;
+        margin-right: 50%;
+    }
+    form{
+        grid-auto-columns: auto auto auto;
+        margin-right: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+</style>
 <body>
-<form method="POST" action="j_security_check">
-    <table>
-        <tr>
-            <td colspan="2">Login to the Tomcat-Demo application: test</td>
-        </tr>
-        <tr>
-            <td>Name:</td>
-            <td><input type="text" name="j_username" /></td>
-        </tr>
-        <tr>
-            <td>Password:</td>
-            <td><input type="password" name="j_password"/></td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="Go" /></td>
-        </tr>
-    </table>
-</form>
+test
+    <form method="POST" action="j_security_check">
+
+        <div><input type="text" name="j_username" placeholder="Telefonnummer"/></div>
+
+        <div><input type="password" name="j_password" placeholder="Passord"/></div>
+
+        <div><input type="submit" value="Go" /></div>
+    </form>
+
 </body>
 </html>
