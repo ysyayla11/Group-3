@@ -8,7 +8,9 @@
 /usr/src/mymaven/src/main/java/bacit/web/bacit_web/servlets/tools/EditToolInfoServlet.java
 /usr/src/mymaven/src/main/java/bacit/web/bacit_web/servlets/booking/BookingServlet.java
 /usr/src/mymaven/src/main/java/bacit/web/bacit_web/servlets/SuperServlet.java
+/usr/src/mymaven/src/main/java/bacit/web/bacit_web/servlets/tools/DeleteToolServlet.java
 /usr/src/mymaven/src/main/java/bacit/web/bacit_web/utilities/DBUtils.java
+/usr/src/mymaven/src/main/java/bacit/web/bacit_web/servlets/tools/DisplayToolsServlet.java
 /usr/src/mymaven/src/main/java/bacit/web/bacit_web/servlets/users/DeleteUserServlet.java
 /usr/src/mymaven/src/main/java/bacit/web/bacit_web/models/ToolModel.java
 /usr/src/mymaven/src/main/java/bacit/web/bacit_web/servlets/tools/ToolUploadDBServlet.java
