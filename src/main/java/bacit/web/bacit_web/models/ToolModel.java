@@ -11,6 +11,7 @@ public class ToolModel {
     private String Tool_image;
 
     public ToolModel(String Tool_id, String Tool_Name, String Tool_type, String Tool_condition, int Tool_price, int Tool_freeFirstDay, String Tool_importantInformation, String Tool_image) {
+        this.Tool_id = Tool_id;
         this.Tool_Name = Tool_Name;
         this.Tool_type = Tool_type;
         this.Tool_condition = Tool_condition;
