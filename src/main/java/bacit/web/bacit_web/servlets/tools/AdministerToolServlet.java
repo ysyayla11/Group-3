@@ -1,4 +1,6 @@
 package bacit.web.bacit_web.servlets.tools;
+import bacit.web.bacit_web.models.ToolModel;
+import bacit.web.bacit_web.models.UserModel;
 import bacit.web.bacit_web.utilities.DBUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -6,21 +8,37 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
+import bacit.web.bacit_web.servlets.SuperServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
-@WebServlet(name = "AdministerToolServlet", value = "/AdministerToolServlet")
-public class AdministerToolServlet extends HttpServlet {
+
+@WebServlet(name = "AdministerToolServlet", value = "/SiteAdmin/AdministerToolServlet")
+public class AdministerToolServlet extends SuperServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws  IOException {
         response.setContentType("text/html");
         request.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
+        ToolModel tool = createToolModelFromRequest(request);
+
+        try{
+            AdministerTool(tool, out);
+            out.println("Change success!");
+        }
+        catch(SQLException e){
+            out.println("oops something went wrong " + e);
+        }
+
+        private ToolModel createToolModelFromRequest(HttpServletRequest request) {
         String name = request.getParameter("name");
         String type = request.getParameter("type");
         String condition = request.getParameter("condition");
@@ -33,26 +51,16 @@ public class AdministerToolServlet extends HttpServlet {
         String toolID = request.getParameter("toolID");
         int intUserID = Integer.parseInt(toolID);
 
-        try{
-            editToolInfo(name, type, condition, price, qualification, freeFirstDay , importantInformation, maxDays , delivered, intUserID, out);
-            out.println("Change success!");
-        }
-        catch(SQLException e){
-            out.println("oops something went wrong " + e);
+            ToolModel toolModel = new ToolModel(toolID, name, type, condition, price, qualification, freeFirstDay, importantInformation, maxDays, delivered, );
+
+            return toolModel;
         }
 
-        public void  editToolInfo(String name, String type, String condition, String price, String qualification,
-                String freeFirstDay , String importantInformation, String maxDays , String delivered, String intUserID, String out);
+        public void  editToolInfo(ToolModel tool, PrintWriter out);
                 throws SQLException {
 
-            Connection db = null;
-            try{
-                db = DBUtils.getINSTANCE().getConnection(out);
-            }
-            catch(ClassNotFoundException e){
-                e.printStackTrace();
-                System.out.println("Error i connection");
-            }
+            Connection db = super.connectToDB(out);
+
 
             String query = "Update tool set tool_name  = ?, tool_type  = ?, tool_condition  = ?, tool_price  = ?, tool_qualification  = ?, " +
                     "tool_freeFirstDay  = ?, tool_importantInformation = ?, tool_maxDays = ?, tool_delivered = ?,   where tool_id = ?";
@@ -93,9 +101,5 @@ public class AdministerToolServlet extends HttpServlet {
         out.println("</form>");
         out.println("</body></html>");
     }
-
-
-
-    public void destroy(){}
 
 }
