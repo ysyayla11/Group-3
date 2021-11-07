@@ -2,6 +2,7 @@ package bacit.web.bacit_web.servlets.tools;
 
 
 
+import bacit.web.bacit_web.servlets.SuperServlet;
 import bacit.web.bacit_web.utilities.DBUtils;
 
 import javax.servlet.ServletException;
@@ -14,7 +15,7 @@ import java.io.PrintWriter;
 import java.sql.*;
 
 @WebServlet(name = "DeleteToolServlet", value = "/DeleteToolServlet")
-public class DeleteToolServlet extends HttpServlet {
+public class DeleteToolServlet extends SuperServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException{
@@ -31,7 +32,7 @@ public class DeleteToolServlet extends HttpServlet {
         }
         try{
             //Henter og oppdaterer fra db
-            String query = "UPDATE tools SET Tool_name = 'nytt' Where Tool_id = ?";
+            String query = "Delete from tools Where Tool_id = ?";
             PreparedStatement preparedStatement = db.prepareStatement(query);
             int i = preparedStatement.executeUpdate();
             if(i!=0){
@@ -58,6 +59,6 @@ public class DeleteToolServlet extends HttpServlet {
             e.printStackTrace();
             System.out.println("Error i connection");
         }
-        return db;
+       return db;
     }
 }
