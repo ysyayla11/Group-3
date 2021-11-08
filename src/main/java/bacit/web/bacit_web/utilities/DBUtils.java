@@ -8,10 +8,13 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 public class DBUtils {
     private static final DBUtils INSTANCE = new DBUtils();
     static Connection connection;
+
+    Logger logger = Logger.getLogger(DBUtils.class.getName());
 
     /**
      * initiates the class as a singleton.
@@ -37,7 +40,7 @@ public class DBUtils {
         }
         catch(NamingException ex)
         {
-            out.println(ex.getMessage());
+            out.println(ex);
         }
         return null;
     }
