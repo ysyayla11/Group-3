@@ -14,7 +14,7 @@ public class HtmlModel {
             "\n" +
             "<nav>\n" +
             "    <a class=\"active\" href=\"../SiteUser/home.jsp\"><button type =\"button\" class=\"nav-button\">Hjem</button></a>\n" +
-            "    <a href=\"../SiteUser/DinProfil.jsp\"><button type =\"button\" class=\"nav-button\">Din Profil</button></a>\n" +
+            "    <a href=\"../SiteUser/GetUserProfileServlet\"><button type =\"button\" class=\"nav-button\">Din Profil</button></a>\n" +
             "    <a href=\"../SiteUser/GetBookingServlet\" methods=\"get\"><button type =\"button\" class=\"nav-button\">Dine Bestillinger</button></a>\n" +
             "</nav>";
 
