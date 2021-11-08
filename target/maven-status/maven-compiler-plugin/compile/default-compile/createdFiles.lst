@@ -1,4 +1,5 @@
 bacit/web/bacit_web/servlets/booking/GetBookingServlet.class
+bacit/web/bacit_web/servlets/users/SeeUserInfoServlet.class
 bacit/web/bacit_web/servlets/booking/BookingServlet.class
 bacit/web/bacit_web/servlets/users/GetUserInfoServlet.class
 bacit/web/bacit_web/servlets/users/EditUserInfoServlet.class
@@ -9,6 +10,7 @@ bacit/web/bacit_web/servlets/booking/UserUploadDBServlet.class
 bacit/web/bacit_web/utilities/DBUtils.class
 bacit/web/bacit_web/models/HtmlModel.class
 bacit/web/bacit_web/servlets/SuperServlet.class
+bacit/web/bacit_web/models/BookingModel.class
 bacit/web/bacit_web/servlets/tools/EditToolInfoServlet.class
 bacit/web/bacit_web/servlets/tools/GetAllToolServlet.class
 bacit/web/bacit_web/servlets/tools/DeliverServlet.class

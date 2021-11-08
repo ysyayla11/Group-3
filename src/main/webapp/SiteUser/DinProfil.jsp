@@ -1,29 +1,25 @@
-<%@ page import="bacit.web.bacit_web.models.HtmlModel" %><%--
+<%@ page import="bacit.web.bacit_web.models.HtmlModel" %>
+<%@ page import="java.nio.file.attribute.UserPrincipal" %>
+<%--
   Created by IntelliJ IDEA.
   User: ysyay
   Date: 13.09.2021
   Time: 18:11
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%=HtmlModel.getHeader("profileSite")%>
 
-<%= HtmlModel.getHeader("din profil")%>
+<%
+   java.security.Principal principal = request.getUserPrincipal();
+   String name = principal.getName();
+   String role = principal.toString();
+%>
 
-<img src="../Images/img_5.png" alt="icon">
-
-<ul class="ProfilID">
-    <li> Navn: Anna Olsen  </li>
-    <li> Rolle: Ansatt</li>
-    <li> Mobilnummer: 96754322</li>
-    <li> Address: Vestrestrandgate 42, 4612 Kristiansanf</li>
-    <li> Mail: anne@mail.no</li>
-
-</ul>
-
-<button class="ProfilID"> Redifer Profil </button>
+<%= name%>
+<%= role%>
 
 
-</body>
+<%=HtmlModel.getFooter()%>
 
-</html>
+
 

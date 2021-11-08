@@ -6,34 +6,37 @@ html {
 
 body {
     font-family: "Lato", Calibri, Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: #f0b324;
     font-size: 2rem;
     text-align: center;
+    color: #041e43;
 
 }
 
 /* Style the links inside the navigation bar */
 button  {
-    color: #f2f2f2;
-    background-color: cornflowerblue;
+    color: #f0b324;
+    background-color: #041e43;
     padding: 1Rem 3.5Rem;
     text-decoration: none;
     font-size: 2Rem;
     margin: 3Rem;
+    border-style: none;
+    border-radius: 25px;
 }
 
-nav a{
-    color: #f2f2f2;
-    background-color: cornflowerblue ;
-    font-size: 3Rem;
-    padding: 2Rem 1Rem;
-    margin-top: 1Rem;
+.nav-button{
+    font-size: 25px;
+    width: 25%;
+    padding: 20px 30px;
+    margin: 10px 15px;
+
 }
 
 
 /* Change the color of links on hover */
-nav a:hover, nav a.active:hover, button:hover {
-    background-color: #F0D0C9;
+button a:hover, button:hover {
+    background-color: #0b4596;
     color: black;
 }
 
@@ -45,7 +48,6 @@ form {
 input[type=text], input[type=password] {
     padding: 2Rem 5Rem;
     margin: 3rem 0;
-    border: 0.1Rem solid #ccc;
     display: inline-block;
     font-size: 2Rem;
 
@@ -58,9 +60,19 @@ li {
 
 
 }
-.adminButtons a {
-    height: 25px;
-    width: 25px;
+
+.adminButtons{
+    padding: 50px 25px;
+    height:auto;
+    width: auto;
+}
+.adminButtons img {
+    height: 5rem;
+    width: auto;
+    color: #f0b324;
+    align-content: center;
+    text-align: center;
+
 }
 
 
@@ -73,13 +85,7 @@ li {
 
 }
 
-a {
-    color: #f2f2f2;
-    background-color: cornflowerblue ;
-    font-size: 3Rem;
-    padding: 2Rem 1Rem;
-    margin-top: 1Rem;
-}
+
 
 
 
