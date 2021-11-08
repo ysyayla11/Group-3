@@ -59,3 +59,5 @@ select * from booking where Booking_dateEnd < '2021-10-25';
 -- delete booked tool
 
 delete from tools where Tool_id = 1;
+
+select * from MytestDB.booking where User_id = 3 and Booking_paid = 0;

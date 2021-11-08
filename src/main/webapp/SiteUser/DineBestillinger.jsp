@@ -9,16 +9,6 @@
 
 <%= HtmlModel.getHeader("dine bestillinger")%>
 
-    <ul>
-        <li>
-            <img src="../Images/img_2.png" alt="icon"  >
-            <h3> Verktøy Sett </h3>
-            <p>Leiedato: 22.09.2021</p>
-            <p>Leveringsdato: 25.09.2021</p>
-            <p> Kostnad: 40 kr</p>
-        </li>
-    </ul>
-
     <label>Tool id</label>
     <input type="text" name="Tool_id">
     <label>Varen Levert</label>
@@ -28,8 +18,5 @@
     <input type="radio" name="Tool_delivered" value="false">
 
     <input type="submit" value="Lever Varen">
-</form>
 
-</body>
-
-</html>
+<%= HtmlModel.getFooter()%>
