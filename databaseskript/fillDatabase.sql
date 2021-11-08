@@ -30,7 +30,7 @@ values
         'god',
         'god@gmail.com',
         12345678,
-        '12345',
+        sha2('12345', 256),
         'lommedalen',
         true,
         0
@@ -60,7 +60,7 @@ values
         'Ronny Johansen',
         'Ronny56@gmail.com',
         98979691,
-        'Passord123',
+        sha2('Passord123', 256),
         'Gate 23',
         true,
         500
@@ -84,7 +84,7 @@ values
         'leif erikson',
         'leifebass@gmail.com',
         12345679,
-        'P23eee2',
+        sha2('P23eee2', 256),
         'bringebærstien 23',
         true,
         0
@@ -108,7 +108,7 @@ values
         'Ronny Johansen',
         'Ronny52@gmail.com',
         87654321,
-        'Passord123',
+        sha2('Passord123', 256),
         'vekekjoppgata 90',
         true,
         5000
@@ -132,7 +132,7 @@ values
         'Emil emilson',
         'emils@gmail.com',
         87654322,
-        'Passord123',
+        sha2('Passord123', 256),
         'slottsveien 90',
         true,
         5000
@@ -156,7 +156,7 @@ values
         'Jon Hansen Yayla',
         'Jhyayla@gmail.com',
         345655323,
-        'Passord456',
+        sha2('Passord456', 256),
         'Kongens gate 7',
         true,
         0
@@ -180,7 +180,7 @@ values
         'Anders Jensen',
         'Crazyjensen@gmail.com',
         89765445,
-        'Passord965',
+        sha2('Passord965', 256),
         'Seasam Street 7',
         true,
         50
@@ -204,7 +204,7 @@ values
         'Abdurrezzak Sheih',
         'Abdurrez@gmail.com',
         98654326,
-        'Passord896',
+        sha2('Passord896', 256),
         'Madridveien 35',
         true,
         0
@@ -228,7 +228,7 @@ values
         'Luigi Ferrari',
         'Luigimario@gmail.com',
         57483988,
-        'Passord321',
+        sha2('Passord321', 256),
         'Juventus gate 43',
         false,
         500000000
@@ -252,7 +252,7 @@ values
         'Camel Stock ',
         'CamelRichman@gmail.com',
         57684562,
-        'Passord897',
+        sha2('Passord897', 256),
         'Krakov 95',
         false,
         100
@@ -276,7 +276,7 @@ values
         'Vladimir Trump',
         'VladimirTrump@gmail.com',
         82354321,
-        'Passord666',
+        sha2('Passord666', 256),
         'Moskov 43',
         true,
         5000

@@ -12,19 +12,6 @@ delete from user where User_id = 3;
 
 -- adding new tool
 
-insert into tools(Tool_id,
-                           Tool_name,
-                           Tool_type,
-                           Tool_condition,
-                           Tool_price,
-                           Tool_qualification,
-                           Tool_freeFirstDay,
-                           Tool_importantInformation,
-                           Tool_maxDays,
-                           Tool_delivered,
-                           Tool_image)
-         values();
-
 -- delete database
 
 drop database MytestDB;
@@ -47,3 +34,9 @@ update tools set Tool_delivered = false where Tool_id = 1;
 -- se hvor mange tools som er i databasen
 
 select count(Tool_id) from tools;
+
+-- see all unpaid bookings
+
+select * from booking
+    inner join user u on booking.User_id = u.User_id
+where u.User_phoneNumber = 12345679 and Booking_paid is false;
