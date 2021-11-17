@@ -61,7 +61,7 @@ public class EditUserInfoServlet extends SuperServlet {
 
     private void editUserInfo(UserModel user, PrintWriter out) throws SQLException {
 
-        Connection db = super.connectToDB(out);
+        Connection db = super.connectToDB();
 
         String query = "Update user set user_fullName = ?, user_email = ?, user_phoneNumber = ?," +
                         "user_union = ?, user_debt = ?, user_password = ? where user_id = ?";

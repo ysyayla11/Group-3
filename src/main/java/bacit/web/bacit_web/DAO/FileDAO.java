@@ -15,7 +15,7 @@ import java.sql.ResultSet;
 public class FileDAO {
 
     public void persistFile(ImageModel file, PrintWriter out) throws Exception{
-        Connection db = DBUtils.getINSTANCE().getConnection(out);
+        Connection db = DBUtils.getINSTANCE().getConnection();
         String query3 = "insert into files (Name, Content, ContentType) values(?,?,?)";
 
         PreparedStatement statement = db.prepareStatement(query3);
@@ -28,7 +28,7 @@ public class FileDAO {
 
     public ImageModel getFile(int id, PrintWriter out) throws Exception
     {
-        Connection db = DBUtils.getINSTANCE().getConnection(out);
+        Connection db = DBUtils.getINSTANCE().getConnection();
         String query3 = "select Name, Content, ContentType from files where id = ?";
         PreparedStatement statement = db.prepareStatement(query3);
         statement.setInt(1, id);

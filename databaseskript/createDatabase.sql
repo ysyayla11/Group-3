@@ -6,7 +6,7 @@ create table if not EXISTS user
     User_id                     int UNIQUE auto_increment,
     User_fullName               VARCHAR(255) not null,
     User_email                  VARCHAR(255) unique,
-    User_phoneNumber            int unique not null,
+    User_phoneNumber            Varchar(255) unique not null,
     User_password               VARCHAR(255) not null,
     User_address                VARCHAR(255),
     User_union                  boolean,
@@ -18,6 +18,14 @@ CREATE TABLE IF NOT EXISTS toolTypes
 (
     ToolType_id                 int not null primary key,
     ToolType_name               varchar(100)
+);
+
+CREAte TABLE IF NOT EXISTS files
+(
+    File_id                         int NOT NULL PRIMARY KEY auto_increment unique,
+    File_name                       varchar(40),
+    File_contents                   longblob,
+    File_type                       varchar(20)
 );
 
 CREATE TABLE IF NOT EXISTS tools
@@ -33,8 +41,8 @@ CREATE TABLE IF NOT EXISTS tools
     Tool_importantInformation   varchar(2000),
     Tool_maxDays                int,
     Tool_delivered              boolean not null,
-    Tool_image                  longblob
-
+    File_id                     int,
+    FOREIGN KEY (File_id)       references files(File_id)
 ) character set utf8;
 
 CREATE TABLE IF NOT EXISTS booking
@@ -67,7 +75,9 @@ CREATE TABLE IF NOT EXISTS qualification
 
 CREATE TABLE IF NOT EXISTS access
 (
-    User_phoneNumber                int,
+    User_phoneNumber                varchar(255),
     Access_level                    varchar(25),
-    FOREIGN KEY (User_phoneNumber)  REFERENCES user(User_phoneNumber) on delete cascade
-)
+    FOREIGN KEY (User_phoneNumber)  REFERENCES user(User_phoneNumber) on delete cascade on update cascade
+);
+
+

@@ -8,10 +8,10 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class SuperServlet extends HttpServlet {
-    public Connection connectToDB(PrintWriter out){
+    public Connection connectToDB(){
         Connection db = null;
         try{
-            db = DBUtils.getINSTANCE().getConnection(out);
+            db = DBUtils.getINSTANCE().getConnection();
         }
         catch(ClassNotFoundException| SQLException e){
             e.printStackTrace();

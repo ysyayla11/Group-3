@@ -6,7 +6,7 @@ public class BookingModel {
     private int booking_id;
     private int tool_id;
     private int user_id;
-    private String booking_dateStart;
+    private String booking_dateStart = null;
     private String booking_dateEnd;
     private boolean paid;
     private String booking_dateDelivered;

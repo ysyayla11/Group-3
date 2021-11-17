@@ -15,7 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@WebServlet(name = "GetAllToolServlet", value = "/GetAllToolServlet")
+@WebServlet(name = "GetAllToolServlet", value = "/SiteUser/GetAllToolServlet")
 public class GetAllToolServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -43,7 +43,7 @@ public class GetAllToolServlet extends HttpServlet {
 
         Connection db = null;
         try{
-            db = DBUtils.getINSTANCE().getConnection(out);
+            db = DBUtils.getINSTANCE().getConnection();
         }
         catch(ClassNotFoundException e) {
             e.printStackTrace();
@@ -66,6 +66,7 @@ public class GetAllToolServlet extends HttpServlet {
                         "    <button type=\"submit\" name='userID' value='" + results.getString(1) + "'>Rediger verktøy</button>\n" +
                         "</form>");
             }
+            results.close();
         }
         catch (SQLException e){
             out.println(e);

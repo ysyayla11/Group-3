@@ -1,5 +1,6 @@
 package bacit.web.bacit_web.servlets.users;
 
+import bacit.web.bacit_web.DAO.UserDAO;
 import bacit.web.bacit_web.servlets.SuperServlet;
 
 import javax.servlet.ServletException;
@@ -12,38 +13,36 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 @WebServlet(name = "DeleteUserServlet", value="/SiteAdmin/DeleteUserServlet")
 public class DeleteUserServlet extends SuperServlet {
+
+    Logger logger = Logger.getLogger(String.valueOf(DeleteUserServlet.class));
+    StringBuffer outString = new StringBuffer();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         response.setContentType("text/html");
+        outString.delete(0, outString.length());
         String user_id = request.getParameter("userID");
         int user_idInt = Integer.parseInt(user_id);
+
         try{
-            deleteUser(user_idInt, out);
+            deleteUser(user_idInt);
             response.sendRedirect("/bacit-web-1.0-SNAPSHOT/SiteAdmin/GetAllUserServlet");
         }
         catch (SQLException e){
-            out.println(e);
+            logger.info(e.getMessage());
         }
 
     }
 
-    private void deleteUser(int userId, PrintWriter out) throws SQLException {
+    private void deleteUser(int userID) throws SQLException {
+        UserDAO dao = new UserDAO();
 
-        Connection db = super.connectToDB(out);
-
-        String query = "delete from user where User_id = ?";
-        PreparedStatement statement = db.prepareStatement(query);
-        statement.setInt(1, userId);
-        statement.executeQuery();
-    }
-
-    private void printResponse(PrintWriter out){
-        out.println("user deleted");
+        dao.deleteUser(userID);
     }
 
 

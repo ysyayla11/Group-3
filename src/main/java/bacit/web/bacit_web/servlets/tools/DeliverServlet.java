@@ -1,5 +1,6 @@
 package bacit.web.bacit_web.servlets.tools;
 
+import bacit.web.bacit_web.DAO.ToolDAO;
 import bacit.web.bacit_web.utilities.DBUtils;
 
 import javax.servlet.ServletException;
@@ -12,43 +13,34 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 
 @WebServlet(name = "DeliverServlet", value = "/DeliverServlet")
 public class DeliverServlet extends HttpServlet {
 
+    private Logger logger = Logger.getLogger(String.valueOf(DeliverServlet.class));
+    private StringBuffer outString = new StringBuffer();
+
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
+        outString.delete(0, outString.length());
 
         String tool_id = request.getParameter("Tool_id");
         Boolean tool_delivered = false;
         if (request.getParameter("Tool_delivered").equals("true")) {
             tool_delivered = true;
-            try {
-                deliverTool(out, tool_id);
-            } catch (SQLException e) {
-                out.println(e);
-            }
+            deliverTool(tool_id);
         }
 
-
-        out.println("Varen har blitt levert");
-
+        outString.append("Varen har blitt levert");
+        out.println(outString);
     }
-    public void deliverTool(PrintWriter out, String tool_id) throws SQLException  {
-        Connection db = null;
-
-        try {
-            db = DBUtils.getINSTANCE().getConnection(out);
-
-        } catch (ClassNotFoundException e)  {
-            out.println(e);
-        }
-        String query = "update tools set Tool_delivered = 1 where Tool_id = ?;";
-        PreparedStatement statement = db.prepareStatement(query);
-        statement.setString(1, tool_id);
-        statement.executeQuery();
+    public void deliverTool(String tool_id){
+        ToolDAO dao = new ToolDAO();
+        dao.deliverTool(tool_id);
     }
 }
