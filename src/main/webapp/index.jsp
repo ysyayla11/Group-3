@@ -20,7 +20,7 @@
 <script>
 
     window.onload= function () {
-        window.location.replace("SiteUser/home.jsp");
+        window.location.replace("SiteUser/DisplayToolsServlet");
     }
 
 </script>

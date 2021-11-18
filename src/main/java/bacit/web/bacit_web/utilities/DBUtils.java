@@ -25,12 +25,8 @@ public class DBUtils {
         return INSTANCE;
     }
 
-    /**
-     * @param out for html printing in front-end e.g. (for errors or content)
-     * @return connection to db
-     * @throws SQLException if the connection fails
-     */
-    public Connection getConnection(PrintWriter out) throws SQLException, ClassNotFoundException {
+
+    public Connection getConnection() throws SQLException, ClassNotFoundException {
         try{
             Context initCtx = new InitialContext();
             Context envCtx = (Context) initCtx.lookup("java:comp/env");
@@ -40,7 +36,7 @@ public class DBUtils {
         }
         catch(NamingException ex)
         {
-            out.println(ex);
+            logger.info("connect to db failed " + ex.getMessage());
         }
         return null;
     }

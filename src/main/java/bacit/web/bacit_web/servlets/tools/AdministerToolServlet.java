@@ -1,4 +1,4 @@
-package bacit.web.bacit_web.servlets.tools;
+/*package bacit.web.bacit_web.servlets.tools;
 import bacit.web.bacit_web.models.ToolModel;
 import bacit.web.bacit_web.models.UserModel;
 import bacit.web.bacit_web.utilities.DBUtils;
@@ -102,4 +102,4 @@ public class AdministerToolServlet extends SuperServlet {
         out.println("</body></html>");
     }
 
-}
+}*/

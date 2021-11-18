@@ -47,7 +47,7 @@ public class GetUserInfoServlet extends SuperServlet {
 
     private ResultSet getUserInfo(PrintWriter out, String userID) throws SQLException {
 
-        Connection db = super.connectToDB(out);
+        Connection db = super.connectToDB();
 
         String query = "select * from user where User_id = ?";
         PreparedStatement statement = db.prepareStatement(query);
@@ -98,7 +98,7 @@ public class GetUserInfoServlet extends SuperServlet {
 
     private void printForm(PrintWriter out, UserModel user){
 
-        out.println("    <form action=\"EditUserInfoServlet\" method=\"post\">\n" +
+        out.println("    <form action=\"EditUserInfoServlet\" method=\"post\" id=\"editUserForm\">\n" +
                     "        <label> Fullt navn </label>\n" +
                     "        <input type=\"text\" name = \"fullName\" value='" + user.getFullName() + "'>\n" +
                     "        <br>\n" +
@@ -131,7 +131,7 @@ public class GetUserInfoServlet extends SuperServlet {
                     "        <label> Passord </label>\n" +
                     "        <input type=\"text\" name = \"password\" value = '" + user.getPassword() + "'>\n" +
                     "        <br>\n" +
-                    "        <button type=\"submit\" value='" + user.getId() + "' name='userID'> Endre </button>\n" +
+                    "        <button onclick='confirmEditUser' value='" + user.getId() + "' name='userID'> Endre </button>\n" +
                     "    </form>\n");
     }
 
@@ -153,6 +153,16 @@ public class GetUserInfoServlet extends SuperServlet {
                 "    function confirmDeleteUser() {\n" +
                 "        if (confirm(\"Vil du slette denne brukeren og tilhørende data? Denne handlingen kan ikke angres.\")) {\n" +
                 "            form.submit()\n" +
+                "        }\n" +
+                "        else {\n" +
+                "            return\n" +
+                "        }\n" +
+                "    }\n" +
+                "    var formEdit = document.getElementById(\"editUserForm\")\n" +
+                "\n" +
+                "    function confirmEditUser() {\n" +
+                "        if (confirm(\"Vil du utføre disse endringene? Denne handlingen kan ikke angres.\")) {\n" +
+                "            formEdit.submit()\n" +
                 "        }\n" +
                 "        else {\n" +
                 "            return\n" +

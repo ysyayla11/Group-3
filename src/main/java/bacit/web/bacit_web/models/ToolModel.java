@@ -8,9 +8,9 @@ public class ToolModel {
     private int Tool_price;
     private int Tool_freeFirstDay;
     private String Tool_importantInformation;
-    private String Tool_image;
+    private byte[] Tool_image;
 
-    public ToolModel(String Tool_id, String Tool_Name, String Tool_type, String Tool_condition, int Tool_price, int Tool_freeFirstDay, String Tool_importantInformation, String Tool_image) {
+    public ToolModel(String Tool_id, String Tool_Name, String Tool_type, String Tool_condition, int Tool_price, int Tool_freeFirstDay, String Tool_importantInformation, byte[] Tool_image) {
         this.Tool_id = Tool_id;
         this.Tool_Name = Tool_Name;
         this.Tool_type = Tool_type;
@@ -71,8 +71,7 @@ public class ToolModel {
 
     public void setImportantInformation(String importantInformation) {this.Tool_importantInformation = importantInformation;}
 
+    public byte[] getImage() {return Tool_image;}
 
-    public String getImage() {return Tool_image;}
-
-    public void setImage(String image) {this.Tool_image = image;}
+    public void setImage(byte[] image) {this.Tool_image = image;}
 }
