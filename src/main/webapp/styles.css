@@ -5,12 +5,11 @@ html {
 }
 
 body {
-    font-family: "Lato", Calibri, Arial, sans-serif;
+    font-family: "Lato", Arial, Calibri, sans-serif;
     background-color: #f0b324;
     font-size: 2rem;
     text-align: center;
     color: #041e43;
-
 }
 
 /* Style the links inside the navigation bar */
@@ -176,6 +175,10 @@ table {
 
 .btn-next {
     right: 6em;
+}
+
+.dateInput{
+    font-size: 2rem;
 }
 
 

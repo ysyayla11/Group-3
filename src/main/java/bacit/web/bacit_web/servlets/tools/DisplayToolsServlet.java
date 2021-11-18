@@ -62,8 +62,8 @@ public class DisplayToolsServlet extends HttpServlet {
         for (int i = 0; i<tools.size(); i++) {
             outString.append("<li><form action='../SiteUser/BookToolPageServlet' method='get'>\n" +
                     "    <div class='div'>" + tools.get(i).getName() + " </div>\n" +
-                    "    <div>Tool picture: " + tools.get(i).getImage() + "</div>\n" +
-                    "    <button type='submit' name='Tool_id' value = '" + tools.get(i).getId() + "'>Reserver dette verktøyet</button>" +
+                    "    <img src=\"../fileDownload?file_id=" + tools.get(i).getImage() + "\"><br>" +
+                    "    <button type='submit' name='Tool_id' value = '" + tools.get(i).getId() + "' heigth=\"1vh\">Reserver dette verktøyet</button>" +
                     "    </form></li>");
         }
         outString.append("</ul>");

@@ -157,7 +157,8 @@ public class ToolDAO {
         int Tool_price;
         int Tool_freeFirstDay;
         String Tool_importantInformation;
-        byte[] Tool_image;
+        String Tool_image;
+        boolean Tool_delivered;
 
         ArrayList<ToolModel> toolModels = new ArrayList<>();
 
@@ -170,8 +171,11 @@ public class ToolDAO {
                 Tool_price = results.getInt(5);
                 Tool_freeFirstDay = results.getInt(7);
                 Tool_importantInformation = results.getString(8);
-                Tool_image = results.getBytes(9);
-                ToolModel model = new ToolModel(Tool_id, Tool_Name, Tool_type, Tool_condition, Tool_price, Tool_freeFirstDay, Tool_importantInformation, Tool_image);
+                Tool_delivered = results.getBoolean(10);
+                Tool_image = results.getString(11);
+
+
+                ToolModel model = new ToolModel(Tool_id, Tool_Name, Tool_type, Tool_condition, Tool_price, Tool_freeFirstDay, Tool_importantInformation, Tool_image, Tool_delivered);
                 toolModels.add(model);
             }
             return toolModels;

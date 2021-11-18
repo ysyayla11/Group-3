@@ -73,3 +73,7 @@ update booking set Booking_dateEnd = '2021-11-16' where Booking_id = 2;
 select Tool_qualification from tools where Tool_id = ?;
 
 select Tool_id from qualification where User_id = 0;
+
+update tools set File_id = 1 where Tool_id = 1;
+
+select * from tools;

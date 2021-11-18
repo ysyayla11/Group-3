@@ -1,22 +1,20 @@
 //https://github.com/espenlimi/UiA-bacit-skeleton
-        package bacit.web.bacit_web.DAO;
+package bacit.web.bacit_web.DAO;
 
 
-import bacit.web.bacit_web.models.ImageModel;
+import bacit.web.bacit_web.models.FileModel;
 import bacit.web.bacit_web.utilities.DBUtils;
 
 import javax.sql.rowset.serial.SerialBlob;
-import java.io.PrintWriter;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class FileDAO {
 
-    public void persistFile(ImageModel file, PrintWriter out) throws Exception{
+    public void persistFile(FileModel file) throws Exception{
         Connection db = DBUtils.getINSTANCE().getConnection();
-        String query3 = "insert into files (Name, Content, ContentType) values(?,?,?)";
+        String query3 = "insert into files (File_name, File_contents, File_type) values(?,?,?)";
 
         PreparedStatement statement = db.prepareStatement(query3);
         statement.setString(1, file.getName());
@@ -26,22 +24,24 @@ public class FileDAO {
         db.close();
     }
 
-    public ImageModel getFile(int id, PrintWriter out) throws Exception
+    public FileModel getFile(int id) throws Exception
     {
         Connection db = DBUtils.getINSTANCE().getConnection();
-        String query3 = "select Name, Content, ContentType from files where id = ?";
+        String query3 = "select File_name, File_contents, File_type from files where File_id = ?";
         PreparedStatement statement = db.prepareStatement(query3);
         statement.setInt(1, id);
         ResultSet rs =  statement.executeQuery();
-        ImageModel model = null;
+        FileModel model = null;
         if (rs.next()) {
-            model = new ImageModel(
-                    rs.getString("Name"),
-                    rs.getBytes("Content"),
-                    rs.getString("ContentType")
+            model = new FileModel(
+                    rs.getString("File_name"),
+                    rs.getBytes("File_contents"),
+                    rs.getString("File_type")
             );
         }
         db.close();
+        rs.close();
+        statement.close();
         return model;
 
     }
