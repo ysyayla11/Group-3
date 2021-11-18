@@ -1,11 +1,13 @@
 package bacit.web.bacit_web.servlets.tools;
 
+import bacit.web.bacit_web.models.ToolModel;
 import bacit.web.bacit_web.utilities.DBUtils;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.tools.Tool;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -13,7 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 
-@WebServlet(name = "EditToolInfoServlet", value = "/EditToolInfoServlet")
+@WebServlet(name = "EditToolInfoServlet", value = "/SiteAdmin/EditToolInfoServlet")
 public class EditToolInfoServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -27,14 +29,15 @@ public class EditToolInfoServlet extends HttpServlet {
         String qualification = request.getParameter("qualification");
         String freeFirstDay = request.getParameter("freeFirstDay");
         String importantInformation = request.getParameter("importantInformation");
-        String maxDays = request.getParameter("maxDays");
         String delivered = request.getParameter("delivered");
         String image = request.getParameter("image");
         String toolID = request.getParameter("toolID");
         int intToolID = Integer.parseInt(toolID);
 
+        ToolModel tool = new ToolModel(toolID, toolName, type, condition, Integer.parseInt(price), Integer.parseInt(freeFirstDay), importantInformation, image, true);
+
         try{
-            editToolInfo(toolName, type, condition, price, qualification, freeFirstDay, importantInformation, maxDays, delivered, image, intToolID, out);
+            editToolInfo(tool, out);
             out.println("Change success!");
         }
         catch(SQLException e){
@@ -42,8 +45,7 @@ public class EditToolInfoServlet extends HttpServlet {
         }
     }
 
-    public void editToolInfo(String toolName, String type, String condition, String price,
-                             String qualification, String freeFirstDay, String importantInformation, String maxDays, String delivered, String image, int toolID, PrintWriter out) throws SQLException {
+    public void editToolInfo(ToolModel tool, PrintWriter out) throws SQLException {
 
         Connection db = null;
         try{
@@ -54,40 +56,19 @@ public class EditToolInfoServlet extends HttpServlet {
             System.out.println("Error i connection");
         }
 
-        String query = "Update tools set Tool_name = ?, Tool_type = ?, Tool_condition = ?, Tool_price = ?, Tool_qualification = ?, " +
-                        "Tool_freeFirstDay = ?, Tool_importantInformation = ?, Tool_maxDays = ? , Tool_delivered = ? , Tool_image = ? where Tool_id = ?";
+        String query = "Update tools set Tool_toolName = ?, Tool_type = ?, Tool_condition = ?, Tool_price = ?, " +
+                        "Tool_freeFirstDay = ?, Tool_importantInformation = ? , Tool_delivered = ? , Tool_image = ? where Tool_id = ?";
 
         PreparedStatement statement = db.prepareStatement(query);
-        statement.setString(1, toolName);
-        statement.setString(2, type);
-        statement.setString(3, condition);
-        statement.setString(4, price);
-
-        if(qualification.equals("true")){
-            statement.setBoolean(5, true);
-        }
-        else{
-            statement.setBoolean(5, false);
-        }
-
-        if(freeFirstDay.equals("true")){
-            statement.setBoolean(6, true);
-        }
-        else{
-            statement.setBoolean(6, false);
-        }
-        statement.setString(7, importantInformation);
-        statement.setString(8, maxDays);
-
-        if(delivered.equals("true")){
-            statement.setBoolean(9, true);
-        }
-        else{
-            statement.setBoolean(9, false);
-        }
-
-        statement.setString(10, image);
-        statement.setInt(11, toolID);
+        statement.setString(1, tool.getName());
+        statement.setString(2, tool.getType());
+        statement.setString(3, tool.getCondition());
+        statement.setInt(4, tool.getPrice());
+        statement.setInt(5, tool.getFreeFirstDay());
+        statement.setString(6, tool.getImportantInformation());
+        statement.setBoolean(7, true);
+        statement.setString(8, tool.getImage());
+        statement.setString(9, tool.getId());
         statement.executeQuery();
 
     }

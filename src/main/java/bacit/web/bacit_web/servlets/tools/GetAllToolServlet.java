@@ -15,7 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@WebServlet(name = "GetAllToolServlet", value = "/GetAllToolServlet")
+@WebServlet(name = "GetAllToolServlet", value = "/SiteAdmin/GetAllToolServlet")
 public class GetAllToolServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -63,7 +63,8 @@ public class GetAllToolServlet extends HttpServlet {
                 out.println("<form action='GetToolInfoServlet' method='get'>\n" +
                         "    <div>" + results.getString(2) + "</div>\n" +
                         "    <div>type: " + results.getString(3) + "</div>\n" +
-                        "    <button type=\"submit\" name='userID' value='" + results.getString(1) + "'>Rediger verktøy</button>\n" +
+                        "    <button type=\"submit\" name='toolID' value='" + results.getString(1) + "'>Rediger verktøy</button>\n" +
+                        results.getString(1) +
                         "</form>");
             }
         }
