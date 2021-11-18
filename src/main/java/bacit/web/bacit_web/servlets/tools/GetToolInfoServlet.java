@@ -15,7 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@WebServlet(name = "GetToolInfoServlet", value = "/GetToolInfoServlet")
+@WebServlet(name = "GetToolInfoServlet", value = "/SiteAdmin/GetToolInfoServlet")
 public class GetToolInfoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -33,7 +33,6 @@ public class GetToolInfoServlet extends HttpServlet {
             out.println(e);
         }
 
-        out.println(toolID);
 
     }
 
@@ -85,9 +84,9 @@ public class GetToolInfoServlet extends HttpServlet {
             toolID = results.getString(1);
 
         }
-
+        //oppdater form til å avspeile reel data som skal endres
         out.println(
-                "    <form action=\"EditToolInfoServlet\" method=\"post\">\n" +
+                "    <form action=\"../SiteAdmin/EditToolInfoServlet\" method=\"post\">\n" +
                 "        <label> Verktøy navn </label>\n" +
                 "        <input type=\"text\" name = \"toolName\" value='" + toolName + "'>\n" +
                 "        <br>\n" +
@@ -118,8 +117,6 @@ public class GetToolInfoServlet extends HttpServlet {
                 "        <label> Viktig informasjon om verktøyet </label>\n" +
                 "        <input type=\"text\" name = \"importantInformation\" value = '" + importantInformation + "'>\n" +
                 "        <br>\n" +
-                "        <label> Maksimalt antall dager </label>\n" +
-                "        <input type=\"text\" name = \"maxDays\" value = '" + maxDays + "'>\n" +
                 "        <br>\n" +
                 "        <button type=\"submit\" value='" + toolID + "' name='toolID'> Endre </button>\n" +
                 "    </form>\n" +
