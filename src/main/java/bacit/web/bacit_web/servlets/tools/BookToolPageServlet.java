@@ -60,13 +60,13 @@ public class BookToolPageServlet extends HttpServlet {
 
         outString.append("<h1>" + tool.getName() + "</h1>");
         if(!tool.getName().equals("null")) {
-            outString.append("<h2>Viktig info:</h2>" + tool.geImportantInforamtion() + "<br>");
+            outString.append("<h2>Viktig info:</h2>" + tool.getImportantInformation() + "<br>");
         }
     }
 
     public void addBookingForm(String toolId, String userId){
 
-        outString.append("<h2>book dette verktøyet</h2>" +
+        outString.append("<h2>Book dette verktøyet</h2>" +
                 "<form action=\"BookingServlet\" method=\"post\">\n" +
                 "\n" +
                 "    <input type=\"hidden\" name=\"Tool_id\" value = '" + toolId + "'> <br/>\n" +
@@ -74,10 +74,10 @@ public class BookToolPageServlet extends HttpServlet {
                 "    <input type=\"hidden\" name=\"User_id\" value = '" + userId + "'> <br/>\n" +
                 "\n" +
                 "    <label>Startdato</label>\n" +
-                "    <input type=\"date\" name=\"Booking_dateStart\" id=\"dateStartInput\" required> <br/> <br/>\n" +
+                "    <input type=\"date\" name=\"Booking_dateStart\" class=\"dateInput\" id=\"dateStartInput\" required> <br/> <br/>\n" +
                 "\n" +
-                "    <label>sluttdato</label>\n" +
-                "    <input type=\"date\" name=\"Booking_dateEnd\" id=\"dateEndInput\" required> <br/> <br/>\n" +
+                "    <label>Sluttdato</label>\n" +
+                "    <input type=\"date\" name=\"Booking_dateEnd\" class=\"dateInput\" id=\"dateEndInput\" required> <br/> <br/>\n" +
                 "\n" +
                 "    <label>Booking paid:</label> <br/>\n" +
                 "    <label>Ja</label>\n" +
