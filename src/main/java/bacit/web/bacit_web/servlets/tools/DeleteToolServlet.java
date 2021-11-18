@@ -25,7 +25,7 @@ public class DeleteToolServlet extends SuperServlet {
         Connection db = null;
         PrintWriter out = null;
         try{
-            db = DBUtils.getINSTANCE().getConnection(out);
+            db = DBUtils.getINSTANCE().getConnection();
         }catch (ClassNotFoundException | SQLException e){
             e.printStackTrace();
             System.out.println("Error i connection");
@@ -53,7 +53,7 @@ public class DeleteToolServlet extends SuperServlet {
     private Connection getDBConnection(PrintWriter out){
         Connection db = null;
         try{
-            db = DBUtils.getINSTANCE().getConnection(out);
+            db = DBUtils.getINSTANCE().getConnection();
         }
         catch(ClassNotFoundException | SQLException e){
             e.printStackTrace();

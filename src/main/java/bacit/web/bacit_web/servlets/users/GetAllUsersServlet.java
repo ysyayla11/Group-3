@@ -1,5 +1,6 @@
 package bacit.web.bacit_web.servlets.users;
 
+import bacit.web.bacit_web.DAO.UserDAO;
 import bacit.web.bacit_web.models.HtmlModel;
 import bacit.web.bacit_web.servlets.SuperServlet;
 import bacit.web.bacit_web.utilities.DBUtils;
@@ -15,70 +16,72 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 @WebServlet(name = "GetAllUsersServlet", value = "/SiteAdmin/GetAllUserServlet")
 public class GetAllUsersServlet extends SuperServlet {
+
+    Logger logger = Logger.getLogger(String.valueOf(GetAllUsersServlet.class));
+    StringBuffer outString = new StringBuffer();
+
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
         response.setCharacterEncoding("UTF-8");
+        outString.delete(0, outString.length());
         ResultSet results;
 
         try {
 
-            results = getAllUsers(out);
+            results = getAllUsers();
             printHtml(results, out);
+            out.println(outString);
         }
         catch (SQLException e){
-            out.println(e);
+            logger.info(e.getMessage());
         }
     }
 
     private void printHtml(ResultSet results, PrintWriter out){
-        out.println(HtmlModel.getHeader("all users"));
-        out.println("<br><div>");
-        out.println("<input type=\"text\" id=\"myInput\" onkeyup=\"myFunction()\" placeholder=\"søk navn eller tlf...\">");//search through list of users
-        printForm(results, out);
-        out.println("</div>");
-        printScript(out);
-        out.println(HtmlModel.getFooter());
+        outString.append(HtmlModel.getHeader("all users"));
+        outString.append("<br><div>");
+        outString.append("<input type=\"text\" id=\"myInput\" onkeyup=\"myFunction()\" placeholder=\"søk navn eller tlf...\">");//search through list of users
+        printForm(results);
+        outString.append("</div>");
+        printScript();
+        outString.append(HtmlModel.getFooter());
     }
 
-    public ResultSet getAllUsers(PrintWriter out)
+    public ResultSet getAllUsers()
             throws SQLException{
-
-        Connection db = super.connectToDB(out);
-
-        String query = "select * from user";
-        PreparedStatement statement = db.prepareStatement(query);
-        ResultSet results = statement.executeQuery();
-        return results;
+        UserDAO dao = new UserDAO();
+        return dao.getAllUsers();
     }
 
-    private void printForm(ResultSet results, PrintWriter out){
+    private void printForm(ResultSet results){
 
         try {
             //making list of all users in the database
-            out.println("<ul id=\"myUL\">");
+            outString.append("<ul id=\"myUL\">");
             while (results.next()) {
-                out.println("<li><form action='GetUserInfoServlet' method='get'>\n" +
+                outString.append("<li><form action='GetUserInfoServlet' method='get'>\n" +
                         "    <div>" + results.getString(2) + "</div>\n" +//navn
                         "    <div>tlf: " + results.getString(4) + "</div>\n" +//nummer
                         "    <button type=\"submit\" name='userID' value='" + results.getString(1) + "'>Rediger bruker</button>\n" +//input har value
                         "</form></li>");
             }
-            out.println("</ul>");
+            outString.append("</ul>");
+            results.close();
         }
         catch (SQLException e){
-            out.println(e);
+            outString.append(e);
         }
     }
 
     //prints a javascript to search through the list of users and display the results
-    private void printScript(PrintWriter out){
-        out.println("<script>\n" +
+    private void printScript(){
+        outString.append("<script>\n" +
                 "    function myFunction() {\n" +
                 "        var input, filter, ul, li, name, number, i, nameTxtValue, numberTxtValue;\n" +
                 "        input = document.getElementById(\"myInput\");\n" +

@@ -43,7 +43,7 @@ public class GetAllToolServlet extends HttpServlet {
 
         Connection db = null;
         try{
-            db = DBUtils.getINSTANCE().getConnection(out);
+            db = DBUtils.getINSTANCE().getConnection();
         }
         catch(ClassNotFoundException e) {
             e.printStackTrace();
@@ -67,6 +67,7 @@ public class GetAllToolServlet extends HttpServlet {
                         results.getString(1) +
                         "</form>");
             }
+            results.close();
         }
         catch (SQLException e){
             out.println(e);

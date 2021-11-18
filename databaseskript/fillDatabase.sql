@@ -29,7 +29,7 @@ values
     (
         'god',
         'god@gmail.com',
-        12345678,
+        '12345678',
         sha2('12345', 256),
         'lommedalen',
         true,
@@ -59,7 +59,7 @@ values
     (
         'Ronny Johansen',
         'Ronny56@gmail.com',
-        98979691,
+        '98979691',
         sha2('Passord123', 256),
         'Gate 23',
         true,
@@ -83,7 +83,7 @@ values
     (
         'leif erikson',
         'leifebass@gmail.com',
-        12345679,
+        '12345679',
         sha2('P23eee2', 256),
         'bringebærstien 23',
         true,
@@ -107,7 +107,7 @@ values
     (
         'Ronny Johansen',
         'Ronny52@gmail.com',
-        87654321,
+        '87654321',
         sha2('Passord123', 256),
         'vekekjoppgata 90',
         true,
@@ -131,7 +131,7 @@ values
     (
         'Emil emilson',
         'emils@gmail.com',
-        87654322,
+        '87654322',
         sha2('Passord123', 256),
         'slottsveien 90',
         true,
@@ -155,7 +155,7 @@ values
     (
         'Jon Hansen Yayla',
         'Jhyayla@gmail.com',
-        345655323,
+        '345655323',
         sha2('Passord456', 256),
         'Kongens gate 7',
         true,
@@ -179,7 +179,7 @@ values
     (
         'Anders Jensen',
         'Crazyjensen@gmail.com',
-        89765445,
+        '89765445',
         sha2('Passord965', 256),
         'Seasam Street 7',
         true,
@@ -203,7 +203,7 @@ values
     (
         'Abdurrezzak Sheih',
         'Abdurrez@gmail.com',
-        98654326,
+        '98654326',
         sha2('Passord896', 256),
         'Madridveien 35',
         true,
@@ -227,7 +227,7 @@ values
     (
         'Luigi Ferrari',
         'Luigimario@gmail.com',
-        57483988,
+        '57483988',
         sha2('Passord321', 256),
         'Juventus gate 43',
         false,
@@ -251,7 +251,7 @@ values
     (
         'Camel Stock ',
         'CamelRichman@gmail.com',
-        57684562,
+        '57684562',
         sha2('Passord897', 256),
         'Krakov 95',
         false,
@@ -275,7 +275,7 @@ values
     (
         'Vladimir Trump',
         'VladimirTrump@gmail.com',
-        82354321,
+        '82354321',
         sha2('Passord666', 256),
         'Moskov 43',
         true,
@@ -337,7 +337,7 @@ insert into tools(Tool_id,
                   Tool_importantInformation,
                   Tool_maxDays,
                   Tool_delivered,
-                  Tool_image)
+                  File_id)
 values(
        Tool_id,
        'Eksentersliper 230VAC',
@@ -362,7 +362,7 @@ insert into tools(Tool_id,
                   Tool_importantInformation,
                   Tool_maxDays,
                   Tool_delivered,
-                  Tool_image)
+                  File_id)
 values(
        Tool_id,
        'Båndsliper 230VAC',
@@ -387,7 +387,7 @@ insert into tools(Tool_id,
                   Tool_importantInformation,
                   Tool_maxDays,
                   Tool_delivered,
-                  Tool_image)
+                  File_id)
 values(
        Tool_id,
        'Høvel 230VAC',
@@ -396,7 +396,7 @@ values(
        20,
        false,
        true,
-       '',
+       null,
        NULL,
        false,
        NULL
@@ -412,7 +412,7 @@ insert into tools(Tool_id,
                   Tool_importantInformation,
                   Tool_maxDays,
                   Tool_delivered,
-                  Tool_image)
+                  File_id)
 values(
        Tool_id,
        'Gjære-/kombisag 230VAC',
@@ -421,7 +421,7 @@ values(
        20,
        false,
        true,
-       '',
+       null,
        Null,
        true,
        NULL
@@ -437,7 +437,7 @@ insert into tools(Tool_id,
                   Tool_importantInformation,
                   Tool_maxDays,
                   Tool_delivered,
-                  Tool_image)
+                  File_id)
 values(
        Tool_id,
        '9` vinkelsliper 230VAC',
@@ -446,7 +446,7 @@ values(
        20,
        false,
        true,
-       '',
+       null,
        NULL,
        true,
        NULL
@@ -462,7 +462,7 @@ insert into tools(Tool_id,
                   Tool_importantInformation,
                   Tool_maxDays,
                   Tool_delivered,
-                  Tool_image)
+                  File_id)
 values(
        Tool_id,
        'Meislemaskin 230VAC',
@@ -471,7 +471,7 @@ values(
        20,
        false,
        true,
-       '',
+       null,
        NULL,
        true,
        NULL
@@ -487,7 +487,7 @@ insert into tools(Tool_id,
                   Tool_importantInformation,
                   Tool_maxDays,
                   Tool_delivered,
-                  Tool_image)
+                  File_id)
 values(
        Tool_id,
        'Slagdrill, Batteri, Milwaukee',
@@ -496,7 +496,7 @@ values(
        20,
        false,
        true,
-       '',
+       null,
        NULL,
        true,
        NULL
@@ -512,7 +512,7 @@ insert into tools(Tool_id,
                   Tool_importantInformation,
                   Tool_maxDays,
                   Tool_delivered,
-                  Tool_image)
+                  File_id)
 values(
        Tool_id,
        'Kantklipper -Bensin',
@@ -537,7 +537,7 @@ insert into tools(Tool_id,
                   Tool_importantInformation,
                   Tool_maxDays,
                   Tool_delivered,
-                  Tool_image)
+                  File_id)
 values(
        Tool_id,
        'Kompressor, 230VAC',
@@ -562,7 +562,7 @@ insert into tools(Tool_id,
                   Tool_importantInformation,
                   Tool_maxDays,
                   Tool_delivered,
-                  Tool_image)
+                  File_id)
 values(
        Tool_id,
        'Diagnoseringsverktøy, bil',
@@ -587,7 +587,7 @@ insert into tools(Tool_id,
                   Tool_importantInformation,
                   Tool_maxDays,
                   Tool_delivered,
-                  Tool_image)
+                  File_id)
 values(
        Tool_id,
        'Vibratorplate "Hoppetusse", bensin',
@@ -612,7 +612,7 @@ insert into tools(Tool_id,
                   Tool_importantInformation,
                   Tool_maxDays,
                   Tool_delivered,
-                  Tool_image)
+                  File_id)
 values(
        Tool_id,
        'Flisekutter for keramiske fliser',
@@ -621,7 +621,7 @@ values(
        20,
        false,
        true,
-       '',
+       null,
        NULL,
        true,
        NULL
@@ -637,7 +637,7 @@ insert into tools(Tool_id,
                   Tool_importantInformation,
                   Tool_maxDays,
                   Tool_delivered,
-                  Tool_image)
+                  File_id)
 values(
        Tool_id,
        'Skruautomat',
@@ -662,7 +662,7 @@ insert into tools(Tool_id,
                   Tool_importantInformation,
                   Tool_maxDays,
                   Tool_delivered,
-                  Tool_image)
+                  File_id)
 values(
        Tool_id,
        'Motorisert trillebår',
@@ -687,7 +687,7 @@ insert into tools(Tool_id,
                   Tool_importantInformation,
                   Tool_maxDays,
                   Tool_delivered,
-                  Tool_image)
+                  File_id)
 values(
        Tool_id,
        'Spikerpistol, stor (trykkluft)',
@@ -696,7 +696,7 @@ values(
        20,
        false,
        true,
-       '',
+       null,
        NULL,
        true,
        NULL
@@ -712,7 +712,7 @@ insert into tools(Tool_id,
                   Tool_importantInformation,
                   Tool_maxDays,
                   Tool_delivered,
-                  Tool_image)
+                  File_id)
 values(
        Tool_id,
        'Spikerpistol, liten (trykkluft)',
@@ -721,7 +721,7 @@ values(
        20,
        false,
        true,
-       '',
+       null,
        NULL,
        true,
        NULL
@@ -737,7 +737,7 @@ insert into tools(Tool_id,
                   Tool_importantInformation,
                   Tool_maxDays,
                   Tool_delivered,
-                  Tool_image)
+                  File_id)
 values(
           Tool_id,
           'Spikerpistol, stor (Milwaukee)',
@@ -746,7 +746,7 @@ values(
           20,
           false,
           true,
-          '',
+          null,
           NULL,
           true,
           NULL
@@ -762,7 +762,7 @@ insert into tools(Tool_id,
                   Tool_importantInformation,
                   Tool_maxDays,
                   Tool_delivered,
-                  Tool_image)
+                  File_id)
 values(
           Tool_id,
           'Spikerpistol, mellom (Milwaukee)',
@@ -771,7 +771,7 @@ values(
           20,
           false,
           true,
-          '',
+          null,
           NULL,
           true,
           NULL
@@ -787,7 +787,7 @@ insert into tools(Tool_id,
                   Tool_importantInformation,
                   Tool_maxDays,
                   Tool_delivered,
-                  Tool_image)
+                  File_id)
 values(
           Tool_id,
           'Spikerpistol, liten (Milwaukee)',
@@ -796,7 +796,7 @@ values(
           20,
           false,
           true,
-          '',
+          null,
           NULL,
           true,
           NULL
@@ -812,7 +812,7 @@ insert into tools(Tool_id,
                   Tool_importantInformation,
                   Tool_maxDays,
                   Tool_delivered,
-                  Tool_image)
+                  File_id)
 values(
        Tool_id,
        'Vedkløyver bensindrevet',
@@ -837,7 +837,7 @@ insert into tools(Tool_id,
                   Tool_importantInformation,
                   Tool_maxDays,
                   Tool_delivered,
-                  Tool_image)
+                  File_id)
 values(
        Tool_id,
        'Fliskutter for trevirke',
@@ -862,7 +862,7 @@ insert into tools(Tool_id,
                   Tool_importantInformation,
                   Tool_maxDays,
                   Tool_delivered,
-                  Tool_image)
+                  File_id)
 values(
        Tool_id,
        'Tilhenger, boggi; RD 5702 \nKassemål LxBxH: 297x153x29cm\nNyttelast max. 1150kg',
@@ -887,7 +887,7 @@ insert into tools(Tool_id,
                   Tool_importantInformation,
                   Tool_maxDays,
                   Tool_delivered,
-                  Tool_image)
+                  File_id)
 values(
           Tool_id,
           'Tilhenger, liten; RC 8834 \nKassemål LxBxH: 197x153x29cm\nNyttelast max. 645kg',
@@ -912,7 +912,7 @@ insert into tools(Tool_id,
                   Tool_importantInformation,
                   Tool_maxDays,
                   Tool_delivered,
-                  Tool_image)
+                  File_id)
 values(
           Tool_id,
           'Tilhenger, skap; JP 2591 \nKassemål LxBxH: 292x154x194cm\nNyttelast max. 1090kg',
@@ -937,7 +937,7 @@ insert into tools(Tool_id,
                   Tool_importantInformation,
                   Tool_maxDays,
                   Tool_delivered,
-                  Tool_image)
+                  File_id)
 values(
        Tool_id,
        'Personløfter, arb.høyde 12m\nSWL 200kg, 230VAC',
@@ -962,7 +962,7 @@ insert into tools(Tool_id,
                   Tool_importantInformation,
                   Tool_maxDays,
                   Tool_delivered,
-                  Tool_image)
+                  File_id)
 values(
        Tool_id,
        'Strømaggregat, 3.7 kW (Diesel)',
@@ -987,7 +987,7 @@ insert into tools(Tool_id,
                   Tool_importantInformation,
                   Tool_maxDays,
                   Tool_delivered,
-                  Tool_image)
+                  File_id)
 values(
        Tool_id,
        'Dekkomleggingsmaskin',
@@ -1012,7 +1012,7 @@ insert into tools(Tool_id,
                   Tool_importantInformation,
                   Tool_maxDays,
                   Tool_delivered,
-                  Tool_image)
+                  File_id)
 values(
        Tool_id,
        'Avbalanseringsmaskin',
@@ -1037,7 +1037,7 @@ insert into tools(Tool_id,
                   Tool_importantInformation,
                   Tool_maxDays,
                   Tool_delivered,
-                  Tool_image)
+                  File_id)
 values(
        Tool_id,
        'Leilighet på Hovden',
@@ -1062,7 +1062,7 @@ insert into tools(Tool_id,
                   Tool_importantInformation,
                   Tool_maxDays,
                   Tool_delivered,
-                  Tool_image)
+                  File_id)
 values(
           Tool_id,
           'Testverktøy',
@@ -1115,10 +1115,10 @@ values (
         Booking_id,
         1,
         7,
-        '2021-10-20',
-        '2021-10-24',
+        '2021-11-20',
+        '2021-11-24',
         0,
-        '2021-10-24'
+        '2021-11-24'
 
        );
 insert into booking (Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid, Booking_dateDelivered)
@@ -1126,10 +1126,10 @@ values (
            Booking_id,
            10,
            7,
-           '2021-10-13',
-           '2021-10-14',
+           '2021-11-13',
+           '2021-11-14',
            0,
-            '2021-10-14'
+            '2021-11-14'
 
        );
 insert into booking (Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid, Booking_dateDelivered)
@@ -1137,8 +1137,8 @@ values (
            Booking_id,
            5,
            3,
-           '2021-10-23',
-           '2021-10-26',
+           '2021-11-23',
+           '2021-11-26',
            0,
             null
        );
@@ -1147,8 +1147,8 @@ values (
            Booking_id,
            8,
            4,
-           '2021-10-22',
-           '2021-10-23',
+           '2021-11-22',
+           '2021-11-23',
            0,
             null
        );
@@ -1157,8 +1157,8 @@ values (
            Booking_id,
            20,
            3,
-           '2021-10-23',
-           '2021-10-27',
+           '2021-11-23',
+           '2021-11-27',
            0,
             null
        );
@@ -1167,8 +1167,8 @@ values (
            Booking_id,
            13,
            3,
-           '2021-10-21',
-           '2021-10-22',
+           '2021-11-21',
+           '2021-11-22',
            0,
             null
        );
@@ -1177,18 +1177,18 @@ values (
            Booking_id,
            9,
            3,
-           '2021-10-01',
-           '2021-10-10',
+           '2021-11-01',
+           '2021-11-10',
            0,
-            '2021-10-11'
+            '2021-11-11'
        );
 insert into booking (Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid, Booking_dateDelivered)
 values (
            Booking_id,
            5,
            3,
-           '2021-10-26',
-           '2021-10-27',
+           '2021-11-26',
+           '2021-11-27',
            0,
             NULL
        );
@@ -1197,8 +1197,8 @@ values (
            Booking_id,
            10,
            3,
-           '2021-10-23',
-           '2021-10-24',
+           '2021-11-26',
+           '2021-11-27',
            0,
             null
        );

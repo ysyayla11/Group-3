@@ -49,7 +49,7 @@ public class EditToolInfoServlet extends HttpServlet {
 
         Connection db = null;
         try{
-            db = DBUtils.getINSTANCE().getConnection(out);
+            db = DBUtils.getINSTANCE().getConnection();
         }
         catch(ClassNotFoundException e){
             e.printStackTrace();

@@ -3,39 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <style>
+        body{
+            font-family: "Lato", Calibri, Arial, sans-serif;
+            background-color: #f0b324;
+            font-size: 2rem;
+            text-align: center;
+            color: #041e43;
+        }
+        .input_login{
+            padding: 2Rem 5Rem;
+            border: 0.1Rem solid #ccc;
+            border-radius: 20px;
+            display: inline-block;
+            font-size: 2Rem;
+            margin-bottom: 2rem;
+        }
+
+        .loginform{
+            grid-auto-columns: auto auto auto;
+            margin-right: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .button_login{
+            padding: 1rem 3rem;
+            border-radius: 10px;
+        }
+
+        .logo_login {
+            display: grid;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+            margin-bottom: 3rem;
+        }
+
+
+    </style>
 </head>
-<style>
-    input{
-        padding: 2Rem 5Rem;
-        border: 0.1Rem solid #ccc;
-        display: inline-block;
-        font-size: 2Rem;
-
-    }
-    body{
-        background-color: #f0b324;
-        display: grid;
-        margin-right: 50%;
-        margin-right: 50%;
-    }
-    form{
-        grid-auto-columns: auto auto auto;
-        margin-right: auto;
-        margin-right: auto;
-        text-align: center;
-    }
-
-</style>
 <body>
-test
-    <form method="POST" action="j_security_check">
+<div>
+        <img src="Images/AMVlogo_nobackground.png"  alt="AMV logo" class="logo_login"/>
+    </div>
 
-        <div><input type="text" name="j_username" placeholder="Telefonnummer"/></div>
+    <div>
+    <form class="loginform" method="POST" action="j_security_check">
 
-        <div><input type="password" name="j_password" placeholder="Passord"/></div>
+        <div><input class="input_login" type="text" name="j_username" placeholder="Telefonnummer"/></div>
 
-        <div><input type="submit" value="Go" /></div>
-    </form>
+        <div><input class="input_login" type="password" name="j_password" placeholder="Passord"/></div>
 
+        <div><input class="button_login" type="submit" value="Logg inn" /></div>
+        </form>
+    </div>
 </body>
 </html>

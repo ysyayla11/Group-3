@@ -4,41 +4,33 @@
 <%= HtmlModel.getHeader("user entry")%>
 <br/>
 
-<form method="post" action="uploadServletUser" enctype="multipart/form-data">
+<h1>Legg til ny bruker</h1>
+
+<form method="post" action="../SiteAdmin/UserUploadDBServlet">
     <%-- Enter user --%>
     <div class="container">
-        <label><b>Full name</b></label> <br>
-        <input type="text" placeholder="Enter Full name" name="User_fullName" required> <br>
 
-        <label><b>Email</b></label> <br>
-        <input type="text" placeholder="Enter Email" name="User_email" required> <br>
+        <input type="text" name="User_fullName" placeholder="Skriv navnet her" required><br>
 
-        <label><b>Phone Number</b></label> <br>
-        <input type="text" placeholder="Enter phone number" name="User_phoneNumber" required> <br>
+        <input type="text" name="User_email" placeholder="Skriv email her" required><br>
 
-        <label><b>Date of Birth</b></label> <br>
-        <input type="text" placeholder="Enter Date of Birth" name="User_dob" required> <br>
+        <input type="number" name="User_phoneNumber" placeholder="Skriv telefonnummer her" required><br>
 
-        <label><b>Address</b></label> <br>
-        <input type="text" placeholder="Enter Address" name="User_address" required> <br>
+        <input type="text" name="User_address" placeholder="Skriv addresse her" required><br>
 
-        <label><b>Is the user an admin?</b></label> <br>
-        <input type="checkbox" name="User_access"> <br>
+        <label>Er brukeren admin?</label>
+        <input type="checkbox" name="User_access" value="true"><br>
+        <input type="hidden" name="User_access" value="false">
 
-        <label><b>Is the user qualified to operate all tools?</b></label> <br>
-        <input type="checkbox" name="User_qualification"> <br>
+        <label>Er brukeren med i fagforeningen</label>
+        <input type="checkbox" name="User_union" value="true"><br>
+        <input type="hidden" name="User_union" value="false">
 
-        <label><b>Are the user an unionworker?</b></label> <br>
-        <input type="checkbox" name="User_union"> <br>
+        <input type="number" name="User_debt" placeholder="Har brukeren tidligere gjeld?" value="0"><br>
 
-        <label><b>Do thee user have any previous debt?</b></label> <br>
-        <input type="text" placeholder="Enter debt" name="User_debt"> <br>
+        <input type="password" name="User_password" placeholder="skriv inn brukerens passord" required>
 
-        <label><b>Password</b></label> <br>
-        <input type="password" placeholder="Enter Password" name="User_password" required> <br>
-
-        <button type="submit">Login</button> <br>
-
+        <button type="submit">Legg til bruker</button>
 
     </div>
 </form>

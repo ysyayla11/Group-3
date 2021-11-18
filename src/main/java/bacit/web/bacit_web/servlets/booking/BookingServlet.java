@@ -1,5 +1,9 @@
 package bacit.web.bacit_web.servlets.booking;
 
+import bacit.web.bacit_web.DAO.BookingDAO;
+import bacit.web.bacit_web.DAO.QualificationDAO;
+import bacit.web.bacit_web.models.BookingModel;
+import bacit.web.bacit_web.servlets.SuperServlet;
 import bacit.web.bacit_web.utilities.DBUtils;
 
 import javax.servlet.ServletException;
@@ -7,12 +11,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.awt.print.Book;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Logger;
 
 
 // Denne servleten skal gjøre det mulig å lage en ny booking
@@ -24,50 +36,58 @@ import java.sql.SQLException;
 *
 * */
 @WebServlet(name = "BookingServlet", value ="/SiteUser/BookingServlet")
-public class BookingServlet extends HttpServlet {
+public class BookingServlet extends SuperServlet {
+
+    private Logger logger = Logger.getLogger(String.valueOf(BookingServlet.class));
+    private StringBuffer outString = new StringBuffer();
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
+        outString.delete(0, outString.length());
 
         String tool_id = request.getParameter("Tool_id");
         String user_id = request.getParameter("User_id");
         String booking_dateStart = request.getParameter("Booking_dateStart");
         String booking_dateEnd = request.getParameter("Booking_dateEnd");
+
         Boolean booking_paid = false;
         if (request.getParameter("Booking_paid").equals("true")) {
             booking_paid = true;
         }
 
-        try {
-            addBooking(out, tool_id, user_id, booking_dateStart, booking_dateEnd, booking_paid);
-        } catch (SQLException e) {
-            out.println(e);
+        BookingModel booking = new BookingModel(0, Integer.parseInt(tool_id), Integer.parseInt(user_id), booking_dateStart, booking_dateEnd, booking_paid, null);
+
+        if(checkQualified(tool_id, user_id)){
+            if(addBooking(booking)){
+                outString.append("booking vellykket");
+            }
+            else {
+                outString.append("det skjedde noe feil under bookingen, vennligst prøv igjen");
+            }
+        }
+        else{
+            outString.append("du er ikke kvalifisert til å booke dette verktøyet");
         }
 
-        out.println("Din bestilling var vellykket!" +
-                "<a href=\"home.jsp\"><button type=\"button\">Gå tilbake til hjem</button></a> " +
-                "");
+        out.println(outString);
+
     }
 
-    public void addBooking(PrintWriter out, String tool_id, String user_id, String booking_dateStart, String booking_dateEnd, Boolean booking_paid) throws SQLException {
-        Connection db = null;
+    private boolean checkQualified(String tool_id, String user_id){
 
-        try {
-            db = DBUtils.getINSTANCE().getConnection(out);
-        } catch (ClassNotFoundException e) {
-            out.println(e);
+        QualificationDAO dao = new QualificationDAO();
+
+        if (dao.needsQualification(tool_id)){
+            return dao.isQualified(user_id, tool_id);
         }
-        String query = "insert into booking(Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid) VALUES(Booking_id, ?, ?, ?, ?, ?);";
-        PreparedStatement statement = db.prepareStatement(query);
-        statement.setString(1, tool_id);
-        statement.setString(2, user_id);
-        statement.setString(3, booking_dateStart);
-        statement.setString(4, booking_dateEnd);
-        statement.setBoolean(5, booking_paid);
-        statement.executeQuery();
+        return true;
     }
 
-
-
+    private boolean addBooking(BookingModel booking){
+        BookingDAO dao = new BookingDAO();
+        boolean success = dao.addBooking(booking);
+        return success;
+    }
 
 }

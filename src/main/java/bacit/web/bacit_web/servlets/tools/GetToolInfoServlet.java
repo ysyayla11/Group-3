@@ -40,7 +40,7 @@ public class GetToolInfoServlet extends HttpServlet {
         //connection må endres til å bruke super
         Connection db = null;
         try{
-            db = DBUtils.getINSTANCE().getConnection(out);
+            db = DBUtils.getINSTANCE().getConnection();
         }
         catch(ClassNotFoundException e){
             e.printStackTrace();

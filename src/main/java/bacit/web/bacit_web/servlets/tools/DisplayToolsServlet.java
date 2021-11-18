@@ -1,6 +1,8 @@
 package bacit.web.bacit_web.servlets.tools;
 
+import bacit.web.bacit_web.DAO.ToolDAO;
 import bacit.web.bacit_web.models.HtmlModel;
+import bacit.web.bacit_web.models.ToolModel;
 import bacit.web.bacit_web.utilities.DBUtils;
 
 import javax.servlet.ServletException;
@@ -14,63 +16,80 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Logger;
 
 @WebServlet(name = "DisplayToolsServlet", value = "/SiteUser/DisplayToolsServlet")
 public class DisplayToolsServlet extends HttpServlet {
+
+    private Logger logger = Logger.getLogger(String.valueOf(DisplayToolsServlet.class));
+    private StringBuffer outString = new StringBuffer();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         PrintWriter out = resp.getWriter();
         resp.setContentType("text/html");
+        outString.delete(0, outString.length());
+
         try {
-            ResultSet results;
-            results = getTools(out);
-            out.println(HtmlModel.getHeader("This is the tools in the system"));
-            out.println("<br><div>");
-            printForm(results, out);
-            out.println("</div>");
-            out.println(HtmlModel.getFooter());
+            ArrayList<ToolModel> tools;
+            tools = getTools();
+            outString.append(HtmlModel.getHeader("verktøy til leie"));
+            outString.append("<br><div>");
+            outString.append("<input type=\"text\" id=\"myInput\" onkeyup=\"myFunction()\" placeholder=\"søk etter verktøy\">");
+            printForm(tools);
+            outString.append("</div>");
+            outString.append(HtmlModel.getFooter());
+            printScript();
         }
         catch (SQLException e) {
-            out.println(e);
+            logger.info(e.getMessage());
         }
-
+        out.println(outString);
     }
 
-    public ResultSet getTools(PrintWriter out) throws SQLException {
+    private ArrayList<ToolModel> getTools() throws SQLException {
 
-        Connection db = null;
-        try {
-            db = DBUtils.getINSTANCE().getConnection(out);
-        }
-        catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            System.out.println("Error i connection");
-        }
-        String query = "select * from MytestDB.tools";
-        PreparedStatement statement = db.prepareStatement(query);
-        ResultSet results = statement.executeQuery();
-        return results;
+        ToolDAO dao = new ToolDAO();
+
+        ArrayList<ToolModel> tools = dao.getAllTools();
+        return tools;
     }
 
-    public void printForm(ResultSet results, PrintWriter out) {
-
-        try {
-            while (results.next()) {
-                out.println("<form action='DisplayToolsServlet' method='get'>\n" +
-                        "    <div>Tool name: " + results.getString(2) + " </div>\n" +
-                        "    <div>Tool condition: " + results.getString(4) + "</div>\n" +
-                        "    <div>Tool price: " + results.getString(5) + "</div>\n" +
-                        "    <div>Gratis første dag: " + results.getString(7) + "</div>\n" +
-                        "    <div>Viktig informasjon: " + results.getString(8) + "</div>\n" +
-                        "    <div>Tool picture: " + results.getString(11) + "</div>\n" +
-                        "    <a href=\"Booking.jsp\"><button type=\"button\">Reserver dette verktøyet</button></a>\n" +
-                        "    </form>" + "");
-            }
+    private void printForm(ArrayList<ToolModel> tools) {
+        outString.append("<ul id = 'toolList'>");
+        for (int i = 0; i<tools.size(); i++) {
+            outString.append("<li><form action='../SiteUser/BookToolPageServlet' method='get'>\n" +
+                    "    <div class='div'>" + tools.get(i).getName() + " </div>\n" +
+                    "    <div>Tool picture: " + tools.get(i).getImage() + "</div>\n" +
+                    "    <button type='submit' name='Tool_id' value = '" + tools.get(i).getId() + "'>Reserver dette verktøyet</button>" +
+                    "    </form></li>");
         }
-        catch (SQLException e) {
-            out.println(e);
-        }
+        outString.append("</ul>");
     }
+
+    private void printScript(){
+        outString.append("<script>\n" +
+                "    function myFunction() {\n" +
+                "        var input, filter, ul, li, name, i, nameTxtValue;\n" +
+                "        input = document.getElementById(\"myInput\");\n" +
+                "        filter = input.value.toUpperCase();\n" +
+                "        ul = document.getElementById(\"toolList\");\n" +
+                "        li = ul.getElementsByTagName(\"li\");\n" +
+                "\n" +
+                "        for (i = 0; i < li.length; i++) {\n" +
+                "            name = li[i].getElementsByClassName(\"div\")[0];\n" +
+                "            nameTxtValue = name.textContent || name.innerText;\n" +
+                "            if (nameTxtValue.toUpperCase().indexOf(filter) > -1) {\n" +
+                "                li[i].style.display = \"\";\n" +
+                "            } else {\n" +
+                "                li[i].style.display = \"none\";\n" +
+                "            }\n" +
+                "        }\n" +
+                "    }\n" +
+                "</script>");
+    }
+
+
 }

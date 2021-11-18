@@ -1,4 +1,3 @@
-/*
 package bacit.web.bacit_web.servlets.tools;
 
 import bacit.web.bacit_web.models.ToolModel;
@@ -104,4 +103,5 @@ public class AdministerToolServlet extends SuperServlet {
         out.println("</body></html>");
     }
 
-}*/
+
+}

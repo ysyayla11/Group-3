@@ -75,6 +75,7 @@ public class ToolModel {
 
     public void setImportantInformation(String importantInformation) {this.Tool_importantInformation = importantInformation;}
 
+    public byte[] getImage() {return Tool_image;}
 
     public String getImage() {return Tool_image;}
 
