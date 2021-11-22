@@ -15,7 +15,7 @@ public class HtmlModel {
             "<nav>\n" +
             "    <a class=\"active\" href=\"../SiteUser/DisplayToolsServlet\"><button type =\"button\" class=\"nav-button\">Hjem</button></a>\n" +
             "    <a href=\"../SiteUser/GetUserProfileServlet\"><button type =\"button\" class=\"nav-button\">Din Profil</button></a>\n" +
-            "    <a href=\"../SiteUser/GetBookingServlet\" methods=\"get\"><button type =\"button\" class=\"nav-button\">Dine Bestillinger</button></a>\n" +
+            "    <a href=\"../SiteUser/GetBookingsServlet\" methods=\"get\"><button type =\"button\" class=\"nav-button\">Dine Bestillinger</button></a>\n" +
             "</nav>";
 
     private static String footer = "</body>\n" +

@@ -44,14 +44,12 @@ where u.User_phoneNumber = 12345679 and Booking_paid is false;
 select t.Tool_name, Booking_dateStart, Booking_dateEnd, Booking_paid, Booking_dateDelivered from booking inner join tools t on booking.Tool_id = t.Tool_id inner join user u on booking.User_id = u.User_id where u.User_phoneNumber = ?;
 
 
-insert into user (User_fullName, User_email, User_phoneNumber, User_password, User_address, User_union, User_debt)values('kristian olsen',,?,?,?,?,?);
 
 
 insert into user (User_id, User_fullName, User_email, User_phoneNumber, User_password, User_address, User_union, User_debt)values(User_id, 'kristian', 'lol', 12354321, sha2('yolo', 256), 'gata', true, 100);
 
 -- insert longblob
 
-update tools set Tool_image = load_file('eksempelScrum.png') where Tool_id = 1;
 
 insert into access(User_phoneNumber, Access_level) values(?,'user');
 
@@ -77,3 +75,17 @@ select Tool_id from qualification where User_id = 0;
 update tools set File_id = 1 where Tool_id = 1;
 
 select * from tools;
+
+-- insert new file template
+
+select User_id, User_fullName, User_email, User_phoneNumber, User_password, User_address, User_union, User_debt from user;
+
+select Access_level from access where User_phoneNumber = ? and Access_level = 'administrator';
+
+update booking set Booking_dateDelivered = current_date where Booking_id = ?;
+
+update booking set Booking_paid = true where Booking_id = 12;
+
+update user set User_debt = (select User_debt from user where User_id = ?) + ? where User_id = ?;
+
+update user set User_debt = 0 where User_id = *;

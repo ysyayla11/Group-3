@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS tools
     Tool_maxDays                int,
     Tool_delivered              boolean not null,
     File_id                     int,
-    FOREIGN KEY (File_id)       references files(File_id)
+    FOREIGN KEY (File_id)       references files(File_id) on delete set null on update cascade
 ) character set utf8;
 
 CREATE TABLE IF NOT EXISTS booking

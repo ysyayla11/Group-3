@@ -59,8 +59,21 @@ public class BookToolPageServlet extends HttpServlet {
         ToolModel tool = dao.getToolById(toolId);
 
         outString.append("<h1>" + tool.getName() + "</h1>");
-        if(!tool.getName().equals("null")) {
+        if(tool.getImportantInformation() != null )  {
             outString.append("<h2>Viktig info:</h2>" + tool.getImportantInformation() + "<br>");
+        }
+        if (tool.getImage() != null) {
+            outString.append("<img src=\"../fileDownload?file_id=" + tool.getImage() + "\"><br>");
+        }
+        else {
+            outString.append("<img src=\"../Images/bildeMangler.png\"><br>");
+        }
+        outString.append("Pris pr dag "+ tool.getPrice() +"kr<br>");
+        if (tool.getFreeFirstDay() == 1){
+            outString.append("Dette verktøyet er gratis første dagen<br>");
+        }
+        else{
+            outString.append("Dette verktøyet er IKKE gratis første dagen<br>");
         }
     }
 
@@ -105,7 +118,7 @@ public class BookToolPageServlet extends HttpServlet {
         }
 
         outString.append("<script>\n" +
-                "var input1 = document.getElementById(\"dateStartInput\");\n" +
+                "    var input1 = document.getElementById(\"dateStartInput\");\n" +
                 "    var input2 = document.getElementById(\"dateEndInput\")\n" +
                 "\n" +
                 "    input1.oninput = function checkDate(){\n" +
@@ -121,7 +134,7 @@ public class BookToolPageServlet extends HttpServlet {
                 "                input1.value = null;\n" +
                 "            }\n" +
                 "        }\n" +
-                "        if(input1.value < CurrentDate){\n" +
+                "        if(GivenDate < CurrentDate){\n" +
                 "            alert(\"Denne datoen har passert\");\n" +
                 "            input1.value = null;\n" +
                 "        }\n" +

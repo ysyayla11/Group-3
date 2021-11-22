@@ -2,6 +2,7 @@ package bacit.web.bacit_web.servlets.users;
 
 import bacit.web.bacit_web.DAO.UserDAO;
 import bacit.web.bacit_web.models.HtmlModel;
+import bacit.web.bacit_web.models.UserModel;
 import bacit.web.bacit_web.servlets.SuperServlet;
 import bacit.web.bacit_web.utilities.DBUtils;
 
@@ -16,6 +17,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 @WebServlet(name = "GetAllUsersServlet", value = "/SiteAdmin/GetAllUserServlet")
@@ -30,53 +32,41 @@ public class GetAllUsersServlet extends SuperServlet {
         PrintWriter out = response.getWriter();
         response.setCharacterEncoding("UTF-8");
         outString.delete(0, outString.length());
-        ResultSet results;
+        ArrayList<UserModel> users;
 
-        try {
+        users = getAllUsers();
+        printHtml(users, out);
+        out.println(outString);
 
-            results = getAllUsers();
-            printHtml(results, out);
-            out.println(outString);
-        }
-        catch (SQLException e){
-            logger.info(e.getMessage());
-        }
     }
 
-    private void printHtml(ResultSet results, PrintWriter out){
+    private void printHtml(ArrayList<UserModel> users, PrintWriter out){
         outString.append(HtmlModel.getHeader("all users"));
         outString.append("<br><div>");
         outString.append("<input type=\"text\" id=\"myInput\" onkeyup=\"myFunction()\" placeholder=\"søk navn eller tlf...\">");//search through list of users
-        printForm(results);
+        printForm(users);
         outString.append("</div>");
         printScript();
         outString.append(HtmlModel.getFooter());
     }
 
-    public ResultSet getAllUsers()
-            throws SQLException{
+    public ArrayList<UserModel> getAllUsers() {
         UserDAO dao = new UserDAO();
         return dao.getAllUsers();
     }
 
-    private void printForm(ResultSet results){
+    private void printForm(ArrayList<UserModel> users){
 
-        try {
-            //making list of all users in the database
-            outString.append("<ul id=\"myUL\">");
-            while (results.next()) {
-                outString.append("<li><form action='GetUserInfoServlet' method='get'>\n" +
-                        "    <div>" + results.getString(2) + "</div>\n" +//navn
-                        "    <div>tlf: " + results.getString(4) + "</div>\n" +//nummer
-                        "    <button type=\"submit\" name='userID' value='" + results.getString(1) + "'>Rediger bruker</button>\n" +//input har value
-                        "</form></li>");
-            }
-            outString.append("</ul>");
-            results.close();
+        outString.append("<ul id=\"myUL\">");
+        for (int i = 0; i < users.size(); i++) {
+            outString.append("<li><form action='GetUserInfoServlet' method='get'>\n" +
+                    "    <div>" + users.get(i).getFullName() + "</div>\n" +//navn
+                    "    <div>tlf: " + users.get(i).getPhoneNumber() + "</div>\n" +//nummer
+                    "    <button type=\"submit\" name='userID' value='" + users.get(i).getId() + "'>Rediger bruker</button>\n" +//input har value id til brukeren
+                    "    <a href='" + /*TODO: add URL to administerbooking*/ "'><button>administrer bookinger</button></a>\n" +//input har value id til brukeren
+                    "</form></li>");
         }
-        catch (SQLException e){
-            outString.append(e);
-        }
+        outString.append("</ul>");
     }
 
     //prints a javascript to search through the list of users and display the results

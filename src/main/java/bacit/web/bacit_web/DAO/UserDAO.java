@@ -2,78 +2,95 @@ package bacit.web.bacit_web.DAO;
 
 import bacit.web.bacit_web.models.UserModel;
 import bacit.web.bacit_web.utilities.DBUtils;
-
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
-public class UserDAO {
+public class UserDAO extends AMVDatabaseDAO{
 
     Logger logger = Logger.getLogger(String.valueOf(UserDAO.class));
 
-    public UserModel getUserInfo(PrintWriter out, String userID) throws SQLException, ClassNotFoundException{
+    public UserModel getUserFromPhoneNumber(String userPhoneNumber){
 
-        Connection db = DBUtils.getINSTANCE().getConnection();
+        UserModel user = null;
+        Connection db = null;
+        String query;
+        PreparedStatement statement = null;
+        ResultSet results = null;
 
-        String query = "select User_id, User_fullName, User_email, User_password, User_address, User_Union, User_debt from user where User_phoneNumber = ?";
-        PreparedStatement statement = db.prepareStatement(query);
-        statement.setString(1, userID);
+        try {
+            db = DBUtils.getINSTANCE().getConnection();
 
-        ResultSet results = statement.executeQuery();
+            query = "select User_id, User_fullName, User_email, User_phoneNumber, User_password, User_address, User_Union, User_debt from user where User_phoneNumber = ?";
+            statement = db.prepareStatement(query);
+            statement.setString(1, userPhoneNumber);
 
-        UserModel user = createUserModelFromResultSet(results, out);
+            results = statement.executeQuery();
 
+            user = resultsetToUserModelArrayList(results).get(0);
+        }
+        catch (SQLException | ClassNotFoundException e) {
+            logger.info("getUserInfo: " + e);
+        }
+        finally {
+            super.closeConnections(db, results, statement);
+        }
         return user;
     }
 
-    public ResultSet getAllUsers(){
-        try {
-            Connection db = DBUtils.getINSTANCE().getConnection();
+    public ArrayList<UserModel> getAllUsers(){
 
-            String query = "select * from user";
-            PreparedStatement statement = db.prepareStatement(query);
-            ResultSet results = statement.executeQuery();
-            return results;
+        ArrayList<UserModel> users = null;
+        Connection db = null;
+        String query;
+        PreparedStatement statement = null;
+        ResultSet results = null;
+
+        try {
+            db = DBUtils.getINSTANCE().getConnection();
+
+            query = "select User_id, User_fullName, User_email, User_phoneNumber, User_password, User_address, User_union, User_debt from user;";
+            statement = db.prepareStatement(query);
+            results = statement.executeQuery();
+            users = resultsetToUserModelArrayList(results);
+
         }
         catch (SQLException|ClassNotFoundException e){
             logger.info("getAllUsers " + e.getMessage());
         }
-        return null;
+        finally {
+            closeConnections(db, results, statement);
+        }
+        logger.info(users.toString());
+        logger.info(users.toString());
+        return users;
     }
 
-    private UserModel createUserModelFromResultSet(ResultSet results, PrintWriter out) {
-        String fullName = "";
-        String email = "";
-        String phoneNumber = "";
-        Boolean union = false;
-        String debt = "";
-        String password = "";
-        String address = "";
-        String userID = "";
+    public boolean updateUserDebt(String user_id, int amount){
+        Connection db = null;
+        PreparedStatement statement = null;
+        boolean success = false;
+        try {
+            db = DBUtils.getINSTANCE().getConnection();
 
-        try{
-            while(results.next()){
-                userID = results.getString(1);
-                fullName = results.getString(2);
-                email = results.getString(3);
-                phoneNumber = results.getString(4);
-                password = results.getString(5);
-                address = results.getString(6);
-                union = results.getBoolean(7);
-                debt = results.getString(8);
-            }
+            String query = "update user set User_debt = (select User_debt from user where User_id = ?) + ? where User_id = ?";
+            statement = db.prepareStatement(query);
+            statement.setString(1, user_id);
+            statement.setInt(2, amount);
+            statement.setString(3, user_id);
+            statement.executeQuery();
+            success = true;
         }
-        catch (SQLException e){
-            out.println(e);
+        catch (ClassNotFoundException | SQLException e){
+            logger.info("addBooking " + e.getMessage());
         }
-
-        UserModel user = new UserModel(Integer.parseInt(userID), fullName, email,
-                phoneNumber, password, address, union, Integer.parseInt(debt));
-
-        return user;
+        finally {
+            closeConnections(db, null, statement);
+        }
+        return success;
     }
 
     public void deleteUser(int userID){
@@ -85,6 +102,7 @@ public class UserDAO {
             statement.setInt(1, userID);
             statement.executeQuery();
             db.close();
+            statement.close();
         }
         catch (SQLException|ClassNotFoundException e){
             logger.info("deleteUser" + e.getMessage());
@@ -92,11 +110,15 @@ public class UserDAO {
     }
 
     public Boolean uploadNewUser(UserModel user){
+        Connection db = null;
+        PreparedStatement statement = null;
+        String query;
+        boolean success = false;
         try {
-            Connection db = DBUtils.getINSTANCE().getConnection();
+            db = DBUtils.getINSTANCE().getConnection();
 
-            String query = "insert into user (User_fullName, User_email, User_phoneNumber, User_password, User_address, User_union, User_debt)values(?, ?, ?, sha2(?, 256), ?, ?, ?)";
-            PreparedStatement statement = db.prepareStatement(query);
+            query = "insert into user (User_fullName, User_email, User_phoneNumber, User_password, User_address, User_union, User_debt)values(?, ?, ?, sha2(?, 256), ?, ?, ?)";
+            statement = db.prepareStatement(query);
             statement.setString(1, user.getFullName());
             statement.setString(2, user.getEmail());
             statement.setString(3, user.getPhoneNumber());
@@ -107,22 +129,26 @@ public class UserDAO {
 
             statement.executeQuery();
 
-            db.close();
-
-            return true;
+            success = true;
         }
         catch (SQLException|ClassNotFoundException e){
             logger.info("deleteUser" + e.getMessage());
         }
-        return false;
+        finally {
+            super.closeConnections(db, null, statement);
+        }
+        return success;
     }
 
     public String getUserIdFromPhone(String user_phone){
+        Connection db = null;
+        PreparedStatement statement = null;
+        String query;
         try {
-            Connection db = DBUtils.getINSTANCE().getConnection();
+            db = DBUtils.getINSTANCE().getConnection();
 
-            String query = "select User_id from user where User_phoneNumber = ?";
-            PreparedStatement statement = db.prepareStatement(query);
+            query = "select User_id from user where User_phoneNumber = ?";
+            statement = db.prepareStatement(query);
             statement.setString(1, user_phone);
             ResultSet results = statement.executeQuery();
             return getUserIDFromResultSet(results);
@@ -130,10 +156,13 @@ public class UserDAO {
         catch (SQLException|ClassNotFoundException e){
             logger.info("get user id" + e.getMessage());
         }
+        finally {
+            closeConnections(db, null, statement);
+        }
         return null;
     }
 
-    public String getUserIDFromResultSet(ResultSet results){
+    private String getUserIDFromResultSet(ResultSet results){
 
         try{
             while (results.next()){
@@ -147,8 +176,37 @@ public class UserDAO {
         return null;
     }
 
-    public Boolean isAdmin(String phoneNumber){
-        return false;
+    private ArrayList<UserModel> resultsetToUserModelArrayList(ResultSet results){
+        ArrayList<UserModel> users = new ArrayList<>();
+        int id;
+        String fullName;
+        String email;
+        String phoneNumber;
+        String password;
+        String address;
+        boolean union;
+        int debt;
+
+        try {
+            while (results.next()) {
+                id = results.getInt(1);
+                fullName = results.getString(2);
+                email = results.getString(3);
+                phoneNumber = results.getString(4);
+                password = results.getString(5);
+                address = results.getString(6);
+                union = results.getBoolean(7);
+                debt = results.getInt(8);
+                users.add(new UserModel(id, fullName, email, phoneNumber, password, address, union, debt));
+            }
+        }
+        catch(SQLException e){
+            logger.info(e.getMessage());
+        }
+
+        return users;
     }
+
+
 
 }
