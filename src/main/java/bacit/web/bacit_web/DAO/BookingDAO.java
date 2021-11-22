@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
-public class BookingDAO {
+public class BookingDAO extends AMVDatabaseDAO{
 
     private Logger logger = Logger.getLogger(String.valueOf(BookingDAO.class));
 
@@ -41,34 +41,66 @@ public class BookingDAO {
         return bookings;
     }
 
-    public ArrayList<BookingModel> getBookingDatesFromToolID(String toolID) {
+    public ArrayList<BookingModel> getBookingsFromToolID(String toolID) {
         ArrayList<BookingModel> bookings = null;
+        Connection db = null;
+        PreparedStatement statement = null;
+        ResultSet results = null;
 
         try {
-            Connection db = DBUtils.getINSTANCE().getConnection();
+            db = DBUtils.getINSTANCE().getConnection();
             String query = "select * from booking where tool_id = ? and Booking_dateStart;";
-            PreparedStatement statement = db.prepareStatement(query);
+            statement = db.prepareStatement(query);
             statement.setString(1, toolID);
-            ResultSet results = statement.executeQuery();
+            results = statement.executeQuery();
             bookings = resultSetToBookingModelArrayList(results);
             statement.executeQuery();
-            db.close();
-            statement.close();
-            results.close();
-            return bookings;
+
         }
         catch (ClassNotFoundException | SQLException e) {
             logger.info("getBookingsFromPhoneNumber" + e.getMessage());
         }
-        return null;
+        finally {
+            closeConnections(db, results, statement);
+        }
+        return bookings;
+    }
+
+    public BookingModel getBookingFromBookingID(String booking_id){
+        BookingModel booking = null;
+        Connection db = null;
+        PreparedStatement statement = null;
+        ResultSet results = null;
+
+        try {
+            db = DBUtils.getINSTANCE().getConnection();
+            String query = "select * from booking where Booking_id = ?;";
+            statement = db.prepareStatement(query);
+            statement.setString(1, booking_id);
+            results = statement.executeQuery();
+            booking = resultSetToBookingModelArrayList(results).get(0);
+            statement.executeQuery();
+
+        }
+        catch (ClassNotFoundException | SQLException e) {
+            logger.info("getBookingsFromPhoneNumber" + e.getMessage());
+        }
+        finally {
+            closeConnections(db, results, statement);
+        }
+        return booking;
     }
 
     public boolean addBooking(BookingModel booking){
+
+        Connection db = null;
+        PreparedStatement statement = null;
+
         try {
-            Connection db = DBUtils.getINSTANCE().getConnection();
+            db = DBUtils.getINSTANCE().getConnection();
 
             String query = "insert into booking(Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid, Booking_dateDelivered) VALUES(Booking_id, ?, ?, ?, ?, ?, null);";
-            PreparedStatement statement = db.prepareStatement(query);
+            statement = db.prepareStatement(query);
 
             statement.setInt(1, booking.getTool_id());
             statement.setInt(2, booking.getUser_id());
@@ -84,17 +116,60 @@ public class BookingDAO {
         catch (ClassNotFoundException | SQLException e){
             logger.info("addBooking " + e.getMessage());
         }
+        finally {
+            closeConnections(db, null, statement);
+        }
         return false;
     }
 
+    public void setDeliveredDate(String booking_id){
+        Connection db = null;
+        PreparedStatement statement = null;
+
+        try {
+            db = DBUtils.getINSTANCE().getConnection();
+
+            String query = "update booking set Booking_dateDelivered = current_date where Booking_id = ?;";
+            statement = db.prepareStatement(query);
+            statement.setString(1, booking_id);
+            statement.executeQuery();
+        }
+        catch (ClassNotFoundException | SQLException e){
+            logger.info("addBooking " + e.getMessage());
+        }
+        finally {
+            closeConnections(db, null, statement);
+        }
+    }
+
+    public void setBookingPaid(String booking_id){
+        Connection db = null;
+        PreparedStatement statement = null;
+
+        try {
+            db = DBUtils.getINSTANCE().getConnection();
+
+            String query = "update booking set Booking_paid = true where Booking_id = ?";
+            statement = db.prepareStatement(query);
+            statement.setString(1, booking_id);
+            statement.executeQuery();
+        }
+        catch (ClassNotFoundException | SQLException e){
+            logger.info("addBooking " + e.getMessage());
+        }
+        finally {
+            closeConnections(db, null, statement);
+        }
+    }
+
     private ArrayList<BookingModel> resultSetToBookingModelArrayList(ResultSet results){
-        int booking_id = 0;
-        int tool_id = 0;
-        int user_id = 0;
-        String booking_dateStart = null;
+        int booking_id;
+        int tool_id;
+        int user_id;
+        String booking_dateStart;
         String booking_dateEnd;
-        boolean paid = false;
-        String booking_dateDelivered = null;
+        boolean paid;
+        String booking_dateDelivered;
 
         ArrayList<BookingModel> bookings = new ArrayList<>();
 
@@ -116,13 +191,5 @@ public class BookingDAO {
                 logger.info(e.getMessage() + "test");
             }
         return null;
-    }
-
-    private void closeConnections(Connection db, ResultSet results, PreparedStatement statement){
-
-        if (db != null){try {db.close();}catch (Exception e){logger.info(e.getMessage());}}
-        if(statement != null){ try{ statement.close(); } catch (Exception e){ logger.info(e.getMessage());}}
-        if(results != null){ try{ results.close();} catch (Exception e){ logger.info(e.getMessage());}}
-
     }
 }

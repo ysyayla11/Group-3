@@ -61,12 +61,21 @@ public class DisplayToolsServlet extends HttpServlet {
         outString.append("<ul id = 'toolList'>");
         for (int i = 0; i<tools.size(); i++) {
             outString.append("<li><form action='../SiteUser/BookToolPageServlet' method='get'>\n" +
-                    "    <div class='div'>" + tools.get(i).getName() + " </div>\n" +
-                    "    <img src=\"../fileDownload?file_id=" + tools.get(i).getImage() + "\"><br>" +
-                    "    <button type='submit' name='Tool_id' value = '" + tools.get(i).getId() + "' heigth=\"1vh\">Reserver dette verktøyet</button>" +
+                    "    <div class='div'>" + tools.get(i).getName() + " </div>\n");
+            addImage(tools.get(i).getImage());
+            outString.append("<button type='submit' name='Tool_id' value = '" + tools.get(i).getId() + "' heigth=\"1vh\">Reserver dette verktøyet</button>" +
                     "    </form></li>");
         }
         outString.append("</ul>");
+    }
+
+    private void addImage(String image_id){
+        if (image_id != null){
+            outString.append("<img src=\"../fileDownload?file_id=" + image_id + "\"><br>");
+        }
+        else{
+            outString.append("<img src=\"../Images/bildeMangler.png\" height=\"320px\"><br>");
+        }
     }
 
     private void printScript(){

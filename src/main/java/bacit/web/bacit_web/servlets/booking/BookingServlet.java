@@ -2,7 +2,10 @@ package bacit.web.bacit_web.servlets.booking;
 
 import bacit.web.bacit_web.DAO.BookingDAO;
 import bacit.web.bacit_web.DAO.QualificationDAO;
+import bacit.web.bacit_web.DAO.ToolDAO;
+import bacit.web.bacit_web.DAO.UserDAO;
 import bacit.web.bacit_web.models.BookingModel;
+import bacit.web.bacit_web.models.ToolModel;
 import bacit.web.bacit_web.servlets.SuperServlet;
 import bacit.web.bacit_web.utilities.DBUtils;
 
@@ -20,7 +23,9 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
@@ -51,15 +56,17 @@ public class BookingServlet extends SuperServlet {
         String booking_dateStart = request.getParameter("Booking_dateStart");
         String booking_dateEnd = request.getParameter("Booking_dateEnd");
 
-        Boolean booking_paid = false;
+        boolean booking_paid = false;
         if (request.getParameter("Booking_paid").equals("true")) {
             booking_paid = true;
         }
 
         BookingModel booking = new BookingModel(0, Integer.parseInt(tool_id), Integer.parseInt(user_id), booking_dateStart, booking_dateEnd, booking_paid, null);
+        int bookingPrice = calculateBookingPrice(booking);
+        logger.info(Integer.toString(bookingPrice));
 
         if(checkQualified(tool_id, user_id)){
-            if(addBooking(booking)){
+            if(addBooking(booking) && updateDebt(user_id, bookingPrice)){
                 outString.append("booking vellykket");
             }
             else {
@@ -86,8 +93,41 @@ public class BookingServlet extends SuperServlet {
 
     private boolean addBooking(BookingModel booking){
         BookingDAO dao = new BookingDAO();
-        boolean success = dao.addBooking(booking);
-        return success;
+        return dao.addBooking(booking);
+
+    }
+
+    private boolean updateDebt(String user_id, int amount){
+        UserDAO dao = new UserDAO();
+        return dao.updateUserDebt(user_id, amount);
+    }
+
+    private int calculateBookingPrice(BookingModel booking){
+        LocalDate startDate = LocalDate.parse(booking.getBooking_dateStart().substring(0, 10));
+        LocalDate endDate = LocalDate.parse(booking.getBooking_dateEnd().substring(0, 10));
+
+        int daysBetween = Period.between(startDate, endDate).getDays() + 1;
+        ToolDAO dao = new ToolDAO();
+        ToolModel tool = dao.getToolById(Integer.toString(booking.getTool_id()));
+        int price = tool.getPrice();
+        int freeFirstDay = tool.getFreeFirstDay();
+
+        int debt = daysBetween * price;
+
+        if(freeFirstDay == 1){
+            debt-=(price);
+        }
+
+        //for testing TBR
+        logger.info(
+                "startDato = " + startDate + "\n" +
+                "endDato = " + endDate + "\n" +
+                "freeFirstDay " + freeFirstDay +"\n" +
+                "pris per dag " + price + "\n" +
+                "daysBetween " + daysBetween + "\n" +
+                "pris: " + debt);
+
+        return debt;
     }
 
 }

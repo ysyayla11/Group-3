@@ -181,6 +181,38 @@ table {
     font-size: 2rem;
 }
 
+.bookingLi{
+    background-color: grey;
+    margin: auto;
+    width: 30%;
+}
+
+.bookingLi button{
+    padding: 1rem;
+    margin: 1rem;
+}
+
+#bookingInterface{
+    background-color: grey;
+}
+
+select{
+    color: #f0b324;
+    background-color: #041e43;
+    padding: 1Rem 3.5Rem;
+    text-decoration: none;
+    font-size: 2Rem;
+    margin: 3Rem;
+    border-style: none;
+    border-radius: 25px;
+}
+
+#vipps{
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 
 
 

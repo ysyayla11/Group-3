@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
-public class QualificationDAO {
+public class QualificationDAO extends AMVDatabaseDAO{
     private Logger logger = Logger.getLogger(String.valueOf(QualificationDAO.class));
 
     public boolean needsQualification(String tool_id){
@@ -47,14 +47,6 @@ public class QualificationDAO {
             closeConnections(db, results, statement);
         }
         return qualified;
-    }
-
-    private void closeConnections(Connection db, ResultSet results, PreparedStatement statement){
-
-        if (db != null){try {db.close();}catch (Exception e){logger.info(e.getMessage());}}
-        if(statement != null){ try{ statement.close(); } catch (Exception e){ logger.info(e.getMessage());}}
-        if(results != null){ try{ results.close();} catch (Exception e){ logger.info(e.getMessage());}}
-
     }
 
 }

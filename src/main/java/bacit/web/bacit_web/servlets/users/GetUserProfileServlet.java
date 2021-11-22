@@ -1,6 +1,9 @@
 package bacit.web.bacit_web.servlets.users;
 
+import bacit.web.bacit_web.DAO.AccessDAO;
+import bacit.web.bacit_web.DAO.UserDAO;
 import bacit.web.bacit_web.models.HtmlModel;
+import bacit.web.bacit_web.models.UserModel;
 import bacit.web.bacit_web.servlets.SuperServlet;
 
 import javax.servlet.ServletException;
@@ -23,11 +26,43 @@ public class GetUserProfileServlet extends SuperServlet {
         response.setContentType("text/html");
         outString.delete(0, outString.length());
 
-        outString.append(HtmlModel.getHeader("bruker profil"));
-        outString.append(request.getUserPrincipal().getName());
-        outString.append("<a href='../SiteAdmin/Admin_dashboard.jsp'>admin dashboard</a>");
-        outString.append(HtmlModel.getFooter());
+        String phoneNumber = request.getUserPrincipal().getName();
+
+        addHtml(getUser(phoneNumber));
 
         out.println(outString);
+    }
+
+    private UserModel getUser(String phoneNumber){
+        UserDAO dao = new UserDAO();
+
+
+        return dao.getUserFromPhoneNumber(phoneNumber);
+    }
+
+    private boolean userIsAdmin(String phoneNumber){
+        AccessDAO dao = new AccessDAO();
+        return dao.IsAdmin(phoneNumber);
+    }
+
+    private void addHtml(UserModel user){
+        outString.append(HtmlModel.getHeader("Din profil"));
+        if(userIsAdmin(user.getPhoneNumber())){
+            addAdminLinks();
+        }
+        addUserInfo(user);
+        outString.append(HtmlModel.getFooter());
+    }
+
+    private void addAdminLinks(){
+        outString.append("<a href=\"../SiteAdmin/Admin_dashboard.jsp\"><button>Gå til admin dashboard</button></a>");
+    }
+
+    private void addUserInfo(UserModel user){
+        outString.append("<div>Navn: " + user.getFullName() + "</div>\n" +
+                "<div>telefonnummer: " + user.getPhoneNumber() + "</div>\n" +
+                "<div>email: " + user.getEmail() + "</div>\n" +
+                "<div>adresse: " + user.getAddress() + "</div>\n" +
+                "<a href = '../logOutServlet'><button>logg ut</button></a>");
     }
 }

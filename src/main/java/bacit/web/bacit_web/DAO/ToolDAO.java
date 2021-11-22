@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.logging.Logger;
 
-public class ToolDAO {
+public class ToolDAO extends AMVDatabaseDAO{
     private Logger logger = Logger.getLogger(String.valueOf(ToolDAO.class));
 
     public String deliverTool(String tool_id){
@@ -87,7 +87,7 @@ public class ToolDAO {
     public ArrayList<Date> getDatesUnavailable(String toolID){
         ArrayList<Date> dateArrayList = new ArrayList<>();
         BookingDAO dao = new BookingDAO();
-        ArrayList<BookingModel> bookings= dao.getBookingDatesFromToolID(toolID);
+        ArrayList<BookingModel> bookings= dao.getBookingsFromToolID(toolID);
 
         for (int i = 0; i<bookings.size(); i++){
             String dateStart = bookings.get(i).getBooking_dateStart();
@@ -148,6 +148,25 @@ public class ToolDAO {
         return name;
     }
 
+    public void markToolAsDelivered(String tool_id){
+        Connection db = null;
+        PreparedStatement statement = null;
+        try {
+            db = DBUtils.getINSTANCE().getConnection();
+            String query = "update tools set Tool_delivered = true where Tool_id = ?";
+            statement = db.prepareStatement(query);
+            statement.setString(1, tool_id);
+            statement.executeQuery();
+
+        }
+        catch (ClassNotFoundException|SQLException e) {
+            logger.info("get tools: " + e.getMessage());
+        }
+        finally {
+            closeConnections(db, null, statement);
+        }
+    }
+
     private ArrayList<ToolModel> ResultSetToToolModelArray(ResultSet results){
 
         String Tool_id;
@@ -184,14 +203,6 @@ public class ToolDAO {
             logger.info("createToolModel" + e.getMessage());
         }
         return null;
-    }
-
-    private void closeConnections(Connection db, ResultSet results, PreparedStatement statement){
-
-        if (db != null){try {db.close();}catch (Exception e){logger.info(e.getMessage());}}
-        if(statement != null){ try{ statement.close(); } catch (Exception e){ logger.info(e.getMessage());}}
-        if(results != null){ try{ results.close();} catch (Exception e){ logger.info(e.getMessage());}}
-
     }
 
     private void addAllvaluesFromTo(ArrayList<Date> arrayListFrom, ArrayList<Date> arrayListTo){
