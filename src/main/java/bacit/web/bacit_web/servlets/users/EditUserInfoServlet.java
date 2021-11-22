@@ -1,5 +1,6 @@
 package bacit.web.bacit_web.servlets.users;
 
+import bacit.web.bacit_web.DAO.UserDAO;
 import bacit.web.bacit_web.models.UserModel;
 import bacit.web.bacit_web.servlets.SuperServlet;
 import bacit.web.bacit_web.utilities.DBUtils;
@@ -13,26 +14,32 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 
 @WebServlet(name = "EditUserInfoServlet", value = "/SiteAdmin/EditUserInfoServlet")
 public class EditUserInfoServlet extends SuperServlet {
 
+    Logger logger = Logger.getLogger(String.valueOf(EditUserInfoServlet.class));
+    StringBuffer outString = new StringBuffer();
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
         request.setCharacterEncoding("UTF-8");
+        outString.delete(0, outString.length());
 
         PrintWriter out = response.getWriter();
 
         UserModel user = createUserModelFromRequest(request);
 
-        try{
-            editUserInfo(user, out);
-            out.println("Change success!");
+        if(editUserInfo(user)) {
+            outString.append("Endringen lykkes");
         }
-        catch(SQLException e){
-            out.println("oops something went wrong " + e);
+        else {
+            outString.append("noe gikk feil ");
         }
+
+        out.println(outString);
     }
 
     private UserModel createUserModelFromRequest(HttpServletRequest request){
@@ -42,7 +49,6 @@ public class EditUserInfoServlet extends SuperServlet {
         String phoneNumber = request.getParameter("phoneNumber");
         String union = request.getParameter("union");
         String debt = request.getParameter("debt");
-        String password = request.getParameter("password");
         String userID = request.getParameter("userID");
         String address = request.getParameter("address");
 
@@ -52,30 +58,14 @@ public class EditUserInfoServlet extends SuperServlet {
         int intDebt = Integer.parseInt(debt);
         int intUserID = Integer.parseInt(userID);
 
-        UserModel userModel = new UserModel(intUserID, fullName, email, phoneNumber, password, address, boolUnion, intDebt);
+        UserModel userModel = new UserModel(intUserID, fullName, email, phoneNumber, null, address, boolUnion, intDebt);
 
         return userModel;
     }
 
-
-
-    private void editUserInfo(UserModel user, PrintWriter out) throws SQLException {
-
-        Connection db = super.connectToDB();
-
-        String query = "Update user set user_fullName = ?, user_email = ?, user_phoneNumber = ?," +
-                        "user_union = ?, user_debt = ?, user_password = ? where user_id = ?";
-
-        PreparedStatement statement = db.prepareStatement(query);
-        statement.setString(1, user.getFullName());
-        statement.setString(2, user.getEmail());
-        statement.setString(3, user.getPhoneNumber());
-        statement.setBoolean(4, user.getUnion());
-        statement.setInt(5, user.getDebt());
-        statement.setString(6, user.getPassword());
-        statement.setInt(7, user.getId());
-        statement.executeQuery();
-
+    private boolean editUserInfo(UserModel user){
+        UserDAO dao = new UserDAO();
+        return dao.editUserInfo(user);
     }
 
 

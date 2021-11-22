@@ -1,104 +1,60 @@
 package bacit.web.bacit_web.servlets.users;
 
+import bacit.web.bacit_web.DAO.UserDAO;
 import bacit.web.bacit_web.models.HtmlModel;
 import bacit.web.bacit_web.models.UserModel;
 import bacit.web.bacit_web.servlets.SuperServlet;
-import bacit.web.bacit_web.utilities.DBUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 @WebServlet(name = "GetUserInfoServlet", value = "/SiteAdmin/GetUserInfoServlet")
 public class GetUserInfoServlet extends SuperServlet {
+
+    Logger logger = Logger.getLogger(String.valueOf(GetUserInfoServlet.class));
+    StringBuffer outString = new StringBuffer();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
         response.setCharacterEncoding("UTF-8");
-        ResultSet results;
+        outString.delete(0, outString.length());
+
         UserModel user;
 
         String userID = request.getParameter("userID");
 
-        try {
-            out.println(HtmlModel.getHeader("user info"));
-            results = getUserInfo(out, userID);
-            user = createUserModel(results, out);
-            printHtml(out, user);
-            out.println(HtmlModel.getFooter());
+        outString.append(HtmlModel.getHeader("user info"));
+        user = getUserInfo(userID);
+        printHtml(user);
+        outString.append(HtmlModel.getFooter());
 
-        }
-        catch (SQLException e){
-            out.println(e);
-        }
-
-        out.println(userID);
-
+        out.println(outString);
     }
 
-    private ResultSet getUserInfo(PrintWriter out, String userID) throws SQLException {
+    private UserModel getUserInfo(String userID) {
 
-        Connection db = super.connectToDB();
+        UserDAO dao = new UserDAO();
 
-        String query = "select * from user where User_id = ?";
-        PreparedStatement statement = db.prepareStatement(query);
-        statement.setString(1, userID);
-
-        ResultSet results = statement.executeQuery();
-
-        return results;
+        return dao.getUserFromID(userID);
     }
 
-    private UserModel createUserModel(ResultSet results, PrintWriter out) {
-        String fullName = "";
-        String email = "";
-        String phoneNumber = "";
-        Boolean union = false;
-        String debt = "";
-        String password = "";
-        String address = "";
-        String userID = "";
-
-        try{
-            while(results.next()){
-                userID = results.getString(1);
-                fullName = results.getString(2);
-                email = results.getString(3);
-                phoneNumber = results.getString(4);
-                password = results.getString(5);
-                address = results.getString(6);
-                union = results.getBoolean(7);
-                debt = results.getString(8);
-            }
-        }
-        catch (SQLException e){
-            out.println(e);
-        }
-
-        UserModel user = new UserModel(Integer.parseInt(userID), fullName, email,
-                                        phoneNumber, password, address, union, Integer.parseInt(debt));
-
-        return user;
+    private void printHtml(UserModel user) {
+        printForm(user);
+        printDeleteUserForm(user.getId());
+        printScript();
     }
 
-    private void printHtml(PrintWriter out, UserModel user) throws SQLException{
-        printForm(out, user);
-        printDeleteUserForm(out, user.getId());
-        printScript(out);
-    }
+    private void printForm(UserModel user){
 
-    private void printForm(PrintWriter out, UserModel user){
-
-        out.println("    <form action=\"EditUserInfoServlet\" method=\"post\" id=\"editUserForm\">\n" +
+        outString.append("    <form action=\"EditUserInfoServlet\" method=\"post\" id=\"editUserForm\">\n" +
                     "        <label> Fullt navn </label>\n" +
                     "        <input type=\"text\" name = \"fullName\" value='" + user.getFullName() + "'>\n" +
                     "        <br>\n" +
@@ -113,30 +69,27 @@ public class GetUserInfoServlet extends SuperServlet {
                     "        <br>\n" +
                     "        <label> Fagforening </label>\n");
                 if(user.getUnion()) {
-                    out.println("     <input type=\"radio\" id=\"buttonYes\" name=\"union\" value=\"true\" checked=\"checked\">\n" +
+                    outString.append("     <input type=\"radio\" id=\"buttonYes\" name=\"union\" value=\"true\" checked=\"checked\">\n" +
                             "        <label for=\"buttonYes\">Ja</label>\n" +
                             "        <input type=\"radio\" id=\"buttonNo\" name=\"union\" value=\"false\">\n" +
                             "        <label for=\"buttonNo\">Nei</label>\n");
                 }
                 else {
-                    out.println("    <input type=\"radio\" id=\"buttonYes\" name=\"union\" value=\"true\">\n" +
+                    outString.append("    <input type=\"radio\" id=\"buttonYes\" name=\"union\" value=\"true\">\n" +
                             "        <label for=\"buttonYes\">Ja</label>\n" +
                             "        <input type=\"radio\" id=\"buttonNo\" name=\"union\" value=\"false\" checked=\"checked\">\n" +
                             "        <label for=\"buttonNo\">Nei</label>\n");
                 }
-        out.println("        <br>\n" +
+        outString.append("        <br>\n" +
                     "        <label> Gjeld </label>\n" +
                     "        <input type=\"text\" name = \"debt\" value = '" + user.getDebt() + "'>\n" +
-                    "        <br>\n" +
-                    "        <label> Passord </label>\n" +
-                    "        <input type=\"text\" name = \"password\" value = '" + user.getPassword() + "'>\n" +
                     "        <br>\n" +
                     "        <button onclick='confirmEditUser' value='" + user.getId() + "' name='userID'> Endre </button>\n" +
                     "    </form>\n");
     }
 
-    private void printDeleteUserForm(PrintWriter out, int userID){
-            out.println("<form action=\"../SiteAdmin/DeleteUserServlet\" method=\"post\" id=\"deleteUserForm\">\n" +
+    private void printDeleteUserForm(int userID){
+            outString.append("<form action=\"../SiteAdmin/DeleteUserServlet\" method=\"post\" id=\"deleteUserForm\">\n" +
                     "\n" +
                     "    <input type=\"hidden\" name=\"userID\" value=\"" + userID + "\">\n" +
                     "\n" +
@@ -145,8 +98,8 @@ public class GetUserInfoServlet extends SuperServlet {
                     "<button onclick=\"confirmDeleteUser()\">delete user</button>");
     }
 
-    private void printScript(PrintWriter out){
-        out.println("<script>\n" +
+    private void printScript(){
+        outString.append("<script>\n" +
                 "\n" +
                 "    var form = document.getElementById(\"deleteUserForm\")\n" +
                 "\n" +
