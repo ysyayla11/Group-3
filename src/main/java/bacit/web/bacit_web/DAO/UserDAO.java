@@ -93,6 +93,65 @@ public class UserDAO extends AMVDatabaseDAO{
         return success;
     }
 
+    public UserModel getUserFromID(String user_id){
+        UserModel user = null;
+        Connection db = null;
+        String query;
+        PreparedStatement statement = null;
+        ResultSet results = null;
+
+        try {
+            db = DBUtils.getINSTANCE().getConnection();
+
+            query = "select User_id, User_fullName, User_email, User_phoneNumber, User_password, User_address, User_union, User_debt from user where User_id = ?;";
+            statement = db.prepareStatement(query);
+            statement.setString(1, user_id);
+            results = statement.executeQuery();
+            user = resultsetToUserModelArrayList(results).get(0);
+
+        }
+        catch (SQLException|ClassNotFoundException e){
+            logger.info("getAllUsers " + e.getMessage());
+        }
+        finally {
+            closeConnections(db, results, statement);
+        }
+
+        return user;
+    }
+
+    public boolean editUserInfo(UserModel user){
+        Connection db = null;
+        PreparedStatement statement = null;
+        String query;
+        boolean success = false;
+        try {
+            db = DBUtils.getINSTANCE().getConnection();
+
+            query = "Update user set user_fullName = ?, user_email = ?, user_phoneNumber = ?," +
+                    "user_union = ?, user_address = ?, user_debt = ? where user_id = ?";
+            statement = db.prepareStatement(query);
+            statement.setString(1, user.getFullName());
+            statement.setString(2, user.getEmail());
+            statement.setString(3, user.getPhoneNumber());
+            statement.setBoolean(4, user.getUnion());
+            statement.setString(5, user.getAddress());
+            statement.setInt(6, user.getDebt());
+            statement.setInt(7, user.getId());
+
+            statement.executeQuery();
+
+            success = true;
+        }
+        catch (SQLException|ClassNotFoundException e){
+            logger.info("deleteUser" + e.getMessage());
+        }
+        finally {
+            super.closeConnections(db, null, statement);
+        }
+        return success;
+    }
+
     public void deleteUser(int userID){
         try {
             Connection db = DBUtils.getINSTANCE().getConnection();
@@ -206,7 +265,5 @@ public class UserDAO extends AMVDatabaseDAO{
 
         return users;
     }
-
-
 
 }
