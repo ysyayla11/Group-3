@@ -92,16 +92,15 @@ public class BookToolPageServlet extends HttpServlet {
                 "    <label>Sluttdato</label>\n" +
                 "    <input type=\"date\" name=\"Booking_dateEnd\" class=\"dateInput\" id=\"dateEndInput\" required> <br/> <br/>\n" +
                 "\n" +
-                "    <label>Booking paid:</label> <br/>\n" +
-                "    <label>Ja</label>\n" +
+                "    <label>Betal nå eller senere</label> <br/>\n" +
+                "    <label>nå</label>\n" +
                 "    <input type=\"radio\" name=\"Booking_paid\" value=\"true\"> <br/>\n" +
-                "    <label>Nei</label>\n" +
+                "    <label>Senere</label>\n" +
                 "    <input type=\"radio\" name=\"Booking_paid\" value=\"false\" checked> <br/>\n" +
                 "\n" +
                 "\n" +
                 "    <a href=\"../index.jsp\"><button type=\"submit\" value=\"Register\" onclick=\"showMessage()\">Registrer</button> <br/></a>\n" +
                 "</form>");
-
 
     }
 

@@ -62,15 +62,23 @@ public class GetAllToolServlet extends HttpServlet {
             while (results.next()) {
                 out.println("<form action='GetToolInfoServlet' method='get'>\n" +
                         "    <div>" + results.getString(2) + "</div>\n" +
-                        "    <div>type: " + results.getString(3) + "</div>\n" +
+                        addImage(results.getString(11)) +
                         "    <button type=\"submit\" name='toolID' value='" + results.getString(1) + "'>Rediger verktøy</button>\n" +
-                        results.getString(1) +
                         "</form>");
             }
             results.close();
         }
         catch (SQLException e){
             out.println(e);
+        }
+    }
+
+    private String addImage(String image_id){
+        if (image_id != null){
+            return "<img src=\"../fileDownload?file_id=" + image_id + "\"><br>";
+        }
+        else{
+            return "<img src=\"../Images/bildeMangler.png\" height=\"320px\"><br>";
         }
     }
 }
