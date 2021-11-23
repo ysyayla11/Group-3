@@ -14,25 +14,25 @@
     <%-- Enter user --%>
     <%-- Endring --%>
     <div class="container">
-        <label><b>Tool name</b></label> <br>
+        <label><b>Navn på verktøy</b></label> <br>
         <input type="text" placeholder="Enter Tool Name" name="Tool_name" required> <br>
 
-        <label><b>Tool type</b></label> <br>
+        <label><b>Type</b></label> <br>
         <input type="text" placeholder="Enter Tool Type" name="Tool_type" required> <br>
 
-        <label><b>Tool condition</b></label> <br>
+        <label><b>Tilstand</b></label> <br>
         <input type="text" placeholder="Enter tool condition" name="Tool_condition" required> <br>
 
-        <label><b>Price</b></label> <br>
+        <label><b>Pris per dag</b></label> <br>
         <input type="text" placeholder="Enter rental price" name="Tool_price" required> <br>
 
-        <label><b>Is the tool free the first day?</b></label><input type="checkbox" name="Tool_freeFirstDay" >
+        <label><b>er verktøyet gratis første dag?</b></label><input type="checkbox" name="Tool_freeFirstDay" >
         <br>
         <br>
-        <label><b>Important information about the tool</b></label> <br>
+        <label><b>Viktig informasjon om verktøyet</b></label> <br>
         <input type="text" placeholder="Enter Important Information" name="Tool_importantInformation" required> <br>
 
-        <label><b>Picture of the tool (JPG/PNG only)</b></label> <br>
+        <label><b>Last opp bilde (JPG/PNG only)</b></label> <br>
         <input type="file" name="Tool_image" required> <br>
 
         <button type="submit">Lagre verktøy</button> <br>

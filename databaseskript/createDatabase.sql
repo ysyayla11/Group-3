@@ -80,4 +80,13 @@ CREATE TABLE IF NOT EXISTS access
     FOREIGN KEY (User_phoneNumber)  REFERENCES user(User_phoneNumber) on delete cascade on update cascade
 );
 
+CREATE TABLE IF NOT EXISTS damageReport(
+    DamageReport_id         int unique primary key,
+    User_id                 int,
+    Tool_id                 int,
+    DamageReport_message    varchar(1000),
+    FOREIGN KEY (User_id)   REFERENCES user(User_id),
+    FOREIGN KEY (Tool_id)   References tools(Tool_id)
+);
+
 
