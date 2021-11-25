@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS toolTypes
 CREAte TABLE IF NOT EXISTS files
 (
     File_id                         int NOT NULL PRIMARY KEY auto_increment unique,
-    File_name                       varchar(40),
+    File_name                       varchar(40) unique,
     File_contents                   longblob,
     File_type                       varchar(20)
 );

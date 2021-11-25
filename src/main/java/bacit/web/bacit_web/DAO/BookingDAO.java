@@ -54,8 +54,6 @@ public class BookingDAO extends AMVDatabaseDAO{
             statement.setString(1, toolID);
             results = statement.executeQuery();
             bookings = resultSetToBookingModelArrayList(results);
-            statement.executeQuery();
-
         }
         catch (ClassNotFoundException | SQLException e) {
             logger.info("getBookingsFromPhoneNumber" + e.getMessage());
@@ -89,6 +87,56 @@ public class BookingDAO extends AMVDatabaseDAO{
             closeConnections(db, results, statement);
         }
         return booking;
+    }
+
+    public int getNumberOfUnpaidBookings(String userId){
+        int numberOfBookings = 0;
+        Connection db = null;
+        PreparedStatement statement = null;
+        ResultSet results = null;
+
+        try {
+            db = DBUtils.getINSTANCE().getConnection();
+            String query = "select count(?) from booking where User_id = ?  and Booking_paid = 0";
+            statement = db.prepareStatement(query);
+            statement.setString(1, userId);
+            statement.setString(2, userId);
+            results = statement.executeQuery();
+
+            results = statement.executeQuery();
+            numberOfBookings = getNumberFromResultset(results);
+
+        }
+        catch (ClassNotFoundException | SQLException e) {
+            logger.info("getBookingsFromPhoneNumber" + e.getMessage());
+        }
+        finally {
+            closeConnections(db, results, statement);
+        }
+        return numberOfBookings;
+    }
+
+    public boolean payAllBookings(String userID){
+        boolean success = false;
+        Connection db = null;
+        PreparedStatement statement = null;
+
+        try {
+            db = DBUtils.getINSTANCE().getConnection();
+            String query = "update booking set Booking_paid = 1 where User_id = ? and Booking_paid = 0";
+            statement = db.prepareStatement(query);
+            statement.setString(1, userID);
+            statement.executeQuery();
+            success = true;
+        }
+        catch (ClassNotFoundException | SQLException e) {
+            logger.info("getBookingsFromPhoneNumber" + e.getMessage());
+        }
+        finally {
+            closeConnections(db, null, statement);
+        }
+
+        return success;
     }
 
     public boolean addBooking(BookingModel booking){
@@ -160,6 +208,18 @@ public class BookingDAO extends AMVDatabaseDAO{
         finally {
             closeConnections(db, null, statement);
         }
+    }
+
+    private int getNumberFromResultset(ResultSet resultSet){
+        int number = 0;
+        try{
+            resultSet.next();
+            number = Integer.parseInt(resultSet.getString(1));
+        }
+        catch (SQLException e){
+            logger.info(e.getMessage());
+        }
+        return number;
     }
 
     private ArrayList<BookingModel> resultSetToBookingModelArrayList(ResultSet results){

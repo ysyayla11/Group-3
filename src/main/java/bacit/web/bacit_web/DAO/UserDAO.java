@@ -76,11 +76,10 @@ public class UserDAO extends AMVDatabaseDAO{
         try {
             db = DBUtils.getINSTANCE().getConnection();
 
-            String query = "update user set User_debt = (select User_debt from user where User_id = ?) + ? where User_id = ?";
+            String query = "update user set User_debt = user.User_debt + ? where User_id = ?";
             statement = db.prepareStatement(query);
-            statement.setString(1, user_id);
-            statement.setInt(2, amount);
-            statement.setString(3, user_id);
+            statement.setInt(1, amount);
+            statement.setString(2, user_id);
             statement.executeQuery();
             success = true;
         }
@@ -152,6 +151,30 @@ public class UserDAO extends AMVDatabaseDAO{
         return success;
     }
 
+    public int getUserDebt(String user_id){
+        Connection db = null;
+        PreparedStatement statement = null;
+        String query;
+        int userDebt = 0;
+
+        try {
+            db = DBUtils.getINSTANCE().getConnection();
+
+            query = "select User_debt from user where User_id = ?";
+            statement = db.prepareStatement(query);
+            statement.setString(1, user_id);
+            ResultSet results = statement.executeQuery();
+            userDebt =  Integer.parseInt(getSingleItemFromResultSet(results));
+        }
+        catch (SQLException|ClassNotFoundException e){
+            logger.info("get user debt" + e.getMessage());
+        }
+        finally {
+            closeConnections(db, null, statement);
+        }
+        return userDebt;
+    }
+
     public void deleteUser(int userID){
         try {
             Connection db = DBUtils.getINSTANCE().getConnection();
@@ -203,6 +226,7 @@ public class UserDAO extends AMVDatabaseDAO{
         Connection db = null;
         PreparedStatement statement = null;
         String query;
+        String userId = null;
         try {
             db = DBUtils.getINSTANCE().getConnection();
 
@@ -210,7 +234,7 @@ public class UserDAO extends AMVDatabaseDAO{
             statement = db.prepareStatement(query);
             statement.setString(1, user_phone);
             ResultSet results = statement.executeQuery();
-            return getUserIDFromResultSet(results);
+            userId = getSingleItemFromResultSet(results);
         }
         catch (SQLException|ClassNotFoundException e){
             logger.info("get user id" + e.getMessage());
@@ -218,10 +242,10 @@ public class UserDAO extends AMVDatabaseDAO{
         finally {
             closeConnections(db, null, statement);
         }
-        return null;
+        return userId;
     }
 
-    private String getUserIDFromResultSet(ResultSet results){
+    private String getSingleItemFromResultSet(ResultSet results){
 
         try{
             while (results.next()){

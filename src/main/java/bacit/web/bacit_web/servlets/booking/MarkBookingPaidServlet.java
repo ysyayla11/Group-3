@@ -1,12 +1,9 @@
 package bacit.web.bacit_web.servlets.booking;
 
-import bacit.web.bacit_web.DAO.BookingDAO;
-import bacit.web.bacit_web.DAO.UserDAO;
 import bacit.web.bacit_web.models.BookingModel;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -14,7 +11,7 @@ import java.io.PrintWriter;
 import java.util.logging.Logger;
 
 @WebServlet(name = "MarkBookingPaidServlet", value = "/SiteUser/markBookingPaidServlet")
-public class MarkBookingPaidServlet extends HttpServlet {
+public class MarkBookingPaidServlet extends BookingSuperServlet {
 
     Logger logger = Logger.getLogger(String.valueOf(MarkBookingPaidServlet.class));
 
@@ -27,10 +24,13 @@ public class MarkBookingPaidServlet extends HttpServlet {
         BookingModel booking = getBooking(booking_id);
         int currentUserId = Integer.parseInt(getUserID(request.getUserPrincipal().getName()));
         int bookingOwner = booking.getUser_id();
+        int bookingPrice = calculateDebt(booking);
+        bookingPrice *= -1;
 
-        logger.info("current " + currentUserId + ", booking: " + bookingOwner);
+        logger.info("current " + currentUserId + ", booking: " + bookingOwner + ", " + bookingPrice);
         if (currentUserId == bookingOwner && !booking.getPaid()) {
             setAsDelivered(booking_id);
+            updateDebt(bookingPrice, Integer.toString(currentUserId));
             out.println("Du har nå betalt din booking");
         }
         else if(currentUserId == bookingOwner && booking.getPaid()){
@@ -39,20 +39,5 @@ public class MarkBookingPaidServlet extends HttpServlet {
         else {
             out.println("dette er ikke din booking");
         }
-    }
-
-    private void setAsDelivered(String booking_id){
-        BookingDAO dao = new BookingDAO();
-        dao.setBookingPaid(booking_id);
-    }
-
-    private BookingModel getBooking(String booking_id){
-        BookingDAO dao = new BookingDAO();
-        return dao.getBookingFromBookingID(booking_id);
-    }
-
-    private String getUserID(String phoneNumber){
-        UserDAO dao = new UserDAO();
-        return dao.getUserIdFromPhone(phoneNumber);
     }
 }

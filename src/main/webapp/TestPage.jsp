@@ -9,20 +9,14 @@
 
 <body>
 
-<div id="bookingInterface">
-    <div>Du skylder: X kroner</div>
-    <div>Du har: X ubetalte bookinger</div>
-    <button>betal alle ubetalt bookinger</button><br>
+<%
+UserDAO dao = new UserDAO();
+int userDebt = dao.getUserDebt("1");
+%>
 
-    <b>Dine bookinger:</b><br>
-    <label>Sorter etter</label>
-    <select id="sortSelect">
-        <option selected>Ubetalte</option>
-        <option>Ulevert</option>
-        <option>Kommende</option>
-        <option>Alle</option>
-    </select>
-</div>
+<%=
+userDebt
+%>
 
 <input type="date" id="dateInput">
 

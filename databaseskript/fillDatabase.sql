@@ -1127,8 +1127,9 @@ values (
         '2021-11-24',
         0,
         '2021-11-24'
-
        );
+update user set User_debt = User_debt +50 where User_id = 7;
+
 insert into booking (Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid, Booking_dateDelivered)
 values (
            Booking_id,
@@ -1140,6 +1141,8 @@ values (
             '2021-11-14'
 
        );
+update user set User_debt = User_debt +50 where User_id = 7;
+
 insert into booking (Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid, Booking_dateDelivered)
 values (
            Booking_id,
@@ -1150,6 +1153,8 @@ values (
            0,
             null
        );
+update user set User_debt = User_debt +60 where User_id = 3;
+
 insert into booking (Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid, Booking_dateDelivered)
 values (
            Booking_id,
@@ -1160,6 +1165,8 @@ values (
            0,
             null
        );
+update user set User_debt = User_debt +50 where User_id = 4;
+
 insert into booking (Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid, Booking_dateDelivered)
 values (
            Booking_id,
@@ -1170,6 +1177,8 @@ values (
            0,
             null
        );
+update user set User_debt = User_debt +200 where User_id = 3;
+
 insert into booking (Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid, Booking_dateDelivered)
 values (
            Booking_id,
@@ -1180,6 +1189,8 @@ values (
            0,
             null
        );
+update user set User_debt = User_debt +20 where User_id = 3;
+
 insert into booking (Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid, Booking_dateDelivered)
 values (
            Booking_id,
@@ -1190,6 +1201,8 @@ values (
            0,
             '2021-11-11'
        );
+update user set User_debt = User_debt +200 where User_id = 3;
+
 insert into booking (Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid, Booking_dateDelivered)
 values (
            Booking_id,
@@ -1200,6 +1213,8 @@ values (
            0,
             NULL
        );
+update user set User_debt = User_debt +20 where User_id = 3;
+
 insert into booking (Booking_id, Tool_id, User_id, Booking_dateStart, Booking_dateEnd, Booking_paid, Booking_dateDelivered)
 values (
            Booking_id,
@@ -1210,6 +1225,7 @@ values (
            0,
             null
        );
+update user set User_debt = User_debt +50 where User_id = 3;
 
 
 

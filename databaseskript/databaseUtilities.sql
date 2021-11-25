@@ -89,3 +89,12 @@ update booking set Booking_paid = true where Booking_id = 12;
 update user set User_debt = (select User_debt from user where User_id = ?) + ? where User_id = ?;
 
 update user set User_debt = 0 where User_id = *;
+
+select count(3) from booking where User_id = 3 and Booking_paid = 0;
+
+update user set User_debt = user.User_debt + ? where User_id = ?;
+
+select ToolType_name from toolTypes where ToolType_id = ?;
+
+insert into tools (Tool_id, Tool_name, ToolType_id, Tool_condition, Tool_price, Tool_qualification, Tool_freeFirstDay, Tool_importantInformation, Tool_maxDays, Tool_delivered, File_id)
+values (ToolType_id,?,?,?,?,false,?,?,null,true,?);

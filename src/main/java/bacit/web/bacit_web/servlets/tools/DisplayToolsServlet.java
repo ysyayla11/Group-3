@@ -59,12 +59,14 @@ public class DisplayToolsServlet extends HttpServlet {
 
     private void printForm(ArrayList<ToolModel> tools) {
         outString.append("<ul id = 'toolList'>");
-        for (int i = 0; i<tools.size(); i++) {
-            outString.append("<li><form action='../SiteUser/BookToolPageServlet' method='get'>\n" +
-                    "    <div class='div'>" + tools.get(i).getName() + " </div>\n");
-            addImage(tools.get(i).getImage());
-            outString.append("<button type='submit' name='Tool_id' value = '" + tools.get(i).getId() + "' heigth=\"1vh\">Reserver dette verktøyet</button>" +
-                    "    </form></li>");
+        for (ToolModel tool : tools) {
+            if (!tool.getCondition().equals("trukketTilbake")) {
+                outString.append("<li><form action='../SiteUser/BookToolPageServlet' method='get'>\n" +
+                        "    <div class='div'>" + tool.getName() + " </div>\n");
+                addImage(tool.getImage());
+                outString.append("<button type='submit' name='Tool_id' value = '" + tool.getId() + "' heigth=\"1vh\">Reserver dette verktøyet</button>" +
+                        "    </form></li>");
+            }
         }
         outString.append("</ul>");
     }
