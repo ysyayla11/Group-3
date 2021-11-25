@@ -8,39 +8,44 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%= HtmlModel.getHeader("tool Entry")%>
-<br/>
+<br>
 
-<form method="post" action="uploadServlet" enctype="multipart/form-data">
+<h1>Legg til nytt verktøy</h1>
+
+
+
+<form method="post" action="../SiteAdmin/toolUploadServlet" id="toolForm">
     <%-- Enter user --%>
     <%-- Endring --%>
     <div class="container">
         <label><b>Navn på verktøy</b></label> <br>
-        <input type="text" placeholder="Enter Tool Name" name="Tool_name" required> <br>
+        <input type="text" placeholder="Skriv her..." name="Tool_name" required> <br>
 
-        <label><b>Type</b></label> <br>
-        <input type="text" placeholder="Enter Tool Type" name="Tool_type" required> <br>
+        <select name="Tool_type">
+            <option disabled selected>Velg Type</option>
+            <option value="1">Diverse småutstyr</option>
+            <option value="2">Spikerpistoler o.l.</option>
+            <option value="3">Utstyr for vedhogst</option>
+            <option value="4">Tilhengere</option>
+            <option value="5">Større Utstyr</option>
+        </select> <br>
 
         <label><b>Tilstand</b></label> <br>
-        <input type="text" placeholder="Enter tool condition" name="Tool_condition" required> <br>
+        <input type="text" placeholder="Skriv her..." name="Tool_condition" required> <br>
 
         <label><b>Pris per dag</b></label> <br>
-        <input type="text" placeholder="Enter rental price" name="Tool_price" required> <br>
+        <input type="number" placeholder="Skriv her..." name="Tool_price" required> <br><br>
 
-        <label><b>er verktøyet gratis første dag?</b></label><input type="checkbox" name="Tool_freeFirstDay" >
+        <label><b>Kryss av om verktøyet er gratis første dag</b></label>
+        <input type="checkbox" value="on" name="Tool_freeFirstDay">
+        <input type="hidden" value="off" name="Tool_freeFirstDay">
         <br>
         <br>
         <label><b>Viktig informasjon om verktøyet</b></label> <br>
-        <input type="text" placeholder="Enter Important Information" name="Tool_importantInformation" required> <br>
-
-        <label><b>Last opp bilde (JPG/PNG only)</b></label> <br>
-        <input type="file" name="Tool_image" required> <br>
-
-        <button type="submit">Lagre verktøy</button> <br>
-
-    </div>
+        <input type="text" placeholder="Skriv her..." name="Tool_importantInformation" required> <br>
+        </div>
+        <button type="submit">lagre nytt verktøy</button>
 </form>
 
 
-
-</body>
-</html>
+<%=HtmlModel.getFooter()%>

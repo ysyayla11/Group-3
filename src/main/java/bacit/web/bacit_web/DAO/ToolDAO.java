@@ -100,6 +100,83 @@ public class ToolDAO extends AMVDatabaseDAO{
 
     }
 
+    public boolean updateToolAllAttributes(String tool_id){
+        return false;
+    }
+
+    public void updateToolImage(String tool_id, String image_id){
+        Connection db = null;
+        PreparedStatement statement = null;
+        try {
+            db = DBUtils.getINSTANCE().getConnection();
+            String query = "update tools set File_id = ? where Tool_id = ?";
+            statement = db.prepareStatement(query);
+            statement.setString(1, tool_id);
+            statement.setString(2, image_id);
+
+            statement.executeQuery();
+        }
+        catch (ClassNotFoundException|SQLException e) {
+            logger.info("get tools: " + e.getMessage());
+        }
+        finally {
+            closeConnections(db, null, statement);
+        }
+    }
+
+    public boolean uploadNewTool(ToolModel tool){
+        boolean success = false;
+        Connection db = null;
+        PreparedStatement statement = null;
+        try {
+            db = DBUtils.getINSTANCE().getConnection();
+            String query = "insert into tools (Tool_id, Tool_name, ToolType_id, Tool_condition, Tool_price, Tool_qualification, Tool_freeFirstDay, Tool_importantInformation, Tool_maxDays, Tool_delivered, File_id)\n" +
+                    "values (ToolType_id,?,?,?,?,false,?,?,null,true,?);";
+            statement = db.prepareStatement(query);
+            statement.setString(1, tool.getName());
+            statement.setString(2, tool.getType());
+            statement.setString(3, tool.getCondition());
+            statement.setInt(4, tool.getPrice());;
+            statement.setInt(5, tool.getFreeFirstDay());
+            statement.setString(6, tool.getImportantInformation());
+            statement.setString(7, tool.getImage());
+
+            statement.executeQuery();
+            success = true;
+        }
+        catch (ClassNotFoundException|SQLException e) {
+            logger.info("get tools: " + e.getMessage());
+        }
+        finally {
+            closeConnections(db, null, statement);
+        }
+        return success;
+    }
+
+    public String getToolTypeByTypeID(String tool_id){
+        String toolType = null;
+        ResultSet results = null;
+        Connection db = null;
+        PreparedStatement statement = null;
+        try {
+            db = DBUtils.getINSTANCE().getConnection();
+            String query = "select ToolType_name from toolTypes where ToolType_id = ?;";
+            statement = db.prepareStatement(query);
+            statement.setString(1, tool_id);
+            results = statement.executeQuery();
+            while(results.next()){
+                toolType = results.getString(1);
+            }
+        }
+        catch (ClassNotFoundException|SQLException e) {
+            logger.info("get tools: " + e.getMessage());
+        }
+        finally {
+            closeConnections(db, results, statement);
+        }
+        return toolType;
+    }
+
     public boolean getQualification(String toolID){
         boolean qualification = false;
         ResultSet results = null;

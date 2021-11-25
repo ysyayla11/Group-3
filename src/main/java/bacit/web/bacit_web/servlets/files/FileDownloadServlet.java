@@ -34,11 +34,6 @@ public class FileDownloadServlet extends HttpServlet {
         return new FileDAO().getFile(id);
     }
 
-    protected String getQueryStringParameter(HttpServletRequest request, String parameter)
-    {
-        return request.getParameter("id");
-    }
-
     protected void writeFileResult(HttpServletResponse response, FileModel model) throws IOException
     {
         response.setContentType(model.getContentType());

@@ -69,6 +69,7 @@ public class BookToolPageServlet extends HttpServlet {
             outString.append("<img src=\"../Images/bildeMangler.png\"><br>");
         }
         outString.append("Pris pr dag "+ tool.getPrice() +"kr<br>");
+        outString.append("Verktøyets tilstand: " + tool.getCondition() + "<br>");
         if (tool.getFreeFirstDay() == 1){
             outString.append("Dette verktøyet er gratis første dagen<br>");
         }

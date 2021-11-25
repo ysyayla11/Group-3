@@ -43,6 +43,21 @@ public class FileDAO {
         rs.close();
         statement.close();
         return model;
+    }
 
+    public String getImageIdFromName(String name) throws Exception{
+        Connection db = DBUtils.getINSTANCE().getConnection();
+        String query3 = "select File_id from files where File_name = ?";
+        PreparedStatement statement = db.prepareStatement(query3);
+        statement.setString(1, name);
+        ResultSet rs =  statement.executeQuery();
+        String id = null;
+        if (rs.next()) {
+            id = rs.getString(1);
+        }
+        db.close();
+        rs.close();
+        statement.close();
+        return id;
     }
 }

@@ -4,8 +4,7 @@ import bacit.web.bacit_web.DAO.BookingDAO;
 import bacit.web.bacit_web.DAO.ToolDAO;
 import bacit.web.bacit_web.models.BookingModel;
 import bacit.web.bacit_web.models.HtmlModel;
-import bacit.web.bacit_web.models.ToolModel;
-import bacit.web.bacit_web.servlets.SuperServlet;
+import bacit.web.bacit_web.models.UserModel;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,17 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
 @WebServlet(name = "GetBookingsServlet", value = "/SiteUser/GetBookingsServlet")
-public class GetBookingServlets extends SuperServlet{
+public class GetBookingServlets extends BookingSuperServlet {
 
     private final Logger logger = Logger.getLogger(String.valueOf(GetBookingServlets.class));
-    private final StringBuffer outString = new StringBuffer();
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
@@ -32,7 +27,9 @@ public class GetBookingServlets extends SuperServlet{
         outString.delete(0, outString.length());
 
         ArrayList<BookingModel> bookings = getBookings(userPhone);
-        addHtml(bookings);
+        UserModel bookingOwner = getUser(userPhone);
+
+        addHtml(bookings, bookingOwner);
         out.println(outString);
     }
 
@@ -43,9 +40,9 @@ public class GetBookingServlets extends SuperServlet{
         return dao.getBookingsFromPhoneNumber(userPhone);
     }
 
-    private void addHtml(ArrayList<BookingModel> bookings){
+    private void addHtml(ArrayList<BookingModel> bookings, UserModel bookingOwner){
         outString.append(HtmlModel.getHeader("Bookings"));
-        addBookingInterface(bookings);
+        addBookingInterface(bookings, bookingOwner);
         if(bookings.size() != 0) {
             addBookingList(bookings);
         }
@@ -55,13 +52,18 @@ public class GetBookingServlets extends SuperServlet{
         outString.append(HtmlModel.getFooter());
     }
 
-    private void addBookingInterface(ArrayList<BookingModel> bookings){
+    private void addBookingInterface(ArrayList<BookingModel> bookings, UserModel bookingOwner){
+
+        int unpaidBookings = getNumberOfUnpaidBookings(Integer.toString(bookingOwner.getId()));
+
         outString.append("<div id=\"bookingInterface\">\n" +
-                "    <div>Du skylder: "+ 500 +" kroner</div>\n" + //TODO add actual debt
-                "    <div>Du har: "+ 10 +" ubetalte bookinger</div>\n" + //TODO add actual number of bookings
-                "    <button>betal alle ubetalt bookinger</button><br>\n" +
-                "\n" +
-                "    <b>Dine bookinger:</b><br>\n" +
+                "    <div>Du skylder: "+ bookingOwner.getDebt() +" kroner</div>\n" +
+                "    <div>Du har: "+  unpaidBookings + " ubetalte bookinger</div>\n");
+        if(unpaidBookings != 0) {
+            outString.append("    <a href= \"markAllBookingsAsPAidServlet\"><button>betal alle ubetalt bookinger</button></a>\n");
+        }
+        outString.append("\n" +
+                "    <br><b>Dine bookinger:</b><br>\n" +
                 "    <label>Sorter etter</label>\n" +
                 "    <select id=\"sortSelect\">\n" +
                 "        <option selected>Ubetalte</option>\n" +
@@ -116,58 +118,11 @@ public class GetBookingServlets extends SuperServlet{
 
     private String getToolName(String tool_id){
         ToolDAO dao = new ToolDAO();
-
         return dao.getToolName(tool_id);
     }
 
-    private int calculateDebt(BookingModel booking){
-
-        int daysToPayFor = calculateDaysToPayFor(booking);
-
-        ToolDAO dao = new ToolDAO();
-        ToolModel tool = dao.getToolById(Integer.toString(booking.getTool_id()));
-
-        int freeFirstDay = tool.getFreeFirstDay();
-        logger.info(Integer.toString(tool.getFreeFirstDay()));
-        int price = tool.getPrice();
-
-        int debt = daysToPayFor * price;
-
-        if(freeFirstDay == 1){
-            debt-=(price);
-        }
-
-        return debt;
-    }
-
-    private int calculateDaysToPayFor(BookingModel booking){
-
-        int daysToPayFor;
-
-        LocalDate startDate = LocalDate.parse(booking.getBooking_dateStart().substring(0, 10));
-        LocalDate endDate = LocalDate.parse(booking.getBooking_dateEnd().substring(0, 10));
-
-        String dateDeliveredString = booking.getBooking_dateDelivered();
-        LocalDate dateDelivered;
-
-        if (dateDeliveredString != null){ dateDelivered = LocalDate.parse(dateDeliveredString.substring(0, 10)); }
-        else { dateDelivered = null; }
-
-        LocalDate currentDate = LocalDate.now();
-
-        if(dateDelivered != null && !endDate.isBefore(dateDelivered)){
-            daysToPayFor = Period.between(startDate, endDate).getDays() + 1;
-        }
-        else if(dateDelivered != null && endDate.isBefore(dateDelivered)){
-            daysToPayFor = Period.between(startDate, dateDelivered).getDays() + 1;
-        }
-        else if(dateDelivered == null && endDate.isBefore(currentDate)){
-            daysToPayFor = Period.between(startDate, currentDate).getDays();
-        }
-        else{
-            daysToPayFor = Period.between(startDate, endDate).getDays() + 1;
-        }
-
-        return daysToPayFor;
+    private int getNumberOfUnpaidBookings(String userID){
+        BookingDAO dao = new BookingDAO();
+        return dao.getNumberOfUnpaidBookings(userID);
     }
 }
