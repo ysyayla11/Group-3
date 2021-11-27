@@ -21,6 +21,7 @@
         </div>
     </div>
 </div>
+<button onclick="confimDeleteTool()"  name = "tool_id" value=""></button>
 <br/>
 
 <ul>

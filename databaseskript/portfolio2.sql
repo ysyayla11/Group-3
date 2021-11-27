@@ -9,7 +9,8 @@ LIMIT 5;
 SELECT * FROM tools
 LIMIT 5;
 
-SELECT * FROM paymentMethod;
+SELECT * FROM damageReport
+LIMIT 5;
 
 SELECT * FROM access
 LIMIT 5;
@@ -52,12 +53,8 @@ select b.Booking_id, Tool_name, User_fullName
 from booking b
          inner join tools t on b.Tool_id = t.Tool_id
          inner join user u on b.User_id = u.User_id
-where b.Booking_dateEnd <= '2021-10-25' and b.Booking_dateDelivered is null;
-
-select * from booking where Booking_dateEnd < '2021-10-25';
+where b.Booking_dateEnd <= current_date and b.Booking_dateDelivered is null;
 
 -- delete booked tool
 
 delete from tools where Tool_id = 1;
-
-select * from MytestDB.booking where User_id = 3 and Booking_paid = 0;

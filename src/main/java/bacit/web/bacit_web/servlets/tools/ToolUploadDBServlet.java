@@ -79,9 +79,9 @@ public class ToolUploadDBServlet extends SuperServlet {
 
     private void addImageForm(String tool_id){
         outString.append("<form action='fileUpload' method='POST' enctype='multipart/form-data'>");
-        outString.append("<label for='file'>Upload a file</label> ");
+        outString.append("<label for='file'>Last opp et bilde</label> ");
         outString.append("<input type='file' name='file' accept='.pdf, .png' required/>");
-        outString.append("<input type =\"hidden\" value = \"" + tool_id + "\" name = \"tool_id\"");
+        outString.append("<input type =\"hidden\" value = \"" + tool_id + "\" name = \"tool_id\">");
         outString.append("<input type='submit' value='last opp bilde'/>");
         outString.append("</form>");
     }

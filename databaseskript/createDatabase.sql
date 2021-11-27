@@ -81,12 +81,12 @@ CREATE TABLE IF NOT EXISTS access
 );
 
 CREATE TABLE IF NOT EXISTS damageReport(
-    DamageReport_id         int unique primary key,
+    DamageReport_id         int unique primary key auto_increment,
     User_id                 int,
     Tool_id                 int,
     DamageReport_message    varchar(1000),
-    FOREIGN KEY (User_id)   REFERENCES user(User_id),
-    FOREIGN KEY (Tool_id)   References tools(Tool_id)
+    FOREIGN KEY (User_id)   REFERENCES user(User_id) on delete set null,
+    FOREIGN KEY (Tool_id)   References tools(Tool_id) on delete set null
 );
 
 
