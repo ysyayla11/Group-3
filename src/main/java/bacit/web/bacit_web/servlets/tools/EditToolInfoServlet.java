@@ -1,5 +1,6 @@
 package bacit.web.bacit_web.servlets.tools;
 
+import bacit.web.bacit_web.DAO.ToolDAO;
 import bacit.web.bacit_web.models.ToolModel;
 import bacit.web.bacit_web.utilities.DBUtils;
 
@@ -29,48 +30,23 @@ public class EditToolInfoServlet extends HttpServlet {
         String qualification = request.getParameter("qualification");
         String freeFirstDay = request.getParameter("freeFirstDay");
         String importantInformation = request.getParameter("importantInformation");
-        String delivered = request.getParameter("delivered");
         String image = request.getParameter("image");
         String toolID = request.getParameter("toolID");
-        int intToolID = Integer.parseInt(toolID);
 
         ToolModel tool = new ToolModel(toolID, toolName, type, condition, Integer.parseInt(price), Integer.parseInt(freeFirstDay), importantInformation, image, true);
 
-        try{
-            editToolInfo(tool, out);
+        if(editToolInfo(tool)){
             out.println("Change success!");
         }
-        catch(SQLException e){
-            out.println("oops something went wrong " + e);
+        else {
+            out.println("noe gikk galt");
         }
+
     }
 
-    public void editToolInfo(ToolModel tool, PrintWriter out) throws SQLException {
-
-        Connection db = null;
-        try{
-            db = DBUtils.getINSTANCE().getConnection();
-        }
-        catch(ClassNotFoundException e){
-            e.printStackTrace();
-            System.out.println("Error i connection");
-        }
-
-        String query = "Update tools set Tool_toolName = ?, Tool_type = ?, Tool_condition = ?, Tool_price = ?, " +
-                        "Tool_freeFirstDay = ?, Tool_importantInformation = ? , Tool_delivered = ? , Tool_image = ? where Tool_id = ?";
-
-        PreparedStatement statement = db.prepareStatement(query);
-        statement.setString(1, tool.getName());
-        statement.setString(2, tool.getType());
-        statement.setString(3, tool.getCondition());
-        statement.setInt(4, tool.getPrice());
-        statement.setInt(5, tool.getFreeFirstDay());
-        statement.setString(6, tool.getImportantInformation());
-        statement.setBoolean(7, true);
-        statement.setString(8, tool.getImage());
-        statement.setString(9, tool.getId());
-        statement.executeQuery();
-
+    public boolean editToolInfo(ToolModel tool){
+        ToolDAO dao = new ToolDAO();
+        return dao.editTool(tool);
     }
 
 

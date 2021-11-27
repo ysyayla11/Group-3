@@ -98,3 +98,5 @@ select ToolType_name from toolTypes where ToolType_id = ?;
 
 insert into tools (Tool_id, Tool_name, ToolType_id, Tool_condition, Tool_price, Tool_qualification, Tool_freeFirstDay, Tool_importantInformation, Tool_maxDays, Tool_delivered, File_id)
 values (ToolType_id,?,?,?,?,false,?,?,null,true,?);
+
+alter table damageReport modify DamageReport_id int unique auto_increment;

@@ -84,7 +84,7 @@ public class GetUserInfoServlet extends SuperServlet {
                     "        <label> Gjeld </label>\n" +
                     "        <input type=\"text\" name = \"debt\" value = '" + user.getDebt() + "'>\n" +
                     "        <br>\n" +
-                    "        <button onclick='confirmEditUser' value='" + user.getId() + "' name='userID'> Endre </button>\n" +
+                    "        <button onclick='confirmEditUser()' value='" + user.getId() + "' name='userID'> Endre </button>\n" +
                     "    </form>\n");
     }
 

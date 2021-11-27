@@ -2,6 +2,7 @@ package bacit.web.bacit_web.servlets.tools;
 
 
 
+import bacit.web.bacit_web.DAO.ToolDAO;
 import bacit.web.bacit_web.servlets.SuperServlet;
 import bacit.web.bacit_web.utilities.DBUtils;
 
@@ -14,51 +15,28 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 
-@WebServlet(name = "DeleteToolServlet", value = "/DeleteToolServlet")
+@WebServlet(name = "DeleteToolServlet", value = "/SiteAdmin/DeleteToolServlet")
 public class DeleteToolServlet extends SuperServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException{
         response.setContentType("text/html");
-        PrintWriter printWriter = response.getWriter();
+        PrintWriter out = response.getWriter();
+        outString.delete(0, outString.length());
+        String toolID = request.getParameter("tool_id");
 
-        Connection db = null;
-        PrintWriter out = null;
-        try{
-            db = DBUtils.getINSTANCE().getConnection();
-        }catch (ClassNotFoundException | SQLException e){
-            e.printStackTrace();
-            System.out.println("Error i connection");
+        if(deleteTool(toolID)){
+            outString.append("suksess");
         }
-        try{
-            //Henter og oppdaterer fra db
-            String query = "Delete from tools Where Tool_id = ?";
-            PreparedStatement preparedStatement = db.prepareStatement(query);
-            int i = preparedStatement.executeUpdate();
-            if(i!=0){
-                printWriter.println("Deleting row ");
+        else{
+            outString.append("sletting feilet, gå tilbake og prøv på nytt");
+        }
+        out.println(outString);
+    }
 
-            }
-            else if(i==0){
-                printWriter.println("<br>Row has been deleted succesfully."+
-                        "    <form action=\"GetAllToolServlet\" method=\"get\">\n" +
-                        "        <button type=\"submit\">get all tools</button>\n" +
-                        "    </form>\n");
-            }
-        }
-        catch (SQLException sqlException){
-            printWriter.println(sqlException);
-        }
+    private boolean deleteTool(String toolID){
+        ToolDAO dao = new ToolDAO();
+        return dao.deleteToolWithID(toolID);
     }
-    private Connection getDBConnection(PrintWriter out){
-        Connection db = null;
-        try{
-            db = DBUtils.getINSTANCE().getConnection();
-        }
-        catch(ClassNotFoundException | SQLException e){
-            e.printStackTrace();
-            System.out.println("Error i connection");
-        }
-       return db;
-    }
+
 }

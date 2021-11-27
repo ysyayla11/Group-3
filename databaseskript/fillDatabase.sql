@@ -1227,6 +1227,47 @@ values (
        );
 update user set User_debt = User_debt +50 where User_id = 3;
 
+insert into damageReport(damagereport_id, user_id, tool_id, damagereport_message)
+values (
+        DamageReport_id,
+        3,
+        4,
+        'ødelagt håndtaket'
+       );
+
+insert into damageReport(damagereport_id, user_id, tool_id, damagereport_message)
+values (
+        DamageReport_id,
+        3,
+        2,
+        'mistet i bakken, klarer ikke spinne lenger'
+       );
+
+insert into damageReport(damagereport_id, user_id, tool_id, damagereport_message)
+values (
+        DamageReport_id,
+        2,
+        6,
+        'meisler ikke lenger'
+       );
+
+insert into damageReport (DamageReport_id, User_id, Tool_id, DamageReport_message)
+values (
+        DamageReport_id,
+        2,
+        10,
+        'diagnoserer bilene feil'
+       );
+
+insert into damageReport (DamageReport_id, User_id, Tool_id, DamageReport_message)
+values (
+        DamageReport_id,
+        4,
+        3,
+        'blitt slapp i motoren'
+       );
+
+
 
 
 

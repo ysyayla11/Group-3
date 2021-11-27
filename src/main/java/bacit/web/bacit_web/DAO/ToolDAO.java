@@ -14,7 +14,7 @@ import java.util.GregorianCalendar;
 import java.util.logging.Logger;
 
 public class ToolDAO extends AMVDatabaseDAO{
-    private Logger logger = Logger.getLogger(String.valueOf(ToolDAO.class));
+    private final Logger logger = Logger.getLogger(String.valueOf(ToolDAO.class));
 
     public String deliverTool(String tool_id){
         Connection db = null;
@@ -100,6 +100,28 @@ public class ToolDAO extends AMVDatabaseDAO{
 
     }
 
+    public boolean deleteToolWithID(String toolID){
+        Connection db = null;
+        PreparedStatement statement = null;
+        boolean success = false;
+        try {
+            db = DBUtils.getINSTANCE().getConnection();
+            String query = "delete from tools Where Tool_id = ?";
+            statement = db.prepareStatement(query);
+            statement.setString(1, toolID);
+
+            statement.executeQuery();
+            success = true;
+        }
+        catch (ClassNotFoundException|SQLException e) {
+            logger.info("get tools: " + e.getMessage());
+        }
+        finally {
+            closeConnections(db, null, statement);
+        }
+        return success;
+    }
+
     public boolean updateToolAllAttributes(String tool_id){
         return false;
     }
@@ -140,6 +162,36 @@ public class ToolDAO extends AMVDatabaseDAO{
             statement.setInt(5, tool.getFreeFirstDay());
             statement.setString(6, tool.getImportantInformation());
             statement.setString(7, tool.getImage());
+
+            statement.executeQuery();
+            success = true;
+        }
+        catch (ClassNotFoundException|SQLException e) {
+            logger.info("get tools: " + e.getMessage());
+        }
+        finally {
+            closeConnections(db, null, statement);
+        }
+        return success;
+    }
+
+    public boolean editTool(ToolModel tool){
+        boolean success = false;
+        Connection db = null;
+        PreparedStatement statement = null;
+        try {
+            db = DBUtils.getINSTANCE().getConnection();
+            String query = "Update tools set Tool_Name = ?, ToolType_id = ?, Tool_condition = ?, Tool_price = ?," +
+                    "       Tool_freeFirstDay = ?, ToolType_id = ?, Tool_importantInformation = ? where Tool_id = ?";
+            statement = db.prepareStatement(query);
+            statement.setString(1, tool.getName());
+            statement.setString(2, tool.getType());
+            statement.setString(3, tool.getCondition());
+            statement.setInt(4, tool.getPrice());
+            statement.setInt(5, tool.getFreeFirstDay());
+            statement.setString(6, tool.getType());
+            statement.setString(7, tool.getImportantInformation());
+            statement.setString(8, tool.getId());
 
             statement.executeQuery();
             success = true;
