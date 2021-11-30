@@ -17,7 +17,7 @@ public class FileDownloadServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String stringId = request.getParameter("file_id");
+        String stringId = getIdFromRequest(request);
         int id = Integer.parseInt(stringId);
         try{
             FileModel fileModel =  getFile(id);
@@ -27,6 +27,10 @@ public class FileDownloadServlet extends HttpServlet {
         {
             logger.severe("getMethod "+ ex.getMessage());
         }
+    }
+
+    protected  String getIdFromRequest(HttpServletRequest request) {
+        return request.getParameter("file_id");
     }
 
     protected FileModel getFile(int id) throws Exception
