@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="bacit-web" target="1.8" />
+      <module name="bacit-web" target="9" />
     </bytecodeTargetLevel>
   </component>
 </project>
