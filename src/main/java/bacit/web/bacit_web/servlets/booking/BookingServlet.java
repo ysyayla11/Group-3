@@ -7,28 +7,15 @@ import bacit.web.bacit_web.DAO.UserDAO;
 import bacit.web.bacit_web.models.BookingModel;
 import bacit.web.bacit_web.models.ToolModel;
 import bacit.web.bacit_web.servlets.SuperServlet;
-import bacit.web.bacit_web.utilities.DBUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.awt.print.Book;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.Period;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.logging.Logger;
 
 
@@ -47,17 +34,16 @@ public class BookingServlet extends SuperServlet {
     private StringBuffer outString = new StringBuffer();
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
+        setResponseContentType(response);
         outString.delete(0, outString.length());
 
-        String tool_id = request.getParameter("Tool_id");
-        String user_id = request.getParameter("User_id");
-        String booking_dateStart = request.getParameter("Booking_dateStart");
-        String booking_dateEnd = request.getParameter("Booking_dateEnd");
+        String tool_id = getToolIdFromRequest(request);
+        String user_id = getUser_idFromRequest(request);
+        String booking_dateStart = getBooking_dateStartFromRequest(request);
+        String booking_dateEnd = getBooking_dateEndFromRequest(request);
 
         boolean booking_paid = false;
-        if (request.getParameter("Booking_paid").equals("true")) {
+        if (bookingPaidStatus(request)) {
             booking_paid = true;
         }
 
@@ -77,11 +63,40 @@ public class BookingServlet extends SuperServlet {
             outString.append("du er ikke kvalifisert til å booke dette verktøyet");
         }
 
-        out.println(outString);
+        printHtml(response);
 
     }
 
-    private boolean checkQualified(String tool_id, String user_id){
+    protected boolean bookingPaidStatus(HttpServletRequest request) {
+        return request.getParameter("Booking_paid").equals("true");
+    }
+
+    protected void setResponseContentType(HttpServletResponse response){
+        response.setContentType("text/html");
+    }
+
+    protected String getToolIdFromRequest(HttpServletRequest request){
+        return request.getParameter("Tool_id");
+    }
+
+    protected String getUser_idFromRequest(HttpServletRequest request) {
+        return request.getParameter("User_id");
+    }
+
+    protected String getBooking_dateStartFromRequest(HttpServletRequest request) {
+        return request.getParameter("Booking_dateStart");
+    }
+
+    protected String getBooking_dateEndFromRequest(HttpServletRequest request) {
+        return request.getParameter("Booking_dateEnd");
+    }
+
+    protected void printHtml(HttpServletResponse response) throws IOException{
+        PrintWriter out = response.getWriter();
+        out.println(outString);
+    }
+
+    protected boolean checkQualified(String tool_id, String user_id){
 
         QualificationDAO dao = new QualificationDAO();
 
@@ -91,18 +106,18 @@ public class BookingServlet extends SuperServlet {
         return true;
     }
 
-    private boolean addBooking(BookingModel booking){
+    protected boolean addBooking(BookingModel booking){
         BookingDAO dao = new BookingDAO();
         return dao.addBooking(booking);
 
     }
 
-    private boolean updateDebt(String user_id, int amount){
+    protected boolean updateDebt(String user_id, int amount){
         UserDAO dao = new UserDAO();
         return dao.updateUserDebt(user_id, amount);
     }
 
-    private int calculateBookingPrice(BookingModel booking){
+    protected int calculateBookingPrice(BookingModel booking){
         LocalDate startDate = LocalDate.parse(booking.getBooking_dateStart().substring(0, 10));
         LocalDate endDate = LocalDate.parse(booking.getBooking_dateEnd().substring(0, 10));
 
